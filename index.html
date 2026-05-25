@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spangler Counseling Group | Developmental Support for Teens & Young Adults</title>
+<link rel="icon" type="image/png" href="js_logo_transparent.png">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue:    #2C5F8A;
+    --blue-d:  #1E4266;
+    --blue-m:  #3A7AAD;
+    --blue-s:  #5A96C2;
+    --blue-p:  #C8DDEF;
+    --blue-w:  #EAF3FA;
+    --cream:   #F5F0E8;
+    --cream-d: #EBE3D6;
+    --ivory:   #FAF7F2;
+    --sage:    #5A7A5F;
+    --sage-m:  #7A9E7F;
+    --sage-p:  #C4D9C6;
+    --sage-w:  #EDF4EE;
+    --deep:    #162030;
+    --deep-m:  #1E2C3E;
+    --ink:     #1A1F2E;
+    --chalk:   #F0EBE0;
+    --chalk-d: #C8C0B0;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.7;
+    font-size: 17px;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(245,240,232,0.94);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(44,95,138,0.10);
+  }
+
+  .nav-mark { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-logo { width: 36px; height: 36px; object-fit: contain; }
+
+  .nav-name {
+    font-family: 'Lora', serif;
+    font-size: 18px; font-weight: 500;
+    letter-spacing: -0.01em; color: var(--blue-d);
+  }
+
+  .nav-name span {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px; font-weight: 400;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--sage); margin-top: 1px;
+  }
+
+  .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+
+  .nav-links a {
+    font-size: 14px; font-weight: 400;
+    color: var(--ink); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--blue); }
+
+  .nav-cta {
+    background: var(--blue); color: #fff !important;
+    padding: 9px 22px; border-radius: 4px;
+    font-weight: 500 !important; font-size: 13px !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--blue-d) !important; }
+
+  /* ─── SHARED ─── */
+  .container { max-width: 1160px; margin: 0 auto; padding: 0 48px; }
+
+  .eyebrow {
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .ey-blue  { color: var(--blue); }
+  .ey-sage  { color: var(--sage); }
+  .ey-light { color: var(--sage-m); }
+
+  .section-h {
+    font-family: 'Lora', serif;
+    font-size: clamp(28px, 3.2vw, 44px);
+    font-weight: 500; line-height: 1.22;
+    letter-spacing: -0.02em; color: var(--ink);
+    margin-bottom: 24px;
+  }
+  .section-h em { font-style: italic; color: var(--blue); }
+  .section-h.light { color: #fff; }
+  .section-h.light em { color: var(--blue-s); }
+
+  .lede {
+    font-size: 19px; font-weight: 300;
+    line-height: 1.72; color: #3A3F4E;
+    margin-bottom: 24px; max-width: 640px;
+  }
+  .lede.light { color: var(--chalk-d); }
+
+  .prose {
+    font-size: 16px; line-height: 1.78;
+    color: #3A3F4E; margin-bottom: 18px;
+  }
+  .prose.light { color: var(--chalk-d); }
+  .prose strong { color: var(--ink); font-weight: 500; }
+  .prose.light strong { color: #fff; }
+
+  .btn-primary {
+    background: var(--blue); color: #fff;
+    text-decoration: none; padding: 14px 32px;
+    border-radius: 4px; font-size: 15px; font-weight: 500;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--blue-m); transform: translateY(-1px); }
+
+  .btn-ghost {
+    color: var(--chalk-d); text-decoration: none;
+    font-size: 14px; font-weight: 400;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: color 0.2s;
+  }
+  .btn-ghost:hover { color: #fff; }
+  .btn-ghost::after { content: '→'; font-size: 16px; }
+
+  /* inline soft contact link */
+  .soft-link {
+    display: block;
+    margin-top: 28px;
+    font-size: 15px; font-weight: 500;
+    color: var(--blue); text-decoration: none;
+    border-bottom: 1.5px solid var(--blue-p);
+    padding-bottom: 2px;
+    width: fit-content;
+    transition: border-color 0.2s;
+  }
+  .soft-link:hover { border-color: var(--blue); }
+  .soft-link.light { color: var(--blue-s); border-color: rgba(90,150,194,0.35); }
+  .soft-link.light:hover { border-color: var(--blue-s); }
+
+  .wave { display: block; width: 100%; height: 40px; margin-bottom: -2px; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    padding-top: 72px;
+    background: var(--deep);
+    position: relative; overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 60px 80px 80px;
+    position: relative; z-index: 2;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--sage-m); margin-bottom: 24px;
+  }
+
+  .hero-h {
+    font-family: 'Lora', serif;
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 500; line-height: 1.20;
+    color: #fff; margin-bottom: 28px;
+    letter-spacing: -0.02em;
+  }
+  .hero-h em { font-style: italic; color: var(--blue-s); }
+
+  .hero-sub {
+    font-size: 17px; font-weight: 300;
+    line-height: 1.78; color: var(--chalk-d);
+    max-width: 480px; margin-bottom: 44px;
+  }
+
+  .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+
+  canvas#hero-canvas {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    opacity: 0.35; z-index: 1;
+  }
+
+  .hero-right {
+    display: flex; align-items: center; justify-content: center;
+    padding: 80px 60px; position: relative; z-index: 2;
+  }
+
+  .hero-card-stack { display: flex; flex-direction: column; gap: 18px; width: 100%; max-width: 400px; }
+
+  .hero-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 8px; padding: 26px 28px;
+    backdrop-filter: blur(8px);
+  }
+
+  .hero-card-label {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--sage-m); margin-bottom: 10px;
+  }
+
+  .hero-card p {
+    font-size: 15px; font-weight: 300;
+    color: var(--chalk-d); line-height: 1.68;
+  }
+  .hero-card p strong { color: #fff; font-weight: 500; }
+
+  /* ─── WHAT PARENTS RECOGNIZE ─── */
+  .recognizing {
+    background: var(--cream); padding: 100px 0;
+  }
+
+  .recog-inner {
+    display: grid; grid-template-columns: 1.1fr 0.9fr;
+    gap: 80px; align-items: start;
+  }
+
+  .recog-cards { display: flex; flex-direction: column; gap: 16px; }
+
+  .recog-card {
+    background: var(--ivory);
+    border: 1px solid var(--cream-d);
+    border-left: 3px solid var(--blue-p);
+    border-radius: 0 8px 8px 0;
+    padding: 22px 26px;
+  }
+
+  .recog-card p {
+    font-size: 15px; line-height: 1.68;
+    color: #4A4F60; font-style: italic; margin: 0;
+  }
+
+  /* ─── HOW WE HELP ─── */
+  .work { background: var(--ivory); padding: 100px 0; }
+
+  .work-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: start;
+  }
+
+  .steps { display: flex; flex-direction: column; }
+
+  .step {
+    display: flex; gap: 24px;
+    padding: 26px 0;
+    border-bottom: 1px solid var(--cream-d);
+  }
+  .step:last-child { border-bottom: none; }
+
+  .step-num {
+    font-family: 'Lora', serif;
+    font-size: 26px; font-weight: 400; font-style: italic;
+    color: var(--blue-p); min-width: 34px;
+    line-height: 1; padding-top: 4px;
+  }
+
+  .step-title {
+    font-family: 'Lora', serif;
+    font-size: 18px; font-weight: 500;
+    color: var(--blue-d); margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+
+  .step-body {
+    font-size: 15px; line-height: 1.72; color: #4A4F60;
+  }
+
+  /* ─── CLINICAL REFERRALS & EDUCATORS ─── */
+  .referrals {
+    background: var(--cream);
+    padding: 80px 0;
+    border-top: 1px solid var(--cream-d);
+  }
+  .ref-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 40px;
+  }
+  .ref-card-styled {
+    background: var(--ivory);
+    border: 1px solid var(--cream-d);
+    border-radius: 8px;
+    padding: 32px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .ref-card-styled:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(44,95,138,0.04);
+  }
+  .ref-h4 {
+    font-family: 'Lora', serif;
+    font-size: 20px;
+    color: var(--blue-d);
+    margin-bottom: 12px;
+  }
+  .ref-p {
+    font-size: 15px;
+    color: #4A4F60;
+    line-height: 1.7;
+  }
+
+  /* ─── TEAM SECTION (THE TRUST TRANSFER FUNNEL) ─── */
+  .team { background: var(--ivory); padding: 100px 0; }
+  
+  .team-intro {
+    max-width: 760px;
+    margin-bottom: 56px;
+  }
+
+  .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+
+  .team-card {
+    background: var(--cream); border: 1px solid var(--cream-d);
+    border-radius: 8px; overflow: hidden; display: flex; flex-direction: column;
+    transition: transform 0.2s;
+  }
+  .team-card:hover { transform: translateY(-2px); }
+
+  .team-photo {
+    background: var(--blue-p);
+    height: 280px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .team-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .team-photo-gradient {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 80px;
+    background: linear-gradient(to top, rgba(0,0,0,0.15), transparent);
+  }
+
+  .team-photo-placeholder {
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 0.10em; text-transform: uppercase;
+    color: var(--blue-d); text-align: center; padding: 16px;
+  }
+
+  .team-info { padding: 36px; display: flex; flex-direction: column; flex-grow: 1; }
+
+  .team-role {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--sage); margin-bottom: 8px;
+  }
+
+  .team-name {
+    font-family: 'Lora', serif;
+    font-size: 26px; font-weight: 500;
+    color: var(--blue-d); margin-bottom: 6px;
+    letter-spacing: -0.015em;
+  }
+
+  .team-cred { font-size: 13px; color: #6A7080; margin-bottom: 20px; line-height: 1.5; min-height: 40px; }
+
+  .team-bio { font-size: 15px; line-height: 1.75; color: #4A4F60; margin-bottom: 20px; }
+
+  .team-focus { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 16px; }
+
+  .focus-tag {
+    background: var(--sage-w); color: var(--sage);
+    border: 1px solid var(--sage-p);
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.06em;
+    padding: 5px 12px; border-radius: 3px;
+  }
+  .focus-tag.highlight {
+    background: var(--blue-w); color: var(--blue);
+    border-color: var(--blue-p);
+  }
+
+  /* ─── COLLABORATIVE CARE BANNER ─── */
+  .collab-banner {
+    background: var(--blue-w);
+    border-left: 4px solid var(--blue);
+    padding: 30px 36px;
+    border-radius: 0 8px 8px 0;
+    margin-top: 48px;
+  }
+  .collab-banner h4 {
+    font-family: 'Lora', serif;
+    font-size: 18px;
+    color: var(--blue-d);
+    margin-bottom: 8px;
+  }
+  .collab-banner p {
+    font-size: 15px;
+    color: #3A4F65;
+    line-height: 1.78;
+  }
+
+  /* ─── SPECIALTIES (WHO WE SEE) ─── */
+  .who { background: var(--deep); padding: 100px 0; overflow: hidden; position: relative; }
+
+  .who-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: start;
+    position: relative; z-index: 2;
+  }
+
+  .area-list { display: flex; flex-direction: column; gap: 16px; }
+
+  .area-item {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 6px; padding: 20px 24px;
+    display: flex; gap: 16px; align-items: flex-start;
+  }
+
+  .area-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--sage-m); margin-top: 7px; flex-shrink: 0;
+  }
+  .area-dot.blue { background: var(--blue-s); }
+
+  .area-title {
+    font-size: 15px; font-weight: 500;
+    color: #fff; margin-bottom: 4px;
+  }
+
+  .area-desc {
+    font-size: 13px; font-weight: 300;
+    color: var(--chalk-d); line-height: 1.65;
+  }
+
+  /* ─── VOICE STONE ─── */
+  .stone { background: var(--deep); padding: 80px 0; border-top: 1px solid rgba(255,255,255,0.05); }
+
+  .stone-inner {
+    text-align: center; max-width: 760px; margin: 0 auto;
+  }
+
+  .stone blockquote {
+    font-family: 'Lora', serif;
+    font-size: clamp(22px, 2.4vw, 32px);
+    font-weight: 400; font-style: italic;
+    line-height: 1.55; color: #fff; margin-bottom: 22px;
+  }
+
+  .stone cite {
+    font-style: normal; font-size: 13px;
+    letter-spacing: 0.10em; text-transform: uppercase;
+    color: var(--chalk-d);
+  }
+
+  /* ─── FAQ ─── */
+  .faq { background: var(--cream); padding: 100px 0; }
+
+  .faq-inner { display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: start; }
+
+  .faq-list { display: flex; flex-direction: column; gap: 12px; }
+
+  .faq-item {
+    background: var(--ivory);
+    border: 1px solid var(--cream-d);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: all 0.25s ease;
+  }
+
+  .faq-q {
+    font-family: 'Lora', serif;
+    font-size: 16px; font-weight: 500;
+    color: var(--blue-d);
+    padding: 22px 28px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+  }
+  .faq-q::after {
+    content: '+';
+    font-family: 'DM Sans', sans-serif;
+    font-size: 20px;
+    color: var(--sage);
+    transition: transform 0.25s;
+  }
+  .faq-item.active .faq-q::after {
+    transform: rotate(45deg);
+    color: var(--blue);
+  }
+
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+    font-size: 15px; line-height: 1.75; color: #4A4F60;
+    padding: 0 28px;
+  }
+  .faq-item.active .faq-a {
+    max-height: 300px;
+    padding-bottom: 24px;
+    border-top: 1px solid rgba(44,95,138,0.06);
+    padding-top: 16px;
+  }
+
+  /* ─── CONTACT ─── */
+  .contact {
+    background: var(--deep); padding: 100px 0;
+    position: relative; overflow: hidden;
+  }
+
+  .contact-inner {
+    display: grid; grid-template-columns: 1fr 1.1fr;
+    gap: 80px; align-items: center;
+    position: relative; z-index: 2;
+  }
+
+  .contact-left .section-h { color: #fff; margin-bottom: 20px; }
+  .contact-left .eyebrow { color: var(--sage-m); }
+  .contact-body { font-size: 16px; font-weight: 300; line-height: 1.80; color: var(--chalk-d); margin-bottom: 28px; }
+
+  .contact-detail { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+
+  .contact-detail-item { font-size: 14px; color: var(--chalk-d); }
+  .contact-detail-item strong { color: #fff; font-weight: 500; margin-right: 8px; }
+
+  .contact-form {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px; padding: 40px;
+    backdrop-filter: blur(10px);
+  }
+
+  .form-title {
+    font-family: 'Lora', serif;
+    font-size: 20px; font-weight: 500;
+    color: #fff; margin-bottom: 26px;
+  }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+
+  label {
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--chalk-d);
+  }
+
+  input, textarea, select {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 4px; padding: 11px 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px; color: #fff; outline: none;
+    transition: border-color 0.2s; width: 100%;
+  }
+  input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.35); }
+  input:focus, textarea:focus, select:focus { border-color: var(--blue-s); }
+  select option { background: var(--deep-m); color: #fff; }
+  textarea { resize: vertical; min-height: 100px; }
+
+  .btn-form {
+    width: 100%; background: var(--blue); color: #fff;
+    border: none; padding: 14px 32px; border-radius: 4px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px; font-weight: 500; cursor: pointer;
+    transition: background 0.2s; margin-top: 8px;
+  }
+  .btn-form:hover { background: var(--blue-m); }
+
+  .form-note {
+    font-size: 12px; color: rgba(255,255,255,0.35);
+    text-align: center; margin-top: 12px; line-height: 1.6;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--deep-m); padding: 40px 0;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+  .footer-inner { display: flex; justify-content: space-between; align-items: center; }
+  .footer-left { font-size: 13px; color: rgba(255,255,255,0.35); line-height: 1.7; }
+  .footer-links { display: flex; gap: 28px; list-style: none; }
+  .footer-links a { font-size: 13px; color: rgba(255,255,255,0.40); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: rgba(255,255,255,0.80); }
+
+  /* ─── SCROLL REVEAL ─── */
+  .sr { transition: opacity 0.55s ease, transform 0.55s ease; }
+  .sr.off { opacity: 0; transform: translateY(22px); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 960px) {
+    nav { padding: 16px 22px; }
+    .nav-links li:not(:last-child):not(:nth-last-child(2)) { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 80px 28px; }
+    .container { padding: 0 24px; }
+    .recog-inner, .work-inner, .ref-grid,
+    .team-grid, .who-inner, .faq-inner, .contact-inner {
+      grid-template-columns: 1fr; gap: 40px;
+    }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <a href="#top" class="nav-mark">
+    <img class="nav-logo" src="js_logo_transparent_outlined.png" alt="Spangler Counseling Group Logo">
+    <div class="nav-name">Spangler Counseling Group <span>Developmental Support</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#recognizing">What You See</a></li>
+    <li><a href="#work">How We Help</a></li>
+    <li><a href="#team">Our Team</a></li>
+    <li><a href="#who">Who We See</a></li>
+    <li><a href="#questions">Questions</a></li>
+    <li><a href="#contact" class="nav-cta">Reach Out</a></li>
+  </ul>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero" id="top">
+  <canvas id="hero-canvas"></canvas>
+
+  <div class="hero-left">
+    <p class="hero-eyebrow">Spangler Counseling Group | Telehealth</p>
+    <h1 class="hero-h">Understanding is<br>where we <em>begin.</em></h1>
+    <p class="hero-sub">Your teen or young adult is trying to figure out who they are. We take the time to understand how they work, and we build our support around that.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Schedule a Consultation</a>
+      <a href="#recognizing" class="btn-ghost">See what we mean</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-card-stack">
+      <div class="hero-card sr">
+        <div class="hero-card-label">Every Person Makes Sense</div>
+        <p>When you take the time to see someone through their own experience, they start to make sense. <strong>That is always where we start.</strong></p>
+      </div>
+      <div class="hero-card sr">
+        <div class="hero-card-label">A Space of Their Own</div>
+        <p>We sit outside the rest of their world. <strong>Someone they can talk to who has no other role in their life.</strong> A place for the things they are still figuring out how to say.</p>
+      </div>
+      <div class="hero-card sr">
+        <div class="hero-card-label">Building What Lasts</div>
+        <p>We are working toward something that holds. <strong>A grounded sense of who they are</strong> that they carry into everything that comes next.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Wave Separator -->
+<svg class="wave" viewBox="0 0 1440 40" preserveAspectRatio="none" style="background:var(--deep);display:block;">
+  <path d="M0,0 C360,40 1080,40 1440,0 L1440,40 L0,40 Z" fill="var(--cream)"/>
+</svg>
+
+<!-- ─── WHAT PARENTS RECOGNIZE ─── -->
+<section class="recognizing" id="recognizing">
+  <div class="container">
+    <div class="recog-inner">
+
+      <div class="sr">
+        <p class="eyebrow ey-blue">What You Might Be Seeing</p>
+        <h2 class="section-h">You know something.<br>You are just not sure<br>what to do with it yet.</h2>
+        <p class="lede">Most parents who reach out are already paying close attention. They can feel that something is off. They want to help and are not always sure how.</p>
+        <p class="prose">Sometimes it comes on slowly. Sometimes it appears out of nowhere. Either way, watching your kid struggle and feeling like you cannot quite reach them is one of the harder things a parent carries.</p>
+        <p class="prose">Reaching out is a good instinct. It is one of the most caring things you can do to back stop their developmental path.</p>
+        <a href="#contact" class="soft-link">Talk to us about what you are seeing &rarr;</a>
+      </div>
+
+      <div class="recog-cards sr">
+        <div class="recog-card"><p>"I want them to know I support them, whatever they decide to do. I just want them to be okay."</p></div>
+        <div class="recog-card"><p>"I am worried about this next transition and I do not know how to help them through it."</p></div>
+        <div class="recog-card"><p>"Something changed and I cannot tell if it is a phase or something more."</p></div>
+        <div class="recog-card"><p>"I keep wondering if I should have seen this sooner."</p></div>
+        <div class="recog-card"><p>"Every option in front of us feels like the wrong one."</p></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Wave Separator -->
+<svg class="wave" viewBox="0 0 1440 40" preserveAspectRatio="none" style="background:var(--cream);display:block;">
+  <path d="M0,0 C360,40 1080,40 1440,0 L1440,40 L0,40 Z" fill="var(--ivory)"/>
+</svg>
+
+<!-- ─── HOW WE HELP ─── -->
+<section class="work" id="work">
+  <div class="container">
+    <div class="work-inner">
+
+      <div class="sr">
+        <p class="eyebrow ey-sage">How We Help</p>
+        <h2 class="section-h">We take the time to<br>actually know them.</h2>
+        <p class="lede">Every person arrives with their own way of taking in the world. Understanding that is the starting point for everything we do.</p>
+        <p class="prose">We help young people develop their own lens for understanding themselves. The goal is genuine self-knowledge, and the confidence that grows from it.</p>
+        <p class="prose">We are developmental counselors. That means the mentoring, skill building, and identity work at the core of what we do is held by trained professionals who can also recognize and address what sits beneath the surface when it needs attention.</p>
+        <a href="#contact" class="soft-link">Ask us how this might fit your family &rarr;</a>
+      </div>
+
+      <div class="steps sr">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div>
+            <div class="step-title">Get to know them</div>
+            <p class="step-body">Before knowing how to help, we need to know the person. How they think. What matters to them. Where they feel most like themselves and where they feel furthest from it.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div>
+            <div class="step-title">Build a real relationship</div>
+            <p class="step-body">We give the relationship time to root. We sit outside family, school, and peer life. A space where the parts of themselves they are still figuring out how to hold can come forward safely.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div>
+            <div class="step-title">Shape the support to fit</div>
+            <p class="step-body">Once we understand how someone works, we build from there. Mentoring, skill building, self-exploration, all of it tuned to this specific young person.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div>
+            <div class="step-title">Develop identity and purpose</div>
+            <p class="step-body">The heart of the work. Helping a young person settle into who they are, find their own motivation, and build a sense of self that holds over time.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">05</div>
+          <div>
+            <div class="step-title">Address what gets in the way</div>
+            <p class="step-body">When anxiety, depression, or other struggles are blocking growth, we address them as part of the larger picture, in service of the foundation we are building together.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Wave Separator -->
+<svg class="wave" viewBox="0 0 1440 40" preserveAspectRatio="none" style="background:var(--ivory);display:block;">
+  <path d="M0,0 C360,40 1080,40 1440,0 L1440,40 L0,40 Z" fill="var(--cream)"/>
+</svg>
+
+<!-- ─── PROVIDERS & EDUCATOR REFERRALS (NEW AUDIENCE TRACK) ─── -->
+<section class="referrals" id="referrals">
+  <div class="container">
+    <div class="sr">
+      <p class="eyebrow ey-blue">Professional Partnerships</p>
+      <h2 class="section-h">Collaborating with the people<br>who already <em>know them.</em></h2>
+      <p class="lede">We believe that supporting a young person works best when we respect the ecosystem already around them. We coordinate care smoothly to ensure continuity.</p>
+    </div>
+
+    <div class="ref-grid sr">
+      <div class="ref-card-styled">
+        <div class="ref-h4">For Clinical Providers</div>
+        <p class="ref-p">We provide diagnostic-informed, relational care for therapists, psychiatrists, and pediatricians looking for highly specialized developmental and neurodivergent-affirming tracking for clients aged 13–25.</p>
+      </div>
+      <div class="ref-card-styled">
+        <div class="ref-h4">For Educators & Schools</div>
+        <p class="ref-p">We partner actively with school psychologists, educational consultants, and counselors to coordinate academic supports, backing up executive functioning structures and complex transition plans.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Wave Separator -->
+<svg class="wave" viewBox="0 0 1440 40" preserveAspectRatio="none" style="background:var(--cream);display:block;">
+  <path d="M0,0 C360,40 1080,40 1440,0 L1440,40 L0,40 Z" fill="var(--ivory)"/>
+</svg>
+
+<!-- ─── MEET THE CLINICAL TEAM (FUNNEL STRUCTURED TO SHARED REPUTATION) ─── -->
+<section class="team" id="team">
+  <div class="container">
+    <div class="team-intro sr">
+      <p class="eyebrow ey-sage">Our Clinical Team</p>
+      <h2 class="section-h">Collaborative care,<br>shared <em>grounding.</em></h2>
+      <p class="lede">Every counselor in our practice is trained directly within our developmental, neurodivergent-affirming approach. Johnny Spangler provides close clinical oversight and regular weekly supervision, ensuring that every family benefits from both individual relational warmth and senior clinical expertise.</p>
+    </div>
+
+    <div class="team-grid">
+      
+      <!-- Lead Clinician: Johnny -->
+      <div class="team-card sr">
+        <div class="team-photo">
+          <img src="Profile Pic.JPG" alt="Johnny Spangler, MA, LMHC - Founder and Clinical Lead">
+          <div class="team-photo-gradient"></div>
+        </div>
+        <div class="team-info">
+          <div class="team-role">Founder and Clinical Lead</div>
+          <h3 class="team-name">Johnny Spangler</h3>
+          <div class="team-cred">Affiliate Faculty, Antioch University Seattle &nbsp;|&nbsp; Neurodiversity Concentration and Certificate Program</div>
+          <p class="team-bio">Johnny is a licensed counselor, educator, and supervisor dedicated to reshaping how we support adolescents, families, and neurodivergent young adults. Moving away from rigid, clinical checklists, his relational approach builds genuine emotional safety, self-knowledge, and agency. Alongside his private practice, Johnny serves as an Affiliate Professor at Antioch University Seattle, anchoring his work in cutting-edge, neuro-affirming pedagogy and universal design for learning.</p>
+          <p class="team-bio">As clinical director, Johnny provides comprehensive oversight and weekly supervision for the practice’s associate clinicians. By directly training his team within his specialized relational style, he ensures every family receives a consistent blend of adaptive, collaborative care and deep clinical expertise. His focus remains entirely on breaking through traditional therapeutic barriers to meet clients exactly where they are.</p>
+          <div class="team-focus">
+            <span class="focus-tag">Clinical Supervision</span>
+            <span class="focus-tag">Neuro-Affirming Care</span>
+            <span class="focus-tag">Developmental Transitions</span>
+			<span class="focus-tag">Community Education</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Associate Clinician: Sean -->
+      <div class="team-card sr">
+		<div class="team-photo" style="background: #f4f1eb; border-bottom: 1px solid var(--sage-p); display: flex; justify-content: center; align-items: center;">
+          <img src="sean_flikke.jpeg" alt="Sean Flikke, MA - Associate Counselor" style="height: 100%; width: auto; object-fit: contain;">
+          <div class="team-photo-gradient"></div>
+        </div>
+        <div class="team-info">
+          <div class="team-role">Associate Counselor</div>
+          <h3 class="team-name">Sean Flikke</h3>
+          <div class="team-cred">MA in Counseling &nbsp;|&nbsp; Trained & Supervised Directly within the Spangler Clinical Method</div>
+          <p class="team-bio">Sean brings a vibrant, grounded relational style that makes therapy feel immediate, safe, and collaborative for young people who are often resistant to traditional counseling. Before transitioning to clinical work, he spent 15 years in education, youth coaching, and mentorship. This extensive background gives him an intuitive, real-world understanding of the social, academic, and developmental pressures kids face today, making him exceptionally relatable to both teens and parents.</p>
+          <p class="team-bio">He specializes in connecting with young people navigating executive functioning challenges, intense transitions, and neurodivergent experiences. Trained extensively within our relational approach and directly mentored by Johnny, Sean blends his deep capacity for empathy with a background in improv comedy to bring warmth, spontaneity, and absolute non-judgment to his sessions. He receives direct case consultation and weekly supervision from Johnny, combining senior clinical backing with focused availability.</p>
+          <div class="team-focus">
+            <span class="focus-tag highlight">Active Openings</span>
+            <span class="focus-tag">Young Adult Transitions</span>
+            <span class="focus-tag">Executive Skills</span>
+            <span class="focus-tag">Relational Safety</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Implicit Funnel Banner -->
+    <div class="collab-banner sr">
+      <h4>Why our collaborative care structure works:</h4>
+      <p>By pairing Sean's direct caseload availability with Johnny's senior clinical backing and regular oversight, families receive a powerful combination: a counselor with the dedicated energy to truly show up for your teen, completely supported by the expertise of a regional leader in neurodevelopmental graduate training.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Wave Separator -->
+<svg class="wave" viewBox="0 0 1440 40" preserveAspectRatio="none" style="background:var(--ivory);display:block;">
+  <path d="M0,0 C360,40 1080,40 1440,0 L1440,40 L0,40 Z" fill="var(--deep)"/>
+</svg>
+
+<!-- ─── WHO WE WORK WITH ─── -->
+<section class="who" id="who">
+  <div class="container">
+    <div class="who-inner">
+
+      <div class="sr">
+        <p class="eyebrow ey-light">Who We Work With</p>
+        <h2 class="section-h light">Beautifully<br><em>complicated</em><br>young people.</h2>
+        <p class="lede light">Teens and young adults of unique strength and complexity, carrying far more than the people around them realize.</p>
+        <p class="prose light">Some of our clients carry diagnoses. Many do not. What they share is a sense of standing at a crossroads, often one their family does not yet fully know how to map for them.</p>
+        <p class="prose light">The work is ultimately about who they are becoming. We help each young person develop the core of their adult self: their identity, their sense of purpose, the grounded confidence that comes from genuinely knowing themselves.</p>
+        <a href="#contact" class="soft-link light">Reach out and tell us about your person &rarr;</a>
+      </div>
+
+      <div class="area-list sr">
+        <div class="area-item">
+          <div class="area-dot"></div>
+          <div>
+            <div class="area-title">Adolescent Identity Development</div>
+            <div class="area-desc">The work of figuring out who you are before you fully know who you want to be. Belonging, self-worth, the particular weight of becoming.</div>
+          </div>
+        </div>
+        <div class="area-item">
+          <div class="area-dot"></div>
+          <div>
+            <div class="area-title">Young Adult Transitions</div>
+            <div class="area-desc">College, first jobs, leaving home, finding direction. Early adulthood carries real developmental weight. We help young people navigate it with more clarity.</div>
+          </div>
+        </div>
+        <div class="area-item">
+          <div class="area-dot"></div>
+          <div>
+            <div class="area-title">Motivation, Purpose, and Direction</div>
+            <div class="area-desc">For young people who possess unique, unrecognized strengths but find themselves completely stuck. Who sense something is off but cannot yet name what. We help bring their picture into focus.</div>
+          </div>
+        </div>
+        <div class="area-item">
+          <div class="area-dot"></div>
+          <div>
+            <div class="area-title">A Natural Fit for Neurodivergent Youth</div>
+            <div class="area-desc">We work through a neurodevelopmental lens. Individual processing style is where understanding begins. For neurodivergent young people, that lens lets us hold all layers of their experience at once.</div>
+          </div>
+        </div>
+        <div class="area-item">
+          <div class="area-dot"></div>
+          <div>
+            <div class="area-title">The Things They Cannot Say at Home</div>
+            <div class="area-desc">We sit outside every other context in their life. A space for the questions they are not ready to ask anyone who already knows them. Real safety for real exploration.</div>
+          </div>
+        </div>
+        <div class="area-item">
+          <div class="area-dot blue"></div>
+          <div>
+            <div class="area-title">When More Support Is Needed</div>
+            <div class="area-desc">We recognize and treat anxiety, depression, OCD, executive functioning challenges, autism support, and suicidal ideation. The professional depth is there whenever it is needed.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── VOICE STONE ─── -->
+<section class="stone">
+  <div class="container">
+    <div class="stone-inner sr">
+      <blockquote>"Every person makes sense. The work is learning how."</blockquote>
+      <cite>Spangler Counseling Group</cite>
+    </div>
+  </div>
+</section>
+
+<!-- Wave Separator -->
+<svg class="wave" viewBox="0 0 1440 40" preserveAspectRatio="none" style="background:var(--deep);display:block;">
+  <path d="M0,0 C360,40 1080,40 1440,0 L1440,40 L0,40 Z" fill="var(--cream)"/>
+</svg>
+
+<!-- ─── FAQ (ACCORDION STYLE) ─── -->
+<section class="faq" id="questions">
+  <div class="container">
+    <div class="faq-inner">
+
+      <div class="sr">
+        <p class="eyebrow ey-blue">Questions Parents Ask</p>
+        <h2 class="section-h">Things worth<br>talking through.</h2>
+        <p class="lede">We want you to feel fully comfortable before making any clinical commitments. Here are common areas we discuss.</p>
+        <a href="#contact" class="soft-link">Set up a free consultation &rarr;</a>
+      </div>
+
+      <div class="faq-list sr">
+        
+        <div class="faq-item">
+          <div class="faq-q">How does your collaborative care model work?</div>
+          <div class="faq-a">
+            Johnny Spangler, our Founder, acts as the Clinical Director and supervisor. He actively coordinates on case planning and hosts weekly clinical supervision with Sean. This means when your teen works with Sean, they receive dedicated relational focus while being backed by Johnny's extensive graduate faculty clinical expertise.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">My teen does not want therapy. Can this still work?</div>
+          <div class="faq-a">
+            Often, yes. Most teens resist being evaluated or "fixed." Sean specializes in setting a warm, non-judgmental atmosphere outside the pressure of family or school dynamics, helping them feel met on their own terms. This usually melts therapeutic resistance quickly.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">Did I cause this?</div>
+          <div class="faq-a">
+            Almost never in the way you fear. Young people usually struggle because of a friction mismatch between their specific developmental path and the complex environments around them. Asking the question simply highlights how deeply you care.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">What if there are things they cannot say to us at home?</div>
+          <div class="faq-a">
+            That is a natural, healthy milestone of adolescent development. Developing an independent inner life is healthy. We offer a secure, objective container outside the home where they can explore hard questions safely, bringing clarity back to their relationship with you.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">How do you approach neurodiversity?</div>
+          <div class="faq-a">
+            We work through a strictly neurodiversity-affirming lens. Whether carrying a diagnosis (ADHD, Autism, Executive Dysfunction) or navigating general learning/processing differences, we focus on identifying their specific processing profile and building tailored skills rather than attempting to enforce behavioral assimilation.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">How do we get started?</div>
+          <div class="faq-a">
+            A simple consultation call. It is a warm, low-pressure conversation to discuss your teen's background, explain our fit, and connect you with Sean's active caseload intakes if appropriate.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Wave Separator -->
+<svg class="wave" viewBox="0 0 1440 40" preserveAspectRatio="none" style="background:var(--cream);display:block;">
+  <path d="M0,0 C360,40 1080,40 1440,0 L1440,40 L0,40 Z" fill="var(--deep)"/>
+</svg>
+
+<!-- ─── CONTACT FORM (MULTI-ROLE SELECTOR) ─── -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="contact-left sr">
+        <p class="eyebrow">Start Here</p>
+        <h2 class="section-h light">You do not have to<br>figure this out <em>alone.</em></h2>
+        <p class="contact-body">Tell us a little about what is going on. Johnny or Sean will follow up honestly about how we can support your teen or young adult.</p>
+        <p class="contact-body">If our collaborative practice is not the right fit, we will gladly point you to trusted Pacific Northwest resources that are.</p>
+        <div class="contact-detail">
+          <div class="contact-detail-item"><strong>Location</strong>Anywhere in Washington via telehealth</div>
+          <div class="contact-detail-item"><strong>Caseloads</strong>Direct intakes led by Associate Counselor Sean</div>
+          <div class="contact-detail-item"><strong>Oversight</strong>All cases supervised by Clinical Lead Johnny Spangler</div>
+          <div class="contact-detail-item"><strong>First call</strong>Complimentary 20-minute consult</div>
+        </div>
+      </div>
+
+      <div class="contact-form sr">
+        <div class="form-title">Reach Out</div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" placeholder="Your first name" required>
+          </div>
+          <div class="form-group">
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" placeholder="Your last name" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="you@email.com" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" placeholder="(206) 000-0000" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="role">I am reaching out as a:</label>
+          <select id="role" required>
+            <option value="" disabled selected>Select one</option>
+            <option value="parent">Parent or Guardian</option>
+            <option value="provider">Referring Therapist / Psychiatrist</option>
+            <option value="school">School Psychologist / Educator</option>
+            <option value="client">Young Adult (18+)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="who">Reaching out about:</label>
+          <select id="who">
+            <option value="" disabled selected>Select option</option>
+            <option>My Teenager (13-17)</option>
+            <option>My Young Adult (18-25)</option>
+            <option>Myself (18+)</option>
+            <option>Professional referral collaboration</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">What is going on?</label>
+          <textarea id="message" placeholder="A short context about what you're noticing or seeking help with. No need to detail everything."></textarea>
+        </div>
+
+        <button class="btn-form">Send Inquiry</button>
+        <p class="form-note">We respond within two business days. Intake consults are held by phone or secure video.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-left" style="display: flex; align-items: center; gap: 20px;">
+        <img src="js_logo_transparent_small.png" alt="Spangler Counseling Group Logo" style="height: 52px; width: auto; opacity: 0.85;">
+        <div>
+          <div style="font-family:'Lora',serif;font-size:16px;color:rgba(255,255,255,0.6);margin-bottom:4px;">Spangler Counseling Group</div>
+          Telehealth &nbsp;|&nbsp; spanglercounselinggroup.com<br>
+          &copy; 2026 Spangler Counseling Group. All rights reserved.
+        </div>
+      </div>
+      <ul class="footer-links">
+        <li><a href="#contact">Reach Out</a></li>
+        <li><a href="#questions">Questions</a></li>
+        <li><a href="https://johnnyspangler.com">johnnyspangler.com</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Ambient network particle field simulation
+function makeField(canvas) {
+  const ctx = canvas.getContext('2d');
+  function resize() { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; }
+  resize(); window.addEventListener('resize', resize);
+  const COLORS = ['#2C5F8A','#3A7AAD','#5A7A5F','#5A96C2','#7A9E7F'];
+  const nodes = [];
+  for (let i = 0; i < 40; i++) {
+    nodes.push({
+      x: Math.random(), y: Math.random(),
+      vx: (Math.random()-0.5)*0.00022, vy: (Math.random()-0.5)*0.00022,
+      r: 1.5 + Math.random()*2.2,
+      color: COLORS[Math.floor(Math.random()*COLORS.length)]
+    });
+  }
+  function draw() {
+    const w = canvas.width, h = canvas.height;
+    ctx.clearRect(0,0,w,h);
+    for (let i=0; i<nodes.length; i++) {
+      const a = nodes[i];
+      a.x += a.vx; a.y += a.vy;
+      if (a.x<0) a.x=1; if (a.x>1) a.x=0;
+      if (a.y<0) a.y=1; if (a.y>1) a.y=0;
+      const ax=a.x*w, ay=a.y*h;
+      for (let j=i+1; j<nodes.length; j++) {
+        const b=nodes[j], bx=b.x*w, by=b.y*h;
+        const d=Math.hypot(ax-bx,ay-by);
+        if (d<145) {
+          ctx.beginPath(); ctx.moveTo(ax,ay); ctx.lineTo(bx,by);
+          ctx.strokeStyle=`rgba(44,95,138,${0.15*(1-d/145)})`;
+          ctx.lineWidth=0.8; ctx.stroke();
+        }
+      }
+      ctx.beginPath(); ctx.arc(ax,ay,a.r,0,Math.PI*2);
+      ctx.fillStyle=a.color+'80'; ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+
+makeField(document.getElementById('hero-canvas'));
+
+// Interactive Accordion Functionality for FAQs
+document.querySelectorAll('.faq-item').forEach(item => {
+  const question = item.querySelector('.faq-q');
+  question.addEventListener('click', () => {
+    const activeItem = document.querySelector('.faq-item.active');
+    if (activeItem && activeItem !== item) {
+      activeItem.classList.remove('active');
+    }
+    item.classList.toggle('active');
+  });
+});
+
+// Scroll Reveal
+document.querySelectorAll('.sr').forEach(el => {
+  if (el.getBoundingClientRect().top > window.innerHeight + 40) el.classList.add('off');
+});
+const obs = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) e.target.classList.remove('off'); });
+}, { threshold: 0.04, rootMargin: '0px 0px 40px 0px' });
+document.querySelectorAll('.sr').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
