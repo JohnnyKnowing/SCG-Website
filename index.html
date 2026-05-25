@@ -50,7 +50,7 @@
   }
 
   .nav-mark { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-  .nav-logo { width: 36px; height: 36px; object-fit: contain; }
+  .nav-logo { width: 36px; height: 36px; object-fit: contain; margin-top: 10px; }
 
   .nav-name {
     font-family: 'Lora', serif;
@@ -339,17 +339,23 @@
   .team-card:hover { transform: translateY(-2px); }
 
   .team-photo {
-    background: var(--blue-p);
-    height: 280px;
+    /* Play around with backgrounds: var(--deep) (dark slate), var(--ink) (near black), var(--cream-d) (warm sand) */
+    background: var(--deep); 
+    
+    /* Play around with aspect ratios to shrink/grow the container: 16/10 (landscape), 1/1 (square), 4/5 (portrait) */
+    aspect-ratio: 14 / 10; 
+    
+    width: 100%;
     display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     position: relative;
     overflow: hidden;
   }
   
   .team-photo img {
-    width: 100%;
+    /* Removing width: 100% and setting object-fit to contain preserves the portrait shape without cropping! */
     height: 100%;
-    object-fit: cover;
+    width: auto;
+    object-fit: contain;
     display: block;
   }
   
@@ -814,7 +820,7 @@
       <!-- Lead Clinician: Johnny -->
       <div class="team-card sr">
         <div class="team-photo">
-          <img src="profile_johnny_spangler.JPG" alt="Johnny Spangler, MA, LMHC - Founder and Clinical Lead">
+          <img src="profile_johnny_spangler.JPG" alt="Johnny Spangler, MA, LMHC - Founder and Clinical Lead" style="object-position: center 15%;">
           <div class="team-photo-gradient"></div>
         </div>
         <div class="team-info">
@@ -834,16 +840,16 @@
 
       <!-- Associate Clinician: Sean -->
       <div class="team-card sr">
-		<div class="team-photo" style="background: #f4f1eb; border-bottom: 1px solid var(--sage-p); display: flex; justify-content: center; align-items: center;">
-          <img src="profile_sean_flikke_wide.jpg" alt="Sean Flikke, MA - Associate Counselor" style="height: 100%; width: auto; object-fit: contain;">
+        <div class="team-photo">
+          <img src="profile_sean_flikke_wide.jpg" alt="Sean Flikke, MS, LMHC-A - Associate Counselor" style="object-position: center 20%;">
           <div class="team-photo-gradient"></div>
         </div>
         <div class="team-info">
           <div class="team-role">Associate Counselor</div>
           <h3 class="team-name">Sean Flikke</h3>
-          <div class="team-cred">MA in Counseling &nbsp;|&nbsp; Trained & Supervised Directly within the Spangler Clinical Method</div>
-          <p class="team-bio">Sean brings a vibrant, grounded relational style that makes therapy feel immediate, safe, and collaborative for young people who are often resistant to traditional counseling. Before transitioning to clinical work, he spent 15 years in education, youth coaching, and mentorship. This extensive background gives him an intuitive, real-world understanding of the social, academic, and developmental pressures kids face today, making him exceptionally relatable to both teens and parents.</p>
-          <p class="team-bio">He specializes in connecting with young people navigating executive functioning challenges, intense transitions, and neurodivergent experiences. Trained extensively within our relational approach and directly mentored by Johnny, Sean blends his deep capacity for empathy with a background in improv comedy to bring warmth, spontaneity, and absolute non-judgment to his sessions. He receives direct case consultation and weekly supervision from Johnny, combining senior clinical backing with focused availability.</p>
+          <div class="team-cred">MS in Counseling &nbsp;|&nbsp; Trained & Supervised Directly within the Spangler Clinical Method</div>
+          <p class="team-bio">For nearly three decades, Sean Flikke has worked alongside marginalized and neurodivergent young people in schools, community programs, athletics, counseling settings, and mentorship spaces. His work is grounded in the belief that healing, growth, and meaningful change happen through authentic human connection, emotional safety, and relationships built on trust rather than judgment. Sean recently completed his Master of Science in Clinical Rehabilitation and Mental Health Counseling through a CACREP-accredited program at Montana State University Billings and is working toward full licensure as an LMHC-A in Washington State. His clinical experience includes urgent care behavioral health, psycho-social assessment, case management, and counseling support for youth navigating ADHD, autism spectrum disorder, anxiety, emotional regulation challenges, and trauma-related concerns.</p>
+          <p class="team-bio">Sean’s counseling philosophy blends person-centered, narrative, and short-term solution-focused approaches with a warm, energetic, and deeply relational style. He believes young people are far more than diagnoses, behaviors, or academic performance, and works collaboratively to help clients identify strengths, reshape personal narratives, and build practical strategies for success in everyday life. Drawing from a lifelong background in education, coaching, creativity, and community leadership, Sean brings a gregarious and artistic presence into his work, using humor, storytelling, curiosity, movement, and genuine engagement to create spaces where young people feel seen, valued, and empowered to grow into fuller versions of themselves.</p>
           <div class="team-focus">
             <span class="focus-tag highlight">Active Openings</span>
             <span class="focus-tag">Young Adult Transitions</span>
