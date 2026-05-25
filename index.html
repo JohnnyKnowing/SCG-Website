@@ -1050,7 +1050,9 @@
         </div>
       </div>
 
-      <form class="contact-form sr" id="scg-contact-form" method="POST" action="https://script.google.com/macros/s/AKfycbzWDhfYhBp_wqY8pS34EWLqQmq2_DiiFU0PKb_RvD40ob7PkkZTkLEq3wqzoT3qkLE/exec">
+      <form class="contact-form sr" id="scg-contact-form" method="POST" action="https://script.google.com/macros/s/AKfycbzWDhfYhBp_wqY8pS34EWLqQmq2_DiiFU0PKb_RvD40ob7PkkZTkLEq3wqzoT3qkLE/exec" target="hidden_iframe">
+        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+        <input type="hidden" name="name" id="hidden_name">
         <div class="form-title">Reach Out</div>
         
         <div class="form-row">
@@ -1196,46 +1198,12 @@ const obs = new IntersectionObserver(es => {
 }, { threshold: 0.04, rootMargin: '0px 0px 40px 0px' });
 document.querySelectorAll('.sr').forEach(el => obs.observe(el));
 
-// Premium Form Submission Handling
-document.getElementById('scg-contact-form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const form = this;
-  const btn = form.querySelector('.btn-form');
-  const originalBtnText = btn.textContent;
-  
-  btn.disabled = true;
-  btn.textContent = 'Sending Inquiry...';
-  btn.style.opacity = '0.7';
+// Premium Form Submission Handling via Hidden Iframe (CORS-safe & robust)
+var submitted = false;
 
-  const fname = document.getElementById('fname').value.trim();
-  const lname = document.getElementById('lname').value.trim();
-  const fullName = `${fname} ${lname}`;
-  const email = document.getElementById('email').value.trim();
-  const phone = document.getElementById('phone').value.trim() || 'Not provided';
-  const roleSelect = document.getElementById('role');
-  const roleText = roleSelect.options[roleSelect.selectedIndex].text;
-  const whoSelect = document.getElementById('who');
-  const whoText = whoSelect.options[whoSelect.selectedIndex].text;
-  const rawMessage = document.getElementById('message').value.trim();
-
-  // Combine full submission data into the message field for detailed spreadsheet / email delivery
-  const messageBody = `Reaching Out As: ${roleText}\nReaching Out About: ${whoText}\nPhone: ${phone}\n\nMessage:\n${rawMessage}`;
-
-  const payload = new URLSearchParams();
-  payload.append('name', fullName);
-  payload.append('email', email);
-  payload.append('message', messageBody);
-
-  fetch(form.action, {
-    method: 'POST',
-    mode: 'no-cors', // standard practice for submitting cross-domain to script.google.com to bypass strict CORS redirection limits
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    body: payload.toString()
-  })
-  .then(() => {
-    // Under 'no-cors' mode, responses are opaque (can't read body), but if the promise resolves it indicates request sent successfully!
+document.getElementById('hidden_iframe').addEventListener('load', function() {
+  if (submitted) {
+    const form = document.getElementById('scg-contact-form');
     form.innerHTML = `
       <div style="text-align: center; padding: 40px 10px; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 380px; animation: fadeIn 0.4s ease-out;">
         <svg style="width: 64px; height: 64px; margin-bottom: 24px; color: var(--sage-m);" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -1245,14 +1213,34 @@ document.getElementById('scg-contact-form').addEventListener('submit', function(
         <p style="font-size: 15px; line-height: 1.7; color: var(--chalk-d); max-width: 320px; margin-bottom: 8px;">We have received your inquiry. Johnny or Sean will reach out to you within two business days.</p>
       </div>
     `;
-  })
-  .catch(error => {
-    console.error('Submission Error:', error);
-    alert('Oops! There was an issue submitting your inquiry. Please try again or email us directly.');
-    btn.disabled = false;
-    btn.textContent = originalBtnText;
-    btn.style.opacity = '1';
-  });
+  }
+});
+
+document.getElementById('scg-contact-form').addEventListener('submit', function(e) {
+  const form = this;
+  const btn = form.querySelector('.btn-form');
+  
+  btn.disabled = true;
+  btn.textContent = 'Sending Inquiry...';
+  btn.style.opacity = '0.7';
+
+  // Extract names and set the hidden 'name' payload
+  const fname = document.getElementById('fname').value.trim();
+  const lname = document.getElementById('lname').value.trim();
+  document.getElementById('hidden_name').value = `${fname} ${lname}`;
+
+  // Package detailed fields into the main 'message' payload
+  const phone = document.getElementById('phone').value.trim() || 'Not provided';
+  const roleSelect = document.getElementById('role');
+  const roleText = roleSelect.options[roleSelect.selectedIndex].text;
+  const whoSelect = document.getElementById('who');
+  const whoText = whoSelect.options[whoSelect.selectedIndex].text;
+  const rawMessage = document.getElementById('message').value.trim();
+
+  // Combine full submission data into the message field for detailed spreadsheet / email delivery
+  document.getElementById('message').value = `Reaching Out As: ${roleText}\nReaching Out About: ${whoText}\nPhone: ${phone}\n\nMessage:\n${rawMessage}`;
+
+  submitted = true;
 });
 </script>
 
