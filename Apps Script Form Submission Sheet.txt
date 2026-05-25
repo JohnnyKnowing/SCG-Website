@@ -1,0 +1,24 @@
+function doPost(e) {
+  try {
+    var sheet = SpreadsheetApp.getActiveSheet();
+    var parameter = e.parameter;
+    
+    var name = parameter.name;
+    var email = parameter.email;
+    var message = parameter.message;
+    var timestamp = new Date();
+    
+    sheet.appendRow([timestamp, name, email, message]);
+    
+    var myEmail = Session.getActiveUser().getEmail();
+    var subject = "New SCG Website Contact Form Submission";
+    var body = "New client inquiry details:\n\nName: " + name + "\nEmail: " + email + "\nMessage: " + message;
+    MailApp.sendEmail(myEmail, subject, body);
+    
+    return ContentService.createTextOutput(JSON.stringify({"result": "success"}))
+                         .setMimeType(ContentService.MimeType.JSON);
+  } catch (error) {
+    return ContentService.createTextOutput(JSON.stringify({"result": "error", "error": error.toString()}))
+                         .setMimeType(ContentService.MimeType.JSON);
+  }
+}

@@ -29,7 +29,7 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
 
   body {
     font-family: 'DM Sans', sans-serif;
@@ -37,6 +37,7 @@
     color: var(--ink);
     line-height: 1.7;
     font-size: 17px;
+    overflow-x: hidden;
   }
 
   /* ─── NAV ─── */
@@ -618,8 +619,10 @@
 
   /* ─── RESPONSIVE ─── */
   @media (max-width: 960px) {
-    nav { padding: 16px 22px; }
-    .nav-links li:not(:last-child):not(:nth-last-child(2)) { display: none; }
+    nav { padding: 16px 20px; }
+    .nav-name { font-size: 16px; }
+    .nav-name span { display: none; }
+    .nav-links li:not(:last-child) { display: none; }
     .hero { grid-template-columns: 1fr; }
     .hero-right { display: none; }
     .hero-left { padding: 80px 28px; }
@@ -629,6 +632,16 @@
       grid-template-columns: 1fr; gap: 40px;
     }
     .form-row { grid-template-columns: 1fr; }
+    
+    /* Footer responsive stacking */
+    .footer-inner { flex-direction: column; text-align: center; gap: 32px; }
+    .footer-left { flex-direction: column; align-items: center !important; text-align: center; }
+    .footer-links { justify-content: center; flex-wrap: wrap; gap: 16px 24px; }
+  }
+
+  @media (max-width: 375px) {
+    .nav-name { font-size: 14px; }
+    nav { padding: 14px 15px; }
   }
 </style>
 </head>
@@ -1037,7 +1050,7 @@
         </div>
       </div>
 
-      <div class="contact-form sr">
+      <form class="contact-form sr" id="scg-contact-form" method="POST" action="https://script.google.com/macros/s/AKfycbzWDhfYhBp_wqY8pS34EWLqQmq2_DiiFU0PKb_RvD40ob7PkkZTkLEq3wqzoT3qkLE/exec">
         <div class="form-title">Reach Out</div>
         
         <div class="form-row">
@@ -1054,7 +1067,7 @@
         <div class="form-row">
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" id="email" placeholder="you@email.com" required>
+            <input type="email" id="email" name="email" placeholder="you@email.com" required>
           </div>
           <div class="form-group">
             <label for="phone">Phone</label>
@@ -1086,12 +1099,12 @@
 
         <div class="form-group">
           <label for="message">What is going on?</label>
-          <textarea id="message" placeholder="A short context about what you're noticing or seeking help with. No need to detail everything."></textarea>
+          <textarea id="message" name="message" placeholder="A short context about what you're noticing or seeking help with. No need to detail everything." required></textarea>
         </div>
 
-        <button class="btn-form">Send Inquiry</button>
+        <button class="btn-form" type="submit">Send Inquiry</button>
         <p class="form-note">We respond within two business days. Intake consults are held by phone or secure video.</p>
-      </div>
+      </form>
     </div>
   </div>
 </section>
@@ -1182,6 +1195,65 @@ const obs = new IntersectionObserver(es => {
   es.forEach(e => { if (e.isIntersecting) e.target.classList.remove('off'); });
 }, { threshold: 0.04, rootMargin: '0px 0px 40px 0px' });
 document.querySelectorAll('.sr').forEach(el => obs.observe(el));
+
+// Premium Form Submission Handling
+document.getElementById('scg-contact-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const form = this;
+  const btn = form.querySelector('.btn-form');
+  const originalBtnText = btn.textContent;
+  
+  btn.disabled = true;
+  btn.textContent = 'Sending Inquiry...';
+  btn.style.opacity = '0.7';
+
+  const fname = document.getElementById('fname').value.trim();
+  const lname = document.getElementById('lname').value.trim();
+  const fullName = `${fname} ${lname}`;
+  const email = document.getElementById('email').value.trim();
+  const phone = document.getElementById('phone').value.trim() || 'Not provided';
+  const roleSelect = document.getElementById('role');
+  const roleText = roleSelect.options[roleSelect.selectedIndex].text;
+  const whoSelect = document.getElementById('who');
+  const whoText = whoSelect.options[whoSelect.selectedIndex].text;
+  const rawMessage = document.getElementById('message').value.trim();
+
+  // Combine full submission data into the message field for detailed spreadsheet / email delivery
+  const messageBody = `Reaching Out As: ${roleText}\nReaching Out About: ${whoText}\nPhone: ${phone}\n\nMessage:\n${rawMessage}`;
+
+  const payload = new URLSearchParams();
+  payload.append('name', fullName);
+  payload.append('email', email);
+  payload.append('message', messageBody);
+
+  fetch(form.action, {
+    method: 'POST',
+    mode: 'no-cors', // standard practice for submitting cross-domain to script.google.com to bypass strict CORS redirection limits
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: payload.toString()
+  })
+  .then(() => {
+    // Under 'no-cors' mode, responses are opaque (can't read body), but if the promise resolves it indicates request sent successfully!
+    form.innerHTML = `
+      <div style="text-align: center; padding: 40px 10px; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 380px; animation: fadeIn 0.4s ease-out;">
+        <svg style="width: 64px; height: 64px; margin-bottom: 24px; color: var(--sage-m);" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        <h3 style="font-family: 'Lora', serif; font-size: 26px; font-weight: 500; margin-bottom: 16px;">Thank You</h3>
+        <p style="font-size: 15px; line-height: 1.7; color: var(--chalk-d); max-width: 320px; margin-bottom: 8px;">We have received your inquiry. Johnny or Sean will reach out to you within two business days.</p>
+      </div>
+    `;
+  })
+  .catch(error => {
+    console.error('Submission Error:', error);
+    alert('Oops! There was an issue submitting your inquiry. Please try again or email us directly.');
+    btn.disabled = false;
+    btn.textContent = originalBtnText;
+    btn.style.opacity = '1';
+  });
+});
 </script>
 
 </body>
