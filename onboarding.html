@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Prevent search engine indexing for privacy and security -->
+<meta name="robots" content="noindex, nofollow">
+<title>Internal Staff Onboarding | Spangler Counseling Group</title>
+<link rel="icon" type="image/png" href="js_logo_transparent.png">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue:    #2C5F8A;
+    --blue-d:  #1E4266;
+    --blue-m:  #3A7AAD;
+    --blue-s:  #5A96C2;
+    --blue-p:  #C8DDEF;
+    --blue-w:  #EAF3FA;
+    --cream:   #F5F0E8;
+    --cream-d: #EBE3D6;
+    --ivory:   #FAF7F2;
+    --sage:    #5A7A5F;
+    --sage-m:  #7A9E7F;
+    --sage-p:  #C4D9C6;
+    --sage-w:  #EDF4EE;
+    --deep:    #162030;
+    --deep-m:  #1E2C3E;
+    --ink:     #1A1F2E;
+    --chalk:   #F0EBE0;
+    --chalk-d: #C8C0B0;
+    
+    --success: #4E8752;
+    --success-bg: #EAF2EB;
+    --warning: #C28C3E;
+    --warning-bg: #FCF7EE;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--ivory);
+    color: var(--ink);
+    line-height: 1.65;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    background: var(--deep);
+    color: #fff;
+    padding: 60px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 4px solid var(--sage);
+  }
+
+  .header-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(44, 95, 138, 0.15), transparent);
+    pointer-events: none;
+  }
+
+  .header-logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+  }
+
+  .header-title {
+    font-family: 'Lora', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 500;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+
+  .header-subtitle {
+    font-size: clamp(15px, 2vw, 18px);
+    font-weight: 300;
+    color: var(--chalk-d);
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .security-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--sage-p);
+    margin-top: 20px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── CONTAINER & GRID ─── */
+  .container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  /* ─── SIDEBAR / DASHBOARD ─── */
+  .sidebar {
+    background: #fff;
+    border: 1px solid var(--cream-d);
+    border-radius: 12px;
+    padding: 24px;
+    position: sticky;
+    top: 32px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+  }
+
+  .progress-section {
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--cream-d);
+  }
+
+  .progress-title {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--sage);
+    margin-bottom: 8px;
+  }
+
+  .progress-metrics {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 10px;
+  }
+
+  .progress-percent {
+    font-size: 28px;
+    font-family: 'Lora', serif;
+    font-weight: 500;
+    color: var(--blue-d);
+  }
+
+  .progress-ratio {
+    font-size: 14px;
+    color: #6A7080;
+  }
+
+  .progress-bar-container {
+    height: 8px;
+    background: var(--cream);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--success);
+    border-radius: 4px;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* ─── CHECKLIST ITEMS ─── */
+  .task-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .task-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+  }
+
+  .task-item:hover {
+    background: var(--ivory);
+    border-color: var(--cream-d);
+  }
+
+  .task-item.active {
+    background: var(--blue-w);
+    border-color: var(--blue-p);
+  }
+
+  .task-checkbox {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    border: 2px solid var(--chalk-d);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+    background: #fff;
+  }
+
+  .task-item.completed .task-checkbox {
+    background: var(--success);
+    border-color: var(--success);
+  }
+
+  .task-checkbox::after {
+    content: '';
+    width: 5px;
+    height: 9px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg) scale(0);
+    transition: transform 0.2s ease;
+  }
+
+  .task-item.completed .task-checkbox::after {
+    transform: rotate(45deg) scale(1);
+  }
+
+  .task-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .task-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+
+  .task-item.active .task-name {
+    color: var(--blue-d);
+  }
+
+  .task-meta {
+    font-size: 11px;
+    color: #6A7080;
+    margin-top: 2px;
+  }
+
+  /* ─── MAIN CONTENT ─── */
+  main {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .content-card {
+    background: #fff;
+    border: 1px solid var(--cream-d);
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+    display: none;
+    animation: fadeIn 0.4s ease-out;
+  }
+
+  .content-card.active {
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .card-header {
+    border-bottom: 1px solid var(--cream-d);
+    padding-bottom: 20px;
+    margin-bottom: 24px;
+  }
+
+  .card-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 8px;
+  }
+
+  .card-title {
+    font-family: 'Lora', serif;
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--blue-d);
+  }
+
+  .btn-complete-task {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--blue);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 30px;
+  }
+
+  .btn-complete-task:hover {
+    background: var(--blue-d);
+  }
+
+  .btn-complete-task.completed {
+    background: var(--success);
+  }
+
+  /* ─── BLOCKS & ALERTS ─── */
+  .alert-box {
+    background: var(--warning-bg);
+    border-left: 4px solid var(--warning);
+    padding: 20px;
+    border-radius: 0 8px 8px 0;
+    margin: 24px 0;
+  }
+
+  .alert-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--blue-d);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .alert-body {
+    font-size: 14px;
+    color: #5A6070;
+    line-height: 1.6;
+  }
+
+  .info-box {
+    background: var(--blue-w);
+    border-left: 4px solid var(--blue);
+    padding: 20px;
+    border-radius: 0 8px 8px 0;
+    margin: 24px 0;
+  }
+
+  .info-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--blue-d);
+    margin-bottom: 6px;
+  }
+
+  .info-body {
+    font-size: 14px;
+    color: #4A5868;
+    line-height: 1.6;
+  }
+
+  /* ─── STEP BY STEP GUIDES ─── */
+  .guide-step-list {
+    margin: 24px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .guide-step {
+    display: flex;
+    gap: 20px;
+    background: var(--ivory);
+    border: 1px solid var(--cream-d);
+    padding: 24px;
+    border-radius: 8px;
+  }
+
+  .guide-num {
+    font-family: 'Lora', serif;
+    font-size: 22px;
+    font-style: italic;
+    color: var(--blue-m);
+    line-height: 1;
+    background: var(--cream-d);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .guide-content h4 {
+    font-family: 'Lora', serif;
+    font-size: 18px;
+    color: var(--blue-d);
+    margin-bottom: 8px;
+  }
+
+  .guide-content p {
+    font-size: 14.5px;
+    color: #4A4F60;
+    line-height: 1.6;
+  }
+
+  .guide-content ul {
+    margin-top: 10px;
+    margin-left: 20px;
+    font-size: 14px;
+    color: #4A4F60;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .external-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--blue);
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px solid var(--blue-p);
+    transition: all 0.2s ease;
+  }
+
+  .external-link:hover {
+    color: var(--blue-d);
+    border-color: var(--blue-d);
+  }
+
+  /* ─── CREDENTIALS FORM ─── */
+  .onboarding-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 600px;
+    margin-top: 24px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form-group label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--sage);
+  }
+
+  .form-group input {
+    background: var(--ivory);
+    border: 1px solid var(--cream-d);
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: var(--ink);
+    outline: none;
+    transition: all 0.2s ease;
+  }
+
+  .form-group input:focus {
+    border-color: var(--blue);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(44, 95, 138, 0.08);
+  }
+
+  .form-group input::placeholder {
+    color: #A0A5B5;
+  }
+
+  .submit-btn {
+    background: var(--blue);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    align-self: flex-start;
+    margin-top: 10px;
+  }
+
+  .submit-btn:hover {
+    background: var(--blue-d);
+  }
+
+  .submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .form-note {
+    font-size: 12px;
+    color: #6A7080;
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--deep-m);
+    color: rgba(255,255,255,0.4);
+    padding: 40px 24px;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    margin-top: 80px;
+    font-size: 13px;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .container {
+      grid-template-columns: 1fr;
+    }
+    .sidebar {
+      position: relative;
+      top: 0;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .content-card {
+      padding: 24px;
+    }
+    .guide-step {
+      flex-direction: column;
+      gap: 12px;
+    }
+    .guide-num {
+      width: 32px;
+      height: 32px;
+      font-size: 18px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── HEADER ─── -->
+<header>
+  <div class="header-bg"></div>
+  <a href="index.html" style="text-decoration:none; display:inline-block;">
+    <img class="header-logo" src="js_logo_transparent_outlined.png" alt="Spangler Counseling Group Logo">
+  </a>
+  <h1 class="header-title">Staff Onboarding Portal</h1>
+  <p class="header-subtitle">Welcome to the team. This dashboard is designed to walk you through getting credentialed, licensed, and registered as a clinician with Spangler Counseling Group.</p>
+  <div class="security-badge">
+    <svg style="width: 14px; height: 14px;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+    </svg>
+    INTERNAL ONLY • SECURE SYSTEM • UNINDEXED PAGE
+  </div>
+</header>
+
+<!-- ─── CONTAINER ─── -->
+<div class="container">
+
+  <!-- ─── SIDEBAR / CHECKLIST ─── -->
+  <aside class="sidebar">
+    <div class="progress-section">
+      <h3 class="progress-title">Your Onboarding</h3>
+      <div class="progress-metrics">
+        <span class="progress-percent" id="progress-percent">0%</span>
+        <span class="progress-ratio" id="progress-ratio">0 of 4 tasks</span>
+      </div>
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progress-bar-fill"></div>
+      </div>
+    </div>
+
+    <ul class="task-list">
+      <li class="task-item active" id="task-item-1" onclick="switchTab(1)">
+        <div class="task-checkbox"></div>
+        <div class="task-info">
+          <span class="task-name">1. Washington Licensure</span>
+          <span class="task-meta">Supervisor Agreement</span>
+        </div>
+      </li>
+      <li class="task-item" id="task-item-2" onclick="switchTab(2)">
+        <div class="task-checkbox"></div>
+        <div class="task-info">
+          <span class="task-name">2. Get Your NPI-1</span>
+          <span class="task-meta">National Provider ID</span>
+        </div>
+      </li>
+      <li class="task-item" id="task-item-3" onclick="switchTab(3)">
+        <div class="task-checkbox"></div>
+        <div class="task-info">
+          <span class="task-name">3. Register with CAQH <span style="font-size: 10px; color: var(--warning); font-weight: bold; background: var(--warning-bg); padding: 2px 6px; border-radius: 4px; margin-left: 4px;">Future Ref</span></span>
+          <span class="task-meta">Not required right now</span>
+        </div>
+      </li>
+      <li class="task-item" id="task-item-4" onclick="switchTab(4)">
+        <div class="task-checkbox"></div>
+        <div class="task-info">
+          <span class="task-name">4. Submit Details</span>
+          <span class="task-meta">Master Sheet Sync</span>
+        </div>
+      </li>
+    </ul>
+  </aside>
+
+  <!-- ─── MAIN CONTENT CARDS ─── -->
+  <main>
+    
+    <!-- CARD 1: WASHINGTON STATE LICENSURE -->
+    <section class="content-card active" id="content-card-1">
+      <div class="card-header">
+        <span class="card-eyebrow">Task 01</span>
+        <h2 class="card-title">Washington State Licensure & Supervision</h2>
+      </div>
+
+      <p style="margin-bottom: 20px;">If you have recently graduated from your master's program, your first immediate milestone is applying for your Associate credential (e.g., <strong>LMHCA</strong>) with the Washington State Department of Health (DOH). This allows you to practice under approved clinical supervision.</p>
+
+      <div class="info-box">
+        <h4 class="info-title">Supervisor Information for Your Application</h4>
+        <div class="info-body">
+          <p style="margin-bottom: 8px;">To establish <strong>Johnny Spangler, LMHC</strong> as your approved clinical supervisor, you will need his registration details:</p>
+          <ul style="margin-left: 20px; display: flex; flex-direction: column; gap: 4px;">
+            <li><strong>Supervisor Name:</strong> Johnny Spangler, LMHC</li>
+            <li><strong>License Status:</strong> Licensed Mental Health Counselor (WA State)</li>
+            <li><strong>Credential Number:</strong> LH60888998</li>
+            <li><strong>Contact Email:</strong> <a href="mailto:johnny@spangler.care" style="color: var(--blue-d); font-weight: 500;">johnny@spangler.care</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 style="font-family: 'Lora', serif; font-size: 20px; margin-top: 30px; margin-bottom: 12px; color: var(--blue-d);">Step-by-Step Licensure Guide</h3>
+      
+      <div class="guide-step-list">
+        <div class="guide-step">
+          <div class="guide-num">1</div>
+          <div class="guide-content">
+            <h4>Access the WA DOH Provider Portal</h4>
+            <p>Visit the Washington State Department of Health Licensing System and create an account in the Provider Portal.</p>
+            <p style="margin-top: 8px;"><a href="https://fortress.wa.gov/doh/providerportal/" target="_blank" class="external-link">WA DOH Provider Portal Login &rarr;</a></p>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="guide-num">2</div>
+          <div class="guide-content">
+            <h4>Initiate the Associate Application</h4>
+            <p>Select "Apply for a New Credential" and select your specific path (usually <strong>Mental Health Counselor Associate</strong> or <strong>Marriage and Family Therapist Associate</strong>). Pay the state credentialing application fee.</p>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="guide-num">3</div>
+          <div class="guide-content">
+            <h4>Submit the Supervisor Agreement Form</h4>
+            <p>You must fill out and submit the official DOH Supervision form. Download the form, fill out your candidate details, and email it to Johnny at <a href="mailto:johnny@spangler.care" class="external-link">johnny@spangler.care</a> so he can sign the supervisor section and return it to the DOH.</p>
+            <p style="margin-top: 8px;"><a href="https://www.doh.wa.gov/Portals/1/Documents/Pubs/670137.pdf" target="_blank" class="external-link">Download Supervised Postgraduate Experience Form (PDF) &rarr;</a></p>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-complete-task" onclick="toggleTaskCompletion(1)" id="btn-complete-1">Mark Task as Completed</button>
+    </section>
+
+    <!-- CARD 2: GET YOUR NPI-1 -->
+    <section class="content-card" id="content-card-2">
+      <div class="card-header">
+        <span class="card-eyebrow">Task 02</span>
+        <h2 class="card-title">Applying for your NPI-1 Number</h2>
+      </div>
+
+      <p style="margin-bottom: 20px;">The <strong>National Provider Identifier (NPI)</strong> is a unique 10-digit identification number issued by the federal government (CMS) to healthcare providers. As an individual therapist, you need an <strong>NPI Type 1 (Individual)</strong> number. This number stays with you throughout your entire career and is required by HIPAA for all insurance billing, records, and credentialing systems.</p>
+
+      <div class="alert-box">
+        <h4 class="alert-title">
+          <svg style="width: 18px; height: 18px; color: var(--warning);" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+          </svg>
+          Taxonomy Code for Mental Health Associates
+        </h4>
+        <p class="alert-body">During the application, you will be asked to select your Provider Taxonomy. For most graduates entering associate counseling, the standard taxonomy code is <strong>101YM0800X</strong> (Mental Health Counselor) or <strong>106H00000X</strong> (Marriage & Family Therapist).</p>
+      </div>
+
+      <h3 style="font-family: 'Lora', serif; font-size: 20px; margin-top: 30px; margin-bottom: 12px; color: var(--blue-d);">Step-by-Step NPI-1 Guide</h3>
+      
+      <div class="guide-step-list">
+        <div class="guide-step">
+          <div class="guide-num">1</div>
+          <div class="guide-content">
+            <h4>Create an NPPES Account</h4>
+            <p>Visit the National Plan and Provider Enumeration System (NPPES) website. Create an I&A (Identity & Access) account to login.</p>
+            <p style="margin-top: 8px;"><a href="https://nppes.cms.hhs.gov/" target="_blank" class="external-link">Go to the NPPES Portal &rarr;</a></p>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="guide-num">2</div>
+          <div class="guide-content">
+            <h4>Apply for an Individual NPI</h4>
+            <p>Select "Apply for an NPI for myself (Type 1 Individual Provider)". Follow the application pages: enter your legal name, social security number, contact details, and graduation/practice location.</p>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="guide-num">3</div>
+          <div class="guide-content">
+            <h4>Enter Practice Information & Taxonomy</h4>
+            <p>Use your residential or private office address for mailing details. Select the appropriate Counselor/Therapist taxonomy code and link it to your pending or active Washington state license.</p>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="guide-num">4</div>
+          <div class="guide-content">
+            <h4>Receive & Save Your NPI-1</h4>
+            <p>Once submitted, CMS usually issues your 10-digit NPI via email within 24 to 48 hours. Keep this email safe, as you will need to input the NPI on Task 4.</p>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-complete-task" onclick="toggleTaskCompletion(2)" id="btn-complete-2">Mark Task as Completed</button>
+    </section>
+
+    <!-- CARD 3: REGISTER WITH CAQH -->
+    <section class="content-card" id="content-card-3">
+      <div class="card-header">
+        <span class="card-eyebrow" style="color: var(--warning); font-weight: bold;">Task 03 • FUTURE REFERENCE ONLY</span>
+        <h2 class="card-title">Setting Up Your CAQH ProView Profile <span style="font-size: 14px; color: var(--warning); background: var(--warning-bg); border: 1px solid var(--warning); padding: 4px 10px; border-radius: 20px; font-family: 'DM Sans', sans-serif; font-weight: 600; vertical-align: middle; margin-left: 8px;">Not Required Yet</span></h2>
+      </div>
+
+      <div class="alert-box" style="margin-top: 0; background: var(--warning-bg); border-left: 4px solid var(--warning);">
+        <h4 class="alert-title" style="color: var(--blue-d);">
+          <svg style="width: 18px; height: 18px; color: var(--warning);" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          Important Note: Not Required for Onboarding Right Now
+        </h4>
+        <p class="alert-body" style="font-weight: 500;">
+          Spangler Counseling Group is <strong>not currently set up to accept commercial insurance</strong>. Consequently, registering with CAQH is <strong>not required</strong> to start your employment and is provided here purely for future reference. You do not need to perform these steps today.
+        </p>
+      </div>
+
+      <p style="margin-bottom: 20px;">When the practice expands to accept insurance panels in the future, <strong>CAQH (Council for Affordable Quality Healthcare)</strong> will be used as our secure online database for credentialing. It allows you to enter your background, transcripts, licenses, and references once, which insurance carriers then use to verify your credentials.</p>
+
+      <div class="info-box">
+        <h4 class="info-title">Why CAQH Will Be Used in the Future</h4>
+        <p class="info-body">When we transition to an insurance model, we will use your CAQH profile to add you to panels (such as Premera, Regence, Kaiser, and Optum). We are keeping this guide here so you have a seamless, step-by-step walkthrough ready to go when that day comes.</p>
+      </div>
+
+      <h3 style="font-family: 'Lora', serif; font-size: 20px; margin-top: 30px; margin-bottom: 12px; color: var(--blue-d);">Future Reference: Step-by-Step CAQH Setup</h3>
+      
+      <div class="guide-step-list">
+        <div class="guide-step">
+          <div class="guide-num">1</div>
+          <div class="guide-content">
+            <h4>Register for a CAQH ProView Account</h4>
+            <p>Register as a new provider on the CAQH ProView portal. You will need your active State License Number or your newly received NPI-1 to initialize registration.</p>
+            <p style="margin-top: 8px;"><a href="https://proview.caqh.org/" target="_blank" class="external-link">Go to CAQH ProView Portal &rarr;</a></p>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="guide-num">2</div>
+          <div class="guide-content">
+            <h4>Complete the Core Profile Modules</h4>
+            <p>Fill out all biographical details, clinical education history, active licenses, insurance certifications, and CV details. This is detailed and can take up to an hour.</p>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="guide-num">3</div>
+          <div class="guide-content">
+            <h4>Upload Required Documents</h4>
+            <p>Upload clean PDF copies of your graduation diploma/transcripts, Washington State associate counselor license certificate, professional liability insurance certificate, and a signed W9 form.</p>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="guide-num">4</div>
+          <div class="guide-content">
+            <h4>Authorize Spangler Counseling Group</h4>
+            <p>Navigate to the "Authorize" tab within your CAQH dashboard. Make sure you set permissions to **Global Authorization** or specifically search and authorize **Spangler Counseling Group** so we can access your credentials for paneling.</p>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-complete-task" onclick="toggleTaskCompletion(3)" id="btn-complete-3">Mark Task as Completed</button>
+    </section>
+
+    <!-- CARD 4: SUBMIT DETAILS FORM -->
+    <section class="content-card" id="content-card-4">
+      <div class="card-header">
+        <span class="card-eyebrow">Task 04</span>
+        <h2 class="card-title">Submit Onboarding Credentials</h2>
+      </div>
+
+      <p style="margin-bottom: 20px;">Once you have completed your state licensure, received your 10-digit NPI-1 number, and activated your CAQH ProView profile, submit the secure form below. This will automatically synchronize your credentials into our private Master Google Sheet and alert Johnny to begin the paneling process.</p>
+
+      <form class="onboarding-form" id="scg-onboarding-form" method="POST" action="https://script.google.com/macros/s/AKfycbzWDhfYhBp_wqY8pS34EWLqQmq2_DiiFU0PKb_RvD40ob7PkkZTkLEq3wqzoT3qkLE/exec" target="hidden_iframe">
+        <!-- Hidden iframe to capture redirect and run smooth feedback -->
+        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+        
+        <!-- Standard inputs mapping gracefully to Google Sheet fields -->
+        <input type="hidden" name="role" value="Onboarding">
+        <input type="hidden" name="who" value="Staff Member">
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" name="fname" placeholder="Your first name" required>
+          </div>
+          <div class="form-group">
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" name="lname" placeholder="Your last name" required>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label for="email">Internal Email</label>
+            <input type="email" id="email" name="email" placeholder="name@spangler.care" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="(206) 000-0000" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="license_num">Washington State License / Credential Number</label>
+          <input type="text" id="license_num" name="license_num" placeholder="e.g. MC61234567" required>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label for="npi_num">NPI-1 Number (10 digits)</label>
+            <input type="text" id="npi_num" name="npi_num" placeholder="e.g. 1982736450" pattern="\d{10}" title="NPI-1 must be exactly 10 digits" required>
+          </div>
+          <div class="form-group">
+            <label for="caqh_num">CAQH Number (8 digits) — <span style="color: var(--warning); text-transform: none;">Optional / Future Ref</span></label>
+            <input type="text" id="caqh_num" name="caqh_num" placeholder="e.g. 10293847 (Leave blank if none)" pattern="\d{8}" title="CAQH Number must be exactly 8 digits">
+          </div>
+        </div>
+
+        <!-- Packed payload field sent to message column so existing standard sheet columns parse it natively -->
+        <input type="hidden" id="message" name="message" value="">
+
+        <button class="submit-btn" type="submit" id="submit-btn">Submit Credentials Form</button>
+        <p class="form-note">By submitting, you certify that the information provided is accurate. Leave the CAQH field blank as we are not currently set up to take insurance.</p>
+      </form>
+    </section>
+
+  </main>
+</div>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <p style="font-family:'Lora',serif; font-size:15px; color:rgba(255,255,255,0.6); margin-bottom:10px;">Spangler Counseling Group</p>
+  <p>&copy; 2026 Spangler Counseling Group. Internal Onboarding Portal. All systems monitored.</p>
+</footer>
+
+<script>
+  // Onboarding Checklist State
+  const tasks = {
+    1: false,
+    2: false,
+    3: false,
+    4: false
+  };
+
+  // Load state from local storage if available
+  document.addEventListener('DOMContentLoaded', () => {
+    const savedState = localStorage.getItem('scg_onboarding_tasks');
+    if (savedState) {
+      const parsed = JSON.parse(savedState);
+      Object.keys(parsed).forEach(key => {
+        tasks[key] = parsed[key];
+        updateTaskUI(parseInt(key));
+      });
+      updateProgressBar();
+    }
+  });
+
+  // Switch between tabs
+  function switchTab(tabIndex) {
+    document.querySelectorAll('.task-item').forEach(item => item.classList.remove('active'));
+    document.querySelectorAll('.content-card').forEach(card => card.classList.remove('active'));
+
+    document.getElementById(`task-item-${tabIndex}`).classList.add('active');
+    document.getElementById(`content-card-${tabIndex}`).classList.add('active');
+    
+    // Smooth scroll to top of card on smaller devices
+    if (window.innerWidth <= 900) {
+      document.getElementById(`content-card-${tabIndex}`).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  // Toggle Task Completion State
+  function toggleTaskCompletion(index) {
+    tasks[index] = !tasks[index];
+    localStorage.setItem('scg_onboarding_tasks', JSON.stringify(tasks));
+    
+    updateTaskUI(index);
+    updateProgressBar();
+
+    // Auto-advance to the next task to keep them moving
+    if (tasks[index] && index < 4) {
+      setTimeout(() => {
+        switchTab(index + 1);
+      }, 600);
+    }
+  }
+
+  function updateTaskUI(index) {
+    const taskItem = document.getElementById(`task-item-${index}`);
+    const btn = document.getElementById(`btn-complete-${index}`);
+
+    if (tasks[index]) {
+      taskItem.classList.add('completed');
+      if (btn) {
+        btn.textContent = 'Task Completed ✓';
+        btn.classList.add('completed');
+      }
+    } else {
+      taskItem.classList.remove('completed');
+      if (btn) {
+        btn.textContent = 'Mark Task as Completed';
+        btn.classList.remove('completed');
+      }
+    }
+  }
+
+  // Update dynamic progress tracking dashboard
+  function updateProgressBar() {
+    const total = Object.keys(tasks).length;
+    const completed = Object.values(tasks).filter(Boolean).length;
+    const percentage = Math.round((completed / total) * 100);
+
+    document.getElementById('progress-percent').textContent = `${percentage}%`;
+    document.getElementById('progress-ratio').textContent = `${completed} of ${total} tasks`;
+    document.getElementById('progress-bar-fill').style.width = `${percentage}%`;
+  }
+
+  // Premium Form Submission Handling via Hidden Iframe (Timed Transition)
+  document.getElementById('scg-onboarding-form').addEventListener('submit', function(e) {
+    const form = this;
+    const btn = document.getElementById('submit-btn');
+
+    // Build standard packed string inside the 'message' field so it is recorded in the spreadsheet
+    const license = document.getElementById('license_num').value;
+    const npi = document.getElementById('npi_num').value;
+    const caqh = document.getElementById('caqh_num').value;
+    document.getElementById('message').value = `ONBOARDING DETAILS: License Number: ${license} | NPI-1: ${npi} | CAQH Number: ${caqh}`;
+
+    btn.disabled = true;
+    btn.textContent = 'Submitting Credentials...';
+    btn.style.opacity = '0.7';
+
+    // Transition UI to elegant success message after 1.5 seconds
+    setTimeout(function() {
+      // Mark task 4 as complete automatically
+      tasks[4] = true;
+      localStorage.setItem('scg_onboarding_tasks', JSON.stringify(tasks));
+      updateTaskUI(4);
+      updateProgressBar();
+
+      form.innerHTML = `
+        <div style="text-align: center; padding: 40px 10px; color: var(--blue-d); display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 380px; animation: fadeIn 0.4s ease-out;">
+          <svg style="width: 64px; height: 64px; margin-bottom: 24px; color: var(--success);" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <h3 style="font-family: 'Lora', serif; font-size: 26px; font-weight: 500; margin-bottom: 16px;">Credentials Synchronized</h3>
+          <p style="font-size: 15px; line-height: 1.7; color: #5A6070; max-width: 380px; margin-bottom: 24px;">Your details (License, NPI-1, and CAQH Number) have been securely saved to the Master Google Sheet. Johnny will begin the credentialing panels for you shortly.</p>
+          <button onclick="window.location.reload();" class="btn-complete-task" style="margin-top: 0; background: var(--sage);">View Checklist</button>
+        </div>
+      `;
+    }, 1500);
+  });
+</script>
+
+</body>
+</html>
