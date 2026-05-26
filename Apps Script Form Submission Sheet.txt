@@ -1,36 +1,73 @@
 function doPost(e) {
   try {
-    var sheet = SpreadsheetApp.getActiveSheet();
     var parameter = e.parameter;
-    
-    var fname = parameter.fname;
-    var lname = parameter.lname;
-    var email = parameter.email;
-    var phone = parameter.phone;
-    var role = parameter.role;
-    var who = parameter.who;
-    var message = parameter.message;
     var timestamp = new Date();
-    
-    // Append rows to separate columns in the spreadsheet:
-    // Timestamp, First Name, Last Name, Email, Phone, Role, Reaching Out About, Message
-    sheet.appendRow([timestamp, fname, lname, email, phone, role, who, message]);
-    
     var myEmail = "johnny@spangler.care";
-    var subject = "New SCG Website Contact Form Submission";
-    var body = "New client inquiry details:\n\n" +
-               "First Name: " + fname + "\n" +
-               "Last Name: " + lname + "\n" +
-               "Email: " + email + "\n" +
-               "Phone: " + phone + "\n" +
-               "Reaching Out As: " + role + "\n" +
-               "Reaching Out About: " + who + "\n\n" +
-               "Message:\n" + message;
-               
-    MailApp.sendEmail(myEmail, subject, body);
     
-    return ContentService.createTextOutput(JSON.stringify({"result": "success"}))
-                         .setMimeType(ContentService.MimeType.JSON);
+    // Check if this is an onboarding form submission
+    if (parameter.formType === "onboarding" || parameter.license_num) {
+      // Get or create the "Staff Onboarding" sheet tab in the master spreadsheet
+      var ss = SpreadsheetApp.getActiveSpreadsheet();
+      var sheet = ss.getSheetByName("Staff Onboarding");
+      
+      if (!sheet) {
+        sheet = ss.insertSheet("Staff Onboarding");
+        // Append Headers if it is a new tab
+        sheet.appendRow(["Timestamp", "Full Name", "Email", "License Number", "NPI-1 Number", "CAQH Number"]);
+      }
+      
+      var fullName = parameter.fullName || (parameter.fname + " " + parameter.lname).trim();
+      var email = parameter.email;
+      var license = parameter.license_num;
+      var npi = parameter.npi_num;
+      var caqh = parameter.caqh_num || "Not Provided";
+      
+      // Append rows to the "Staff Onboarding" tab
+      sheet.appendRow([timestamp, fullName, email, license, npi, caqh]);
+      
+      // Send a distinct onboarding email notification
+      var subject = "New SCG Staff Onboarding Submission: " + fullName;
+      var body = "A new staff member has submitted their onboarding details:\n\n" +
+                 "Full Name: " + fullName + "\n" +
+                 "Email: " + email + "\n" +
+                 "License/Credential Number: " + license + "\n" +
+                 "NPI-1 Number: " + npi + "\n" +
+                 "CAQH Number: " + caqh + "\n\n" +
+                 "These details have been automatically appended to the 'Staff Onboarding' tab in your master Google Sheet.";
+                 
+      MailApp.sendEmail(myEmail, subject, body);
+      
+      return ContentService.createTextOutput(JSON.stringify({"result": "success", "type": "onboarding"}))
+                           .setMimeType(ContentService.MimeType.JSON);
+    } else {
+      // Fallback/Default path: Standard Client Inquiry / Contact Form
+      var sheet = SpreadsheetApp.getActiveSheet();
+      var fname = parameter.fname;
+      var lname = parameter.lname;
+      var email = parameter.email;
+      var phone = parameter.phone;
+      var role = parameter.role;
+      var who = parameter.who;
+      var message = parameter.message;
+      
+      // Append rows to the active sheet
+      sheet.appendRow([timestamp, fname, lname, email, phone, role, who, message]);
+      
+      var subject = "New SCG Website Contact Form Submission";
+      var body = "New client inquiry details:\n\n" +
+                 "First Name: " + fname + "\n" +
+                 "Last Name: " + lname + "\n" +
+                 "Email: " + email + "\n" +
+                 "Phone: " + phone + "\n" +
+                 "Reaching Out As: " + role + "\n" +
+                 "Reaching Out About: " + who + "\n\n" +
+                 "Message:\n" + message;
+                 
+      MailApp.sendEmail(myEmail, subject, body);
+      
+      return ContentService.createTextOutput(JSON.stringify({"result": "success", "type": "contact"}))
+                           .setMimeType(ContentService.MimeType.JSON);
+    }
   } catch (error) {
     return ContentService.createTextOutput(JSON.stringify({"result": "error", "error": error.toString()}))
                          .setMimeType(ContentService.MimeType.JSON);

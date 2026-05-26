@@ -826,28 +826,18 @@
         <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
         
         <!-- Standard inputs mapping gracefully to Google Sheet fields -->
+        <input type="hidden" name="formType" value="onboarding">
         <input type="hidden" name="role" value="Onboarding">
         <input type="hidden" name="who" value="Staff Member">
         
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
           <div class="form-group">
-            <label for="fname">First Name</label>
-            <input type="text" id="fname" name="fname" placeholder="Your first name" required>
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" name="fullName" placeholder="Your full name" required>
           </div>
-          <div class="form-group">
-            <label for="lname">Last Name</label>
-            <input type="text" id="lname" name="lname" placeholder="Your last name" required>
-          </div>
-        </div>
-
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
           <div class="form-group">
             <label for="email">Internal Email</label>
             <input type="email" id="email" name="email" placeholder="name@spangler.care" required>
-          </div>
-          <div class="form-group">
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone" placeholder="(206) 000-0000" required>
           </div>
         </div>
 
@@ -975,7 +965,8 @@
     const license = document.getElementById('license_num').value;
     const npi = document.getElementById('npi_num').value;
     const caqh = document.getElementById('caqh_num').value;
-    document.getElementById('message').value = `ONBOARDING DETAILS: License Number: ${license} | NPI-1: ${npi} | CAQH Number: ${caqh}`;
+    const name = document.getElementById('fullName').value;
+    document.getElementById('message').value = `ONBOARDING DETAILS: Full Name: ${name} | License Number: ${license} | NPI-1: ${npi} | CAQH Number: ${caqh}`;
 
     btn.disabled = true;
     btn.textContent = 'Submitting Credentials...';
