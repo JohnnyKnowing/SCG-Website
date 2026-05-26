@@ -16,7 +16,7 @@ function doPost(e) {
     // Timestamp, First Name, Last Name, Email, Phone, Role, Reaching Out About, Message
     sheet.appendRow([timestamp, fname, lname, email, phone, role, who, message]);
     
-    var myEmail = Session.getActiveUser().getEmail();
+    var myEmail = "johnny@spangler.care";
     var subject = "New SCG Website Contact Form Submission";
     var body = "New client inquiry details:\n\n" +
                "First Name: " + fname + "\n" +
