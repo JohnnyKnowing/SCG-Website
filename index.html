@@ -1052,17 +1052,16 @@
 
       <form class="contact-form sr" id="scg-contact-form" method="POST" action="https://script.google.com/macros/s/AKfycbzWDhfYhBp_wqY8pS34EWLqQmq2_DiiFU0PKb_RvD40ob7PkkZTkLEq3wqzoT3qkLE/exec" target="hidden_iframe">
         <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
-        <input type="hidden" name="name" id="hidden_name">
         <div class="form-title">Reach Out</div>
         
         <div class="form-row">
           <div class="form-group">
             <label for="fname">First Name</label>
-            <input type="text" id="fname" placeholder="Your first name" required>
+            <input type="text" id="fname" name="fname" placeholder="Your first name" required>
           </div>
           <div class="form-group">
             <label for="lname">Last Name</label>
-            <input type="text" id="lname" placeholder="Your last name" required>
+            <input type="text" id="lname" name="lname" placeholder="Your last name" required>
           </div>
         </div>
 
@@ -1073,13 +1072,13 @@
           </div>
           <div class="form-group">
             <label for="phone">Phone</label>
-            <input type="tel" id="phone" placeholder="(206) 000-0000" required>
+            <input type="tel" id="phone" name="phone" placeholder="(206) 000-0000" required>
           </div>
         </div>
 
         <div class="form-group">
           <label for="role">I am reaching out as a:</label>
-          <select id="role" required>
+          <select id="role" name="role" required>
             <option value="" disabled selected>Select one</option>
             <option value="parent">Parent or Guardian</option>
             <option value="provider">Referring Therapist / Psychiatrist</option>
@@ -1090,7 +1089,7 @@
 
         <div class="form-group">
           <label for="who">Reaching out about:</label>
-          <select id="who">
+          <select id="who" name="who">
             <option value="" disabled selected>Select option</option>
             <option>My Teenager (13-17)</option>
             <option>My Young Adult (18-25)</option>
@@ -1198,12 +1197,18 @@ const obs = new IntersectionObserver(es => {
 }, { threshold: 0.04, rootMargin: '0px 0px 40px 0px' });
 document.querySelectorAll('.sr').forEach(el => obs.observe(el));
 
-// Premium Form Submission Handling via Hidden Iframe (CORS-safe & robust)
-var submitted = false;
+// Premium Form Submission Handling via Hidden Iframe (Timed Transition)
+document.getElementById('scg-contact-form').addEventListener('submit', function(e) {
+  const form = this;
+  const btn = form.querySelector('.btn-form');
+  
+  btn.disabled = true;
+  btn.textContent = 'Sending Inquiry...';
+  btn.style.opacity = '0.7';
 
-document.getElementById('hidden_iframe').addEventListener('load', function() {
-  if (submitted) {
-    const form = document.getElementById('scg-contact-form');
+  // The browser natively POSTs all named inputs (fname, lname, email, phone, role, who, message)
+  // directly to target="hidden_iframe". We transition to the success screen after 1.5 seconds.
+  setTimeout(function() {
     form.innerHTML = `
       <div style="text-align: center; padding: 40px 10px; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 380px; animation: fadeIn 0.4s ease-out;">
         <svg style="width: 64px; height: 64px; margin-bottom: 24px; color: var(--sage-m);" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -1213,34 +1218,7 @@ document.getElementById('hidden_iframe').addEventListener('load', function() {
         <p style="font-size: 15px; line-height: 1.7; color: var(--chalk-d); max-width: 320px; margin-bottom: 8px;">We have received your inquiry. Johnny or Sean will reach out to you within two business days.</p>
       </div>
     `;
-  }
-});
-
-document.getElementById('scg-contact-form').addEventListener('submit', function(e) {
-  const form = this;
-  const btn = form.querySelector('.btn-form');
-  
-  btn.disabled = true;
-  btn.textContent = 'Sending Inquiry...';
-  btn.style.opacity = '0.7';
-
-  // Extract names and set the hidden 'name' payload
-  const fname = document.getElementById('fname').value.trim();
-  const lname = document.getElementById('lname').value.trim();
-  document.getElementById('hidden_name').value = `${fname} ${lname}`;
-
-  // Package detailed fields into the main 'message' payload
-  const phone = document.getElementById('phone').value.trim() || 'Not provided';
-  const roleSelect = document.getElementById('role');
-  const roleText = roleSelect.options[roleSelect.selectedIndex].text;
-  const whoSelect = document.getElementById('who');
-  const whoText = whoSelect.options[whoSelect.selectedIndex].text;
-  const rawMessage = document.getElementById('message').value.trim();
-
-  // Combine full submission data into the message field for detailed spreadsheet / email delivery
-  document.getElementById('message').value = `Reaching Out As: ${roleText}\nReaching Out About: ${whoText}\nPhone: ${phone}\n\nMessage:\n${rawMessage}`;
-
-  submitted = true;
+  }, 1500);
 });
 </script>
 
