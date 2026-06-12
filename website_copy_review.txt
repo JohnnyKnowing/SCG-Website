@@ -1,0 +1,356 @@
+========================================================================
+SPANGLER COUNSELING GROUP - WEBSITE COPY REVIEW
+========================================================================
+
+Below is all the readable text (copy) on your website. 
+You can edit the text directly in this document, save it, and let me know when you are done. I will then update the website to match your edits.
+
+Only edit the actual sentences and paragraphs. Do not delete the section headers (like "=== HERO SECTION ===").
+
+========================================================================
+PART 1: PUBLIC HOMEPAGE (index.html)
+========================================================================
+
+=== WEBSITE TITLE (Shows in browser tab and search results) ===
+Spangler Counseling Group | Developmental Support for Teens & Young Adults
+
+
+=== NAVIGATION BAR ===
+Spangler Counseling Group
+Developmental Support
+What You See
+How We Help
+Our Team
+Who We See
+Questions
+Reach Out
+
+
+=== HERO SECTION ===
+Spangler Counseling Group 
+
+Understanding is where we begin.
+
+Growing up means figuring out who you are. We take the time to understand that journey, and we build our support around it. 
+
+Schedule a Consultation
+See what we mean
+
+
+=== HERO SECTION - VALUE CARDS ===
+Every Person Makes Sense
+When you take the time to see someone through their own experience, they start to make sense. That is always where we start.
+
+A Space of Their Own
+We create a space outside the noise of everyday life. Here, a young person can step away from all the roles and expectations they carry, finding the room to just figure out who they are. 
+
+Building What Lasts
+We are working toward something that holds. A grounded sense of who they are that they carry into everything that comes next.
+
+
+=== WHAT YOU MIGHT BE SEEING SECTION ===
+As parents, you want to give your children the tools to stand on their own.
+Yet, when they encounter challenges that seem beyond their ability, there is a real fear of seeing them get stuck. You want to step in and fix it for them, but you don't know how.
+That feeling of helplessness is not a sign that you are doing it wrong. It is a sign that your children are transitioning into young adults. Deep down, you know this and you know they need to find their own footing. But you also want them to be safe and to have guidance through these challenges.
+That is where we come in. We partner with you to help them bridge that gap, giving your young adult a safe space to discover and develop a true self-reliance.
+
+
+=== PARENT QUOTE CARDS ===
+"I want them to know I support them, whatever they decide to do. I just want them to be okay."
+"I am worried about this next transition and I do not know how to help them through it."
+"Something changed and I cannot tell if it is a phase or something more."
+"I keep wondering if I should have seen this sooner."
+"Every option in front of us feels like the wrong one."
+
+
+=== HOW WE HELP SECTION ===
+How We Help
+
+We take the time to actually know them.
+
+Every person arrives with their own way of taking in the world. Understanding that is the starting point for everything we do.
+
+We help young people develop their own lens for understanding themselves. The goal is genuine self-knowledge, and the confidence that grows from it.
+
+We are developmental counselors. That means the mentoring, skill building, and identity work at the core of what we do is held by trained professionals who can also recognize and address what sits beneath the surface when it needs attention.
+
+Ask us how this might fit your family
+
+
+=== HOW WE HELP - THE 5 STEPS ===
+Step 1: Get to know them
+Before knowing how to help, we need to know the person. How they think. What matters to them. Where they feel most like themselves and where they feel furthest from it.
+
+Step 2: Build a real relationship
+We give the relationship time to root. We sit outside family, school, and peer life. A space where the parts of themselves they are still figuring out how to hold can come forward safely.
+
+Step 3: Shape the support to fit
+Once we understand how someone works, we build from there. Mentoring, skill building, self-exploration, all of it tuned to this specific young person.
+
+Step 4: Develop identity and purpose
+The heart of the work. Helping a young person settle into who they are, find their own motivation, and build a sense of self that holds over time.
+
+Step 5: Address what gets in the way
+When anxiety, depression, or other struggles are blocking growth, we address them as part of the larger picture, in service of the foundation we are building together.
+
+
+=== PROFESSIONAL PARTNERSHIPS SECTION ===
+Professional Partnerships
+
+Collaborating with the people who already know them.
+
+We believe that supporting a young person works best when we respect the ecosystem already around them. We coordinate care smoothly to ensure continuity.
+
+For Clinical Providers
+We offer collaborative, relational care for therapists, psychiatrists, and pediatricians. We provide a steady, neurodiversity-affirming space for individuals navigating key life transitions, making it easy to team up and support your clients together.
+
+For Educators & Schools
+We partner with school counselors, psychologists, and consultants to coordinate daily school support. We help students build practical skills, organize their routines, and manage complex transitions so they can find their footing in the classroom.
+
+
+=== CLINICAL TEAM SECTION ===
+Our Clinical Team
+
+Collaborative care, shared grounding.
+
+Every counselor in our practice is trained directly within our developmental, neurodivergent-affirming approach. Johnny Spangler provides close clinical oversight and regular weekly supervision, ensuring that every family benefits from both individual relational warmth and senior clinical expertise.
+
+
+=== CLINICAL TEAM - JOHNNY SPANGLER BIO ===
+Founder and Clinical Lead
+Johnny Spangler
+Affiliate Faculty, Antioch University Seattle | Neurodiversity Concentration and Certificate Program
+
+Johnny Spangler sees counseling as a supportive space built on genuine warmth, authenticity, and a deep respect for how an individual experiences the world. For him, training the next generation of counselors is the engine that drives his daily practice. His role as a counselor educator, supervisor, and workshop leader allows him to look at developmental health through a much wider lens. While working directly with clients remains a central part of his practice, these broader educational initiatives provide the precise groundwork for our clinical team.
+
+This ongoing educational work directly shapes how we approach care at Spangler Counseling Group. Our framework incorporates foundational neuro-affirming practices, but we build upon that standard to recognize the absolute uniqueness of every person's internal reality. We couple this individual focus with a strong understanding of shared human experience. Ultimately, leading these broader projects ensures that our practice remains purposeful, modern, and entirely dedicated to helping individuals trust, navigate, and own their life journeys.
+
+Specialty Tags: Clinical Supervision, Neuro-Affirming Care, Developmental Transitions, Community Education
+
+
+=== CLINICAL TEAM - SEAN FLIKKE BIO ===
+Associate Counselor
+Sean Flikke
+MS in Counseling | Trained & Supervised Directly within the Spangler Clinical Method
+
+For nearly three decades, Sean Flikke has worked alongside marginalized and neurodivergent young people in schools, community programs, athletics, counseling settings, and mentorship spaces. His work is grounded in the belief that healing, growth, and meaningful change happen through authentic human connection, emotional safety, and relationships built on trust rather than judgment. Sean recently completed his Master of Science in Clinical Rehabilitation and Mental Health Counseling through a CACREP-accredited program at Montana State University Billings and is working toward full licensure as an LMHC-A in Washington State. His clinical experience includes urgent care behavioral health, psycho-social assessment, case management, and counseling support for youth navigating ADHD, autism spectrum disorder, anxiety, emotional regulation challenges, and trauma-related concerns.
+
+Sean’s counseling philosophy blends person-centered, narrative, and short-term solution-focused approaches with a warm, energetic, and deeply relational style. He believes young people are far more than diagnoses, behaviors, or academic performance, and works collaboratively to help clients identify strengths, reshape personal narratives, and build practical strategies for success in everyday life. Drawing from a lifelong background in education, coaching, creativity, and community leadership, Sean brings a gregarious and artistic presence into his work, using humor, storytelling, curiosity, movement, and genuine engagement to create spaces where young people feel seen, valued, and empowered to grow into fuller versions of themselves.
+
+Specialty Tags: Active Openings, Young Adult Transitions, Executive Skills, Relational Safety
+
+
+=== PRACTICE MODEL HIGHLIGHT BANNER ===
+Why our collaborative care structure works:
+By pairing Sean's direct caseload availability with Johnny's senior clinical backing and regular oversight, families receive a powerful combination: a counselor with the dedicated energy to truly show up for your teen, completely supported by the expertise of a regional leader in neurodevelopmental graduate training.
+
+
+=== WHO WE WORK WITH ===
+Who We Work With
+
+Beautifully complicated young people.
+
+Teens and young adults of unique strength and complexity, carrying far more than the people around them realize.
+
+Some of our clients carry diagnoses. Many do not. What they share is a sense of standing at a crossroads, often one their family does not yet fully know how to map for them.
+
+The work is ultimately about who they are becoming. We help each young person develop the core of their adult self: their identity, their sense of purpose, the grounded confidence that comes from genuinely knowing themselves.
+
+Reach out and tell us about your person
+
+
+=== SPECIALTIES AND FOCUS AREAS ===
+Adolescent Identity Development
+The work of figuring out who you are before you fully know who you want to be. Belonging, self-worth, the particular weight of becoming.
+
+Young Adult Transitions
+College, first jobs, leaving home, finding direction. Early adulthood carries real developmental weight. We help young people navigate it with more clarity.
+
+Motivation, Purpose, and Direction
+For young people who possess unique, unrecognized strengths but find themselves completely stuck. Who sense something is off but cannot yet name what. We help bring their picture into focus.
+
+A Natural Fit for Neurodivergent Youth
+We work through a neurodevelopmental lens. Individual processing style is where understanding begins. For neurodivergent young people, that lens lets us hold all layers of their experience at once.
+
+The Things They Cannot Say at Home
+We sit outside every other context in their life. A space for the questions they are not ready to ask anyone who already knows them. Real safety for real exploration.
+
+When More Support Is Needed
+We recognize and treat anxiety, depression, OCD, executive functioning challenges, autism support, and suicidal ideation. The professional depth is there whenever it is needed.
+
+
+=== STANDALONE STATEMENT BANNER ===
+"Every person makes sense. The work is learning how."
+Spangler Counseling Group
+
+
+=== FREQUENTLY ASKED QUESTIONS (FAQ) ===
+Questions Parents Ask
+
+Things worth talking through.
+
+We want you to feel fully comfortable before making any clinical commitments. Here are common areas we discuss.
+
+Set up a free consultation
+
+
+=== FAQ Q&A LIST ===
+Question: How does your collaborative care model work?
+Answer: Johnny Spangler, our Founder, acts as the Clinical Director and supervisor. He actively coordinates on case planning and hosts weekly clinical supervision. This means your teen receives dedicated relational focus while being backed by extensive clinical expertise.
+
+Question: My teen does not want therapy. Can this still work?
+Answer: Often, yes. Most teens resist being evaluated or "fixed." We specialize in setting a warm, non-judgmental atmosphere outside the pressure of family or school dynamics, helping them feel met on their own terms. This usually melts therapeutic resistance quickly.
+
+Question: Did I cause this?
+Answer: Almost never in the way you fear. Young people usually struggle because of a friction mismatch between their specific developmental path and the complex environments around them. Asking the question simply highlights how deeply you care.
+
+Question: What if there are things they cannot say to us at home?
+Answer: That is a natural, healthy milestone of adolescent development. Developing an independent inner life is healthy. We offer a secure, objective container outside the home where they can explore hard questions safely, bringing clarity back to their relationship with you.
+
+Question: How do you approach neurodiversity?
+Answer: We work through a strictly neurodiversity-affirming lens. Whether carrying a diagnosis (ADHD, Autism, Executive Dysfunction) or navigating general learning/processing differences, we focus on identifying their specific processing profile and building tailored skills rather than attempting to enforce behavioral assimilation.
+
+Question: How do we get started?
+Answer: A simple consultation call. It is a warm, low-pressure conversation to discuss your child's background, explain our fit, and connect you with a clinician if appropriate.
+
+
+=== CONTACT SECTION ===
+Start Here
+
+You do not have to figure this out alone.
+
+Tell us a little about what is going on. We will follow up honestly about how we can support your teen or young adult.
+
+If our collaborative practice is not the right fit, we will gladly point you to trusted resources that are.
+
+
+Form Copy:
+Reach Out
+Send Inquiry
+We respond within two business days. Intake consults are held by phone or video call.
+
+Success Screen:
+Thank You
+We have received your inquiry. We will reach out to you within two business days.
+
+
+=== FOOTER ===
+Spangler Counseling Group
+Telehealth | spanglercounselinggroup.com
+(c) 2026 Spangler Counseling Group. All rights reserved.
+
+
+
+
+
+========================================================================
+PART 2: INTERNAL STAFF ONBOARDING PORTAL (onboarding.html)
+========================================================================
+
+=== ONBOARDING PORTAL TITLE (Browser Tab) ===
+Internal Staff Onboarding | Spangler Counseling Group
+
+
+=== ONBOARDING HEADER ===
+Staff Onboarding Portal
+Welcome to the team. This dashboard is designed to walk you through getting credentialed, licensed, and registered as a clinician with Spangler Counseling Group.
+INTERNAL ONLY • SECURE SYSTEM • UNINDEXED PAGE
+
+
+=== SIDEBAR CHECKLIST ===
+Your Onboarding
+0 of 4 tasks
+1. Washington Licensure (Supervisor Agreement)
+2. Get Your NPI-1 (National Provider ID)
+3. Register with CAQH (Future Ref - Not required right now)
+4. Submit Details (Master Sheet Sync)
+
+
+=== TASK 1: WASHINGTON STATE LICENSURE ===
+Task 01
+Washington State Licensure & Supervision
+
+If you have recently graduated from your master's program, your first immediate milestone is applying for your Associate credential (e.g., LMHCA) with the Washington State Department of Health (DOH). This allows you to practice under approved clinical supervision.
+
+Supervisor Information for Your Application:
+- Supervisor Name: Johnny Spangler, LMHC
+- License Status: Licensed Mental Health Counselor (WA State)
+- Credential Number: LH60888998
+- Contact Email: johnny@spangler.care
+
+Step-by-Step Licensure Guide:
+1. Access the WA DOH Provider Portal
+Visit the Washington State Department of Health Licensing System and create an account in the Provider Portal.
+2. Initiate the Associate Application
+Select "Apply for a New Credential" and select your specific path (usually Mental Health Counselor Associate or Marriage and Family Therapist Associate). Pay the state credentialing application fee.
+3. Submit the Supervisor Agreement Form
+You must fill out and submit the official DOH Supervision form. Download the form, fill out your candidate details, and email it to Johnny at johnny@spangler.care so he can sign the supervisor section and return it to the DOH.
+
+Mark Task as Completed
+
+
+=== TASK 2: GETTING YOUR NPI-1 ===
+Task 02
+Applying for your NPI-1 Number
+
+The National Provider Identifier (NPI) is a unique 10-digit identification number issued by the federal government (CMS) to healthcare providers. As an individual therapist, you need an NPI Type 1 (Individual) number. This number stays with you throughout your entire career and is required by HIPAA for all insurance billing, records, and credentialing systems.
+
+Taxonomy Code for Mental Health Associates:
+During the application, you will be asked to select your Provider Taxonomy. For most graduates entering associate counseling, the standard taxonomy code is 101YM0800X (Mental Health Counselor) or 106H00000X (Marriage & Family Therapist).
+
+Step-by-Step NPI-1 Guide:
+1. Create an NPPES Account
+Visit the National Plan and Provider Enumeration System (NPPES) website. Create an I&A (Identity & Access) account to login.
+2. Apply for an Individual NPI
+Select "Apply for an NPI for myself (Type 1 Individual Provider)". Follow the application pages: enter your legal name, social security number, contact details, and graduation/practice location.
+3. Enter Practice Information & Taxonomy
+Use your residential or private office address for mailing details. Select the appropriate Counselor/Therapist taxonomy code and link it to your pending or active Washington state license.
+4. Receive & Save Your NPI-1
+Once submitted, CMS usually issues your 10-digit NPI via email within 24 to 48 hours. Keep this email safe, as you will need to input the NPI on Task 4.
+
+Mark Task as Completed
+
+
+=== TASK 3: REGISTER WITH CAQH (FUTURE REFERECE ONLY) ===
+Task 03 - FUTURE REFERENCE ONLY
+Setting Up Your CAQH ProView Profile (Not Required Yet)
+
+Important Note: Not Required for Onboarding Right Now
+Spangler Counseling Group is not currently set up to accept commercial insurance. Consequently, registering with CAQH is not required to start your employment and is provided here purely for future reference. You do not need to perform these steps today.
+
+When the practice expands to accept insurance panels in the future, CAQH (Council for Affordable Quality Healthcare) will be used as our secure online database for credentialing. It allows you to enter your background, transcripts, licenses, and references once, which insurance carriers then use to verify your credentials.
+
+Why CAQH Will Be Used in the Future:
+When we transition to an insurance model, we will use your CAQH profile to add you to panels (such as Premera, Regence, Kaiser, and Optum). We are keeping this guide here so you have a seamless, step-by-step walkthrough ready to go when that day comes.
+
+Future Reference: Step-by-Step CAQH Setup:
+1. Register for a CAQH ProView Account
+Register as a new provider on the CAQH ProView portal. You will need your active State License Number or your newly received NPI-1 to initialize registration.
+2. Complete the Core Profile Modules
+Fill out all biographical details, clinical education history, active licenses, insurance certifications, and CV details. This is detailed and can take up to an hour.
+3. Upload Required Documents
+Upload clean PDF copies of your graduation diploma/transcripts, Washington State associate counselor license certificate, professional liability insurance certificate, and a signed W9 form.
+4. Authorize Spangler Counseling Group
+Navigate to the "Authorize" tab within your CAQH dashboard. Make sure you set permissions to Global Authorization or specifically search and authorize Spangler Counseling Group so we can access your credentials for paneling.
+
+Mark Task as Completed
+
+
+=== TASK 4: SUBMIT ONBOARDING DETAILS ===
+Task 04
+Submit Onboarding Credentials
+
+Once you have completed your state licensure, received your 10-digit NPI-1 number, and activated your CAQH ProView profile, submit the secure form below. This will automatically synchronize your credentials into our private Master Google Sheet and alert Johnny to begin the paneling process.
+
+Form copy:
+Submit Credentials Form
+By submitting, you certify that the information provided is accurate. Leave the CAQH field blank as we are not currently set up to take insurance.
+
+Success Screen:
+Credentials Synchronized
+Your details (License, NPI-1, and CAQH Number) have been securely saved to the Master Google Sheet. Johnny will begin the credentialing panels for you shortly.
+
+
+=== ONBOARDING FOOTER ===
+Spangler Counseling Group
+(c) 2026 Spangler Counseling Group. Internal Onboarding Portal. All systems monitored.
