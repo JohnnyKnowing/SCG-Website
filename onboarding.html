@@ -10,29 +10,47 @@
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --blue:    #2C5F8A;
-    --blue-d:  #1E4266;
-    --blue-m:  #3A7AAD;
-    --blue-s:  #5A96C2;
-    --blue-p:  #C8DDEF;
-    --blue-w:  #EAF3FA;
-    --cream:   #F5F0E8;
-    --cream-d: #EBE3D6;
-    --ivory:   #FAF7F2;
-    --sage:    #5A7A5F;
-    --sage-m:  #7A9E7F;
-    --sage-p:  #C4D9C6;
-    --sage-w:  #EDF4EE;
-    --deep:    #162030;
-    --deep-m:  #1E2C3E;
-    --ink:     #1A1F2E;
-    --chalk:   #F0EBE0;
-    --chalk-d: #C8C0B0;
+    /* Grounded Base Tones */
+    --cream:          #FAF6EE;
+    --cream-d:        #EAE2D4;
+    --ivory:          #FAF7F2;
+    --ink:            #1A2421;
     
-    --success: #4E8752;
-    --success-bg: #EAF2EB;
-    --warning: #C28C3E;
-    --warning-bg: #FCF7EE;
+    /* Earthy Greens & Blues */
+    --forest-green:   #34533D;
+    --forest-green-d: #223A2A;
+    --forest-green-l: #EDF3EF;
+    --earth-blue:     #2E4E68;
+    --earth-blue-d:   #1C3245;
+    --earth-blue-l:   #EBF2F6;
+    
+    /* Complexity Accents */
+    --accent-orange:  #D66847;
+    --accent-yellow:  #E8A331;
+    --accent-purple:  #6E5075;
+    --accent-green:   #5FA233;
+    
+    /* Compatibility variables for onboarding.html */
+    --blue:           var(--earth-blue);
+    --blue-d:         var(--earth-blue-d);
+    --blue-m:         var(--earth-blue);
+    --blue-s:         var(--accent-yellow);
+    --blue-p:         var(--cream-d);
+    --blue-w:         var(--earth-blue-l);
+    --sage:           var(--forest-green);
+    --sage-m:         #4B6B54;
+    --sage-p:         var(--cream-d);
+    --sage-w:         var(--forest-green-l);
+    --deep:           var(--earth-blue-d);
+    --deep-m:         #152533;
+    --chalk:          var(--cream);
+    --chalk-d:        #B0A89A;
+    
+    /* Onboarding status cues */
+    --success:        var(--forest-green);
+    --success-bg:     var(--forest-green-l);
+    --warning:        var(--accent-orange);
+    --warning-bg:     #FDF6F3;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
