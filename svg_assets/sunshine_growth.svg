@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <!-- Sun radial glow -->
+    <radialGradient id="sun-glow" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#FFE082" />
+      <stop offset="30%" stop-color="#FFB300" />
+      <stop offset="70%" stop-color="#E07A5F" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#152533" stop-opacity="0" />
+    </radialGradient>
+    <!-- Leaf linear gradients -->
+    <linearGradient id="leaf-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#34533D" />
+      <stop offset="100%" stop-color="#5FA233" />
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="#FAF6EE" rx="12" />
+  
+  <!-- Abstract sun circle -->
+  <circle cx="200" cy="150" r="110" fill="url(#sun-glow)" />
+  <circle cx="200" cy="150" r="45" fill="#FFF59D" opacity="0.9" />
+  
+  <!-- Soil curve -->
+  <path d="M 50 330 Q 200 280 350 330 L 350 370 L 50 370 Z" fill="#EADCC9" />
+  
+  <!-- Abstract sprout stem -->
+  <path d="M 200 305 Q 195 240 220 180" fill="none" stroke="#4B6B54" stroke-width="6" stroke-linecap="round" />
+  
+  <!-- Sprout leaves -->
+  <path d="M 220 180 C 240 185 250 170 240 160 C 225 150 215 170 220 180 Z" fill="url(#leaf-grad)" />
+  <path d="M 213 210 C 185 205 180 190 195 182 C 210 175 215 200 213 210 Z" fill="url(#leaf-grad)" opacity="0.85" />
+</svg>
