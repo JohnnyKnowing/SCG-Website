@@ -745,9 +745,21 @@
     .nav-name { font-size: 14px; }
     nav { padding: 14px 15px; }
   }
+
+  canvas#scroll-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.04;
+  }
 </style>
 </head>
 <body>
+<canvas id="scroll-canvas"></canvas>
 
 <!-- ─── NAV ─── -->
 <nav>
@@ -1344,8 +1356,182 @@ document.getElementById('scg-contact-form').addEventListener('submit', function(
         <p style="font-size: 15px; line-height: 1.7; color: var(--chalk-d); max-width: 320px; margin-bottom: 8px;">We have received your inquiry. Johnny or Sean will reach out to you within two business days.</p>
       </div>
     `;
-  }, 1500);
+  });
 });
+
+// Ambient scroll-reactive branching streams (Inspiration-driven)
+function initScrollCanvas() {
+  const canvas = document.getElementById('scroll-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  
+  let width = 0, height = 0;
+  let leftTree = null, rightTree = null;
+  const particles = [];
+  const nodesList = [];
+  
+  let lastScrollY = window.scrollY;
+  let scrollVelocity = 0;
+  let pulsePhase = 0;
+
+  function resize() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+    
+    const margin = width > 768 ? 100 : 30;
+    const trunkLength = height * 0.32;
+    
+    leftTree = generateTree(margin, height + 40, -Math.PI / 2, trunkLength, 0, 3);
+    rightTree = generateTree(width - margin, height + 40, -Math.PI / 2, trunkLength, 0, 3);
+    
+    nodesList.length = 0;
+    extractJunctions(leftTree);
+    extractJunctions(rightTree);
+    
+    particles.length = 0;
+    const numParticles = width > 768 ? 32 : 12;
+    for (let i = 0; i < numParticles; i++) {
+      const tree = i < numParticles / 2 ? leftTree : rightTree;
+      particles.push(spawnParticle(tree));
+      particles[i].t = Math.random();
+      let steps = Math.floor(Math.random() * 3);
+      for (let s = 0; s < steps; s++) {
+        if (particles[i].segment.children.length > 0) {
+          particles[i].segment = particles[i].segment.children[Math.floor(Math.random() * particles[i].segment.children.length)];
+        }
+      }
+    }
+  }
+
+  function generateTree(x1, y1, angle, length, level, maxLevel) {
+    if (level > maxLevel) return null;
+    
+    const dx = Math.cos(angle) * length;
+    const dy = Math.sin(angle) * length;
+    const x2 = x1 + dx;
+    const y2 = y1 + dy;
+    
+    const side = level % 2 === 0 ? 1 : -1;
+    const cx = x1 + dx * 0.5 + Math.cos(angle + Math.PI/2) * length * 0.12 * side;
+    const cy = y1 + dy * 0.5 + Math.sin(angle + Math.PI/2) * length * 0.12 * side;
+    
+    const segment = { x1, y1, x2, y2, cx, cy, level, children: [] };
+    
+    if (level < maxLevel) {
+      const splitAngle1 = angle - (0.22 + Math.random() * 0.12);
+      const splitAngle2 = angle + (0.22 + Math.random() * 0.12);
+      const nextLength = length * (0.65 + Math.random() * 0.1);
+      
+      const child1 = generateTree(x2, y2, splitAngle1, nextLength, level + 1, maxLevel);
+      const child2 = generateTree(x2, y2, splitAngle2, nextLength, level + 1, maxLevel);
+      
+      if (child1) segment.children.push(child1);
+      if (child2) segment.children.push(child2);
+    }
+    
+    return segment;
+  }
+
+  function extractJunctions(segment) {
+    if (!segment) return;
+    nodesList.push({ x: segment.x2, y: segment.y2, level: segment.level });
+    segment.children.forEach(child => extractJunctions(child));
+  }
+
+  function spawnParticle(treeRoot) {
+    return {
+      treeRoot: treeRoot,
+      segment: treeRoot,
+      t: 0,
+      speed: 0.003 + Math.random() * 0.004,
+      size: 1.2 + Math.random() * 2.2,
+      pulseOffset: Math.random() * Math.PI
+    };
+  }
+
+  // Calculate coordinates along winding quadratic Bezier paths
+  function getBezierPoint(seg, t) {
+    const x = (1 - t) * (1 - t) * seg.x1 + 2 * (1 - t) * t * seg.cx + t * t * seg.x2;
+    const y = (1 - t) * (1 - t) * seg.y1 + 2 * (1 - t) * t * seg.cy + t * t * seg.y2;
+    return { x, y };
+  }
+
+  function drawTreePaths(seg) {
+    if (!seg) return;
+    
+    ctx.beginPath();
+    ctx.moveTo(seg.x1, seg.y1);
+    ctx.quadraticCurveTo(seg.cx, seg.cy, seg.x2, seg.y2);
+    ctx.strokeStyle = `rgba(255, 255, 255, ${0.16 - seg.level * 0.04})`;
+    ctx.lineWidth = 1.8 - seg.level * 0.4;
+    ctx.stroke();
+    
+    seg.children.forEach(child => drawTreePaths(child));
+  }
+
+  function animate() {
+    ctx.fillStyle = 'rgba(250, 246, 238, 0.08)';
+    ctx.fillRect(0, 0, width, height);
+    
+    drawTreePaths(leftTree);
+    drawTreePaths(rightTree);
+    
+    pulsePhase += 0.025 + Math.abs(scrollVelocity) * 0.04;
+    nodesList.forEach(node => {
+      const pulseSize = 2.5 + Math.sin(pulsePhase + node.x) * 1.5;
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, pulseSize, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255, 255, 255, ${0.22 - node.level * 0.04})`;
+      ctx.fill();
+    });
+    
+    particles.forEach(p => {
+      const currentSpeed = p.speed + Math.abs(scrollVelocity) * 0.008;
+      p.t += currentSpeed;
+      
+      if (p.t >= 1) {
+        p.t = 0;
+        if (p.segment.children.length > 0) {
+          p.segment = p.segment.children[Math.floor(Math.random() * p.segment.children.length)];
+        } else {
+          p.segment = p.treeRoot;
+        }
+      }
+      
+      const pos = getBezierPoint(p.segment, p.t);
+      const heightPercent = pos.y / height;
+      const hue = 20 + heightPercent * 250;
+      
+      const size = p.size + Math.sin(pulsePhase + p.pulseOffset) * 0.4;
+      const grad = ctx.createRadialGradient(pos.x, pos.y, 0, pos.x, pos.y, size * 2.5);
+      grad.addColorStop(0, `hsla(${hue}, 65%, 55%, 0.8)`);
+      grad.addColorStop(0.4, `hsla(${hue}, 65%, 55%, 0.3)`);
+      grad.addColorStop(1, `hsla(${hue}, 65%, 55%, 0)`);
+      
+      ctx.beginPath();
+      ctx.arc(pos.x, pos.y, size * 2.5, 0, Math.PI * 2);
+      ctx.fillStyle = grad;
+      ctx.fill();
+    });
+    
+    scrollVelocity *= 0.93;
+    requestAnimationFrame(animate);
+  }
+
+  window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+    scrollVelocity += (currentScrollY - lastScrollY) * 0.05;
+    scrollVelocity = Math.max(-25, Math.min(25, scrollVelocity));
+    lastScrollY = currentScrollY;
+  });
+  
+  window.addEventListener('resize', resize);
+  
+  resize();
+  animate();
+}
+
+initScrollCanvas();
 </script>
 
 </body>
