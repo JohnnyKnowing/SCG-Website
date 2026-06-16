@@ -74,10 +74,10 @@
 
   body {
     font-family: 'DM Sans', sans-serif;
-    background: var(--cream);
+    background: radial-gradient(circle at top left, #ffd452 0%, #0f9b09 17% 31%, #1a3851 77% 88%, var(--sea-blue-d) 100%) fixed;
     color: var(--ink);
     line-height: 1.7;
-    font-size: 17px;
+    font-size: 18px;
     overflow-x: hidden;
   }
 
@@ -89,6 +89,12 @@
     background: rgba(252,250,247,0.94);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--cream-d);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(0);
+  }
+
+  nav.nav-hidden {
+    transform: translateY(-100%);
   }
 
   .nav-mark { display: flex; align-items: center; gap: 12px; text-decoration: none; }
@@ -139,7 +145,7 @@
 
   .section-h {
     font-family: 'Lora', serif;
-    font-size: clamp(28px, 3.2vw, 44px);
+    font-size: clamp(32px, 3.8vw, 48px);
     font-weight: 500; line-height: 1.22;
     letter-spacing: -0.02em; color: var(--ink);
     margin-bottom: 24px;
@@ -149,14 +155,14 @@
   .section-h.light em { color: var(--blue-s); }
 
   .lede {
-    font-size: 19px; font-weight: 300;
-    line-height: 1.72; color: #4A433F;
+    font-size: 21px; font-weight: 300;
+    line-height: 1.75; color: #4A433F;
     margin-bottom: 24px; max-width: 640px;
   }
   .lede.light { color: var(--chalk-d); }
 
   .prose {
-    font-size: 16px; line-height: 1.78;
+    font-size: 18px; line-height: 1.8;
     color: #4A433F; margin-bottom: 18px;
   }
   .prose.light { color: var(--chalk-d); }
@@ -200,12 +206,13 @@
 
   /* ─── HERO ─── */
   .hero {
-    min-height: calc(100vh - 72px);
+    min-height: 75vh;
     padding-top: 72px;
-    background: radial-gradient(circle at top left, #ffd452 0%, #0f9b09 17% 31%, #1a3851 77% 88%, var(--sea-blue-d) 100%);
+    background: transparent;
     position: relative; overflow: hidden;
     display: flex;
     align-items: center;
+    z-index: 2;
   }
 
   .hero-inner {
@@ -218,7 +225,7 @@
 
   .hero-left {
     display: flex; flex-direction: column; justify-content: center;
-    padding: 60px 0;
+    padding: 30px 0;
     position: relative; z-index: 2;
   }
 
@@ -238,7 +245,7 @@
   .hero-h em { font-style: italic; color: var(--sun-yellow); }
 
   .hero-sub {
-    font-size: 18px; font-weight: 300;
+    font-size: 20px; font-weight: 300;
     line-height: 1.78; color: #E2ECEF;
     max-width: 480px; margin-bottom: 44px;
   }
@@ -265,7 +272,7 @@
   .btn-hero-ghost::after { content: '→'; font-size: 16px; }
 
   canvas#hero-canvas {
-    position: absolute; top: 0; left: 0;
+    position: fixed; top: 0; left: 0;
     width: 100%; height: 100%;
     opacity: 0.40; z-index: 1;
     pointer-events: none;
@@ -273,7 +280,7 @@
 
   .hero-right {
     display: flex; align-items: center; justify-content: center;
-    padding: 60px 0; position: relative; z-index: 2;
+    padding: 30px 0; position: relative; z-index: 2;
   }
 
   .hero-card-stack { display: flex; flex-direction: column; gap: 20px; width: 100%; max-width: 420px; }
@@ -296,16 +303,17 @@
   .hero-card:nth-child(3) { border-top: 4px solid var(--blue); }
 
   .hero-card-label {
-    font-size: 11px; font-weight: 700;
-    letter-spacing: 0.14em; text-transform: uppercase;
+    font-family: 'Lora', serif;
+    font-size: 21px; font-weight: 500;
     margin-bottom: 12px;
+    letter-spacing: -0.01em;
   }
   .hero-card:nth-child(1) .hero-card-label { color: var(--lime-bold); }
   .hero-card:nth-child(2) .hero-card-label { color: var(--sun-bold); }
   .hero-card:nth-child(3) .hero-card-label { color: var(--blue-m); }
 
   .hero-card p {
-    font-size: 16px; font-weight: 300;
+    font-size: 17px; font-weight: 300;
     color: #554D47; line-height: 1.68;
   }
   .hero-card p strong { color: var(--ink); font-weight: 500; }
@@ -362,20 +370,19 @@
 
   .step-title {
     font-family: 'Lora', serif;
-    font-size: 18px; font-weight: 500;
+    font-size: 21px; font-weight: 500;
     color: var(--blue-d); margin-bottom: 8px;
     letter-spacing: -0.01em;
   }
 
   .step-body {
-    font-size: 15px; line-height: 1.72; color: #554D47;
+    font-size: 17px; line-height: 1.72; color: #554D47;
   }
 
   /* ─── CLINICAL REFERRALS & EDUCATORS ─── */
   .referrals {
     background: var(--cream);
     padding: 80px 0;
-    border-top: 1px solid var(--cream-d);
   }
   .ref-grid {
     display: grid;
@@ -397,12 +404,12 @@
   }
   .ref-h4 {
     font-family: 'Lora', serif;
-    font-size: 20px;
+    font-size: 22px;
     color: var(--blue-d);
     margin-bottom: 12px;
   }
   .ref-p {
-    font-size: 15px;
+    font-size: 17px;
     color: #554D47;
     line-height: 1.7;
   }
@@ -411,8 +418,11 @@
   .team { background: var(--ivory); padding: 100px 0; }
   
   .team-intro {
-    max-width: 760px;
+    max-width: 100%;
     margin-bottom: 56px;
+  }
+  .team-intro .lede {
+    max-width: none;
   }
 
   .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
@@ -472,9 +482,9 @@
     letter-spacing: -0.015em;
   }
 
-  .team-cred { font-size: 13px; color: #6A7080; margin-bottom: 20px; line-height: 1.5; min-height: 40px; }
+  .team-cred { font-size: 15px; color: #6A7080; margin-bottom: 20px; line-height: 1.5; min-height: 40px; }
 
-  .team-bio { font-size: 15px; line-height: 1.75; color: #4A433F; margin-bottom: 20px; }
+  .team-bio { font-size: 17px; line-height: 1.75; color: #4A433F; margin-bottom: 20px; }
 
   .team-focus { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 16px; }
 
@@ -524,41 +534,51 @@
     position: relative;
   }
 
+  .who .container {
+    max-width: 1480px;
+    padding: 0 48px;
+  }
+
   .who-inner {
-    display: grid; grid-template-columns: 1fr 1fr;
+    display: grid; grid-template-columns: 1fr 2fr;
     gap: 80px; align-items: start;
     position: relative; z-index: 2;
   }
 
-  .area-list { display: flex; flex-direction: column; gap: 16px; }
+  .area-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
 
   .area-item {
     background: rgba(255,255,255,0.06);
     border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 6px; padding: 20px 24px;
+    border-radius: 6px; padding: 24px;
     display: flex; gap: 16px; align-items: flex-start;
   }
 
   .area-dot {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: var(--lime-green); margin-top: 7px; flex-shrink: 0;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--lime-green); margin-top: 8px; flex-shrink: 0;
   }
   .area-dot.blue { background: var(--blue-s); }
 
   .area-title {
-    font-size: 15px; font-weight: 500;
-    color: #fff; margin-bottom: 4px;
+    font-size: 18px; font-weight: 500;
+    color: #fff; margin-bottom: 6px;
   }
 
   .area-desc {
-    font-size: 13px; font-weight: 300;
+    font-size: 15px; font-weight: 300;
     color: var(--chalk-d); line-height: 1.65;
   }
 
   /* ─── VOICE STONE ─── */
   .stone {
-    background: var(--pnw-blue-w);
-    padding: 90px 0;
+    background: transparent;
+    padding: 48px 0;
+    position: relative; z-index: 2;
   }
 
   .stone-inner {
@@ -569,7 +589,8 @@
     font-family: 'Lora', serif;
     font-size: clamp(28px, 3.5vw, 42px);
     font-weight: 400; font-style: italic;
-    line-height: 1.45; color: var(--pnw-blue-d); margin-bottom: 22px;
+    line-height: 1.45; color: #ffffff; margin-bottom: 22px;
+    text-shadow: 0 2px 15px rgba(0,0,0,0.2);
   }
 
   .stone cite {
@@ -596,7 +617,7 @@
 
   .faq-q {
     font-family: 'Lora', serif;
-    font-size: 16px; font-weight: 500;
+    font-size: 18px; font-weight: 500;
     color: var(--blue-d);
     padding: 22px 28px;
     cursor: pointer;
@@ -621,7 +642,7 @@
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease-out, padding 0.3s ease-out;
-    font-size: 15px; line-height: 1.75; color: #554D47;
+    font-size: 17px; line-height: 1.75; color: #554D47;
     padding: 0 28px;
   }
   .faq-item.active .faq-a {
@@ -629,6 +650,37 @@
     padding-bottom: 24px;
     border-top: 1px solid rgba(43,90,127,0.06);
     padding-top: 16px;
+  }
+
+  /* ─── PALETTE CLEANSER ─── */
+  /* ─── FLOATING CARD LAYOUT ─── */
+  section:not(.hero):not(.stone) {
+    border-radius: 24px;
+    margin: 48px auto;
+    width: calc(100% - 96px);
+    max-width: 1160px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.06), 0 5px 15px rgba(0,0,0,0.04);
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+    border: 1px solid rgba(0,0,0,0.03);
+  }
+
+  section.who {
+    width: 96% !important;
+    max-width: 1600px !important;
+    transition: max-width 0.3s ease, width 0.3s ease;
+  }
+
+  footer {
+    border-radius: 24px;
+    margin: 48px auto 64px auto;
+    width: calc(100% - 96px);
+    max-width: 1160px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.05);
+    position: relative; z-index: 10;
   }
 
   /* ─── CONTACT ─── */
@@ -645,7 +697,7 @@
 
   .contact-left .section-h { color: #fff; margin-bottom: 20px; }
   .contact-left .eyebrow { color: var(--sage-m); }
-  .contact-body { font-size: 16px; font-weight: 300; line-height: 1.80; color: var(--chalk-d); margin-bottom: 28px; }
+  .contact-body { font-size: 18px; font-weight: 300; line-height: 1.80; color: var(--chalk-d); margin-bottom: 28px; }
 
   .contact-detail { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
 
@@ -697,7 +749,7 @@
   .btn-form:hover { background: #BF5737; }
 
   .form-note {
-    font-size: 12px; color: rgba(255,255,255,0.35);
+    font-size: 14px; color: rgba(255,255,255,0.35);
     text-align: center; margin-top: 12px; line-height: 1.6;
   }
 
@@ -734,7 +786,27 @@
     .team-grid, .who-inner, .faq-inner, .contact-inner {
       grid-template-columns: 1fr; gap: 40px;
     }
+    .area-list { grid-template-columns: 1fr; gap: 16px; }
     .form-row { grid-template-columns: 1fr; }
+
+    section:not(.hero):not(.stone) {
+      width: calc(100% - 32px);
+      margin: 24px auto;
+      border-radius: 16px;
+    }
+    footer {
+      width: calc(100% - 32px);
+      margin: 24px auto 32px auto;
+      border-radius: 16px;
+    }
+    section.who {
+      width: calc(100% - 32px) !important;
+      max-width: 1160px !important;
+    }
+    .who .container {
+      max-width: 1160px !important;
+      padding: 0 24px;
+    }
     
     /* Footer responsive stacking */
     .footer-inner { flex-direction: column; text-align: center; gap: 32px; }
@@ -750,6 +822,8 @@
   </style>
 </head>
 <body>
+
+<canvas id="hero-canvas"></canvas>
 
 <!-- ─── NAV ─── -->
 <nav>
@@ -769,9 +843,8 @@
 
 <!-- ─── HERO ─── -->
 <section class="hero" id="top">
-  <canvas id="hero-canvas"></canvas>
 
-  <div class="container hero-inner" style="padding-bottom: 60px;">
+  <div class="container hero-inner" style="padding-bottom: 20px;">
     <div class="hero-left">
       <p class="hero-eyebrow">Spangler Counseling Group | Telehealth</p>
       <h1 class="hero-h">Understanding is<br>where we <em>begin.</em></h1>
@@ -800,10 +873,6 @@
     </div>
   </div>
 
-  <!-- Wave Separator (Absolute Positioned inside Hero to inherit background gradient) -->
-  <svg class="wave" viewBox="0 0 1440 40" preserveAspectRatio="none" style="position:absolute; bottom:0; left:0; width:100%; height:40px; display:block; z-index:3;">
-    <path d="M0,0 C360,40 1080,40 1440,0 L1440,40 L0,40 Z" fill="var(--cream)"/>
-  </svg>
 </section>
 
 <!-- ─── WHAT PARENTS RECOGNIZE ─── -->
@@ -813,10 +882,10 @@
 
       <div class="sr">
         <p class="eyebrow ey-blue">What You Might Be Seeing</p>
-        <h2 class="section-h">Most parents reach out because they see their child facing a deep, complicated struggle.</h2>
-        <p class="lede">As a parent, you want to give your children the tools to stand on their own.</p>
+        <h2 class="section-h">Most parents reach out because they see their teen or young adult facing a deep, complicated struggle.</h2>
+        <p class="lede">As a parent, you want to give your teenagers and emerging adults the tools to stand on their own.</p>
         <p class="prose">Yet, when they encounter challenges that seem beyond their ability, there is a real fear of seeing them get stuck. You want to step in and fix it for them, but you don't know how.</p>
-        <p class="prose">That feeling of helplessness is not a sign that you are doing it wrong. It is a sign that your children are transitioning into young adults. Deep down, you know this and you know they need to find their own footing. But you also want them to be safe and to have guidance through these challenges.</p>
+        <p class="prose">That feeling of helplessness is not a sign that you are doing it wrong. It is a sign that your teen is transitioning into adulthood. Deep down, you know this and you know they need to find their own footing. But you also want them to be safe and to have guidance through these challenges.</p>
         <p class="prose">That is where we come in. We partner with you to help them bridge that gap, giving your young adult a safe space to discover and develop a true self-reliance.</p>
         <a href="#contact" class="soft-link">Talk to us about what you are seeing &rarr;</a>
       </div>
@@ -833,10 +902,6 @@
   </div>
 </section>
 
-<!-- Wave Separator -->
-<svg class="wave" viewBox="0 0 1440 40" preserveAspectRatio="none" style="background:var(--cream);display:block;">
-  <path d="M0,0 C360,40 1080,40 1440,0 L1440,40 L0,40 Z" fill="var(--ivory)"/>
-</svg>
 
 <!-- ─── HOW WE HELP ─── -->
 <section class="work" id="work">
@@ -896,10 +961,6 @@
   </div>
 </section>
 
-<!-- Wave Separator -->
-<svg class="wave" viewBox="0 0 1440 40" preserveAspectRatio="none" style="background:var(--ivory);display:block;">
-  <path d="M0,0 C360,40 1080,40 1440,0 L1440,40 L0,40 Z" fill="var(--cream)"/>
-</svg>
 
 <!-- ─── PROVIDERS & EDUCATOR REFERRALS (NEW AUDIENCE TRACK) ─── -->
 <section class="referrals" id="referrals">
@@ -923,10 +984,6 @@
   </div>
 </section>
 
-<!-- Wave Separator -->
-<svg class="wave" viewBox="0 0 1440 40" preserveAspectRatio="none" style="background:var(--cream);display:block;">
-  <path d="M0,0 C360,40 1080,40 1440,0 L1440,40 L0,40 Z" fill="var(--ivory)"/>
-</svg>
 
 <!-- ─── MEET THE CLINICAL TEAM (FUNNEL STRUCTURED TO SHARED REPUTATION) ─── -->
 <section class="team" id="team">
@@ -992,10 +1049,6 @@
   </div>
 </section>
 
-<!-- Wave Separator -->
-<svg class="wave" viewBox="0 0 1440 40" preserveAspectRatio="none" style="background:var(--ivory);display:block;">
-  <path d="M0,0 C360,40 1080,40 1440,0 L1440,40 L0,40 Z" fill="var(--deep)"/>
-</svg>
 
 <!-- ─── WHO WE WORK WITH ─── -->
 <section class="who" id="who">
@@ -1069,10 +1122,6 @@
   </div>
 </section>
 
-<!-- Wave Separator -->
-<svg class="wave" viewBox="0 0 1440 40" preserveAspectRatio="none" style="background:var(--pnw-blue-w);display:block;">
-  <path d="M0,0 C360,40 1080,40 1440,0 L1440,40 L0,40 Z" fill="var(--cream)"/>
-</svg>
 
 <!-- ─── FAQ (ACCORDION STYLE) ─── -->
 <section class="faq" id="questions">
@@ -1126,7 +1175,7 @@
         <div class="faq-item">
           <div class="faq-q">How do we get started?</div>
           <div class="faq-a">
-            A simple consultation call. It is a warm, low-pressure conversation to discuss your child's background, explain our fit, and connect you with a clinician if appropriate.
+            A simple consultation call. It is a warm, low-pressure conversation to discuss your teenager's or emerging adult's background, explain our fit, and connect you with a clinician if appropriate.
           </div>
         </div>
 
@@ -1136,10 +1185,6 @@
   </div>
 </section>
 
-<!-- Wave Separator -->
-<svg class="wave" viewBox="0 0 1440 40" preserveAspectRatio="none" style="background:var(--cream);display:block;">
-  <path d="M0,0 C360,40 1080,40 1440,0 L1440,40 L0,40 Z" fill="var(--deep)"/>
-</svg>
 
 <!-- ─── CONTACT FORM (MULTI-ROLE SELECTOR) ─── -->
 <section class="contact" id="contact">
@@ -1255,12 +1300,12 @@ function makeField(canvas) {
     '230,126,34'   // Deep Orange Gold
   ];
   const nodes = [];
-  for (let i = 0; i < 60; i++) {
+  for (let i = 0; i < 90; i++) {
     nodes.push({
       x: Math.random(), 
       y: Math.random(),
-      vx: (Math.random() - 0.5) * 0.00020, // slow, gentle drift
-      vy: (Math.random() - 0.5) * 0.00018,
+      vx: (Math.random() - 0.5) * 0.00022, // slow, gentle drift (increased by 10%)
+      vy: (Math.random() - 0.5) * 0.000198,
       r: 1.5 + Math.random() * 2.5, // 2.5px to 6.0px
       color: COLORS[Math.floor(Math.random() * COLORS.length)],
       phase: Math.random() * Math.PI * 2,
@@ -1367,6 +1412,27 @@ function initScrollFloat() {
 }
 
 initScrollFloat();
+
+// Smart Auto-Hide/Show Navigation Bar on scroll
+function initSmartNavbar() {
+  let lastScrollY = window.scrollY;
+  const nav = document.querySelector('nav');
+  if (!nav) return;
+  
+  window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+    if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      // Scrolling down -> slide up to hide
+      nav.classList.add('nav-hidden');
+    } else if (currentScrollY < lastScrollY) {
+      // Scrolling up -> slide down to show immediately
+      nav.classList.remove('nav-hidden');
+    }
+    lastScrollY = currentScrollY;
+  }, { passive: true });
+}
+
+initSmartNavbar();
 </script>
 
 </body>
