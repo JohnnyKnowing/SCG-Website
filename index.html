@@ -74,7 +74,7 @@
 
   body {
     font-family: 'DM Sans', sans-serif;
-    background: radial-gradient(circle at top left, #ffd452 8%, #0a7905fc 17% 21%, #033b04 48% 64%, #1a3851 78% 100%) fixed;
+    background: radial-gradient(circle at top left, #ffd452 8%, #098f02fc 17% 21%, #036304 57% 65%, #1a3851 83% 100%) fixed;
     color: var(--ink);
     line-height: 1.7;
     font-size: 18px;
@@ -763,10 +763,30 @@
 
   /* ─── RESPONSIVE ─── */
   @media (max-width: 960px) {
-    nav { padding: 16px 20px; }
-    .nav-name { font-size: 16px; }
+    nav { padding: 12px 20px; }
+    .nav-logo { width: 30px; height: 30px; margin-top: 0; }
+    .nav-mark { gap: 8px; }
+    .nav-name { 
+      font-size: 14px; 
+      max-width: 175px; 
+      line-height: 1.25; 
+      white-space: normal; 
+    }
     .nav-name span { display: none; }
     .nav-links li:not(:last-child) { display: none; }
+    .nav-cta { padding: 7px 14px !important; font-size: 12px !important; }
+
+    /* Card paddings and spacing on mobile */
+    .team-info { padding: 24px; }
+    .contact-form { padding: 24px 20px; }
+    .collab-banner { padding: 24px 20px; }
+    .ref-card-styled { padding: 20px; }
+    .area-item { padding: 18px 20px; gap: 12px; }
+    .faq-q { padding: 18px 20px; }
+    .faq-a { padding: 0 20px; }
+    .hero-card { padding: 20px 24px; }
+    .hero-card-label { font-size: 19px; }
+
     .hero { min-height: auto; padding-top: 100px; padding-bottom: 40px; }
     .hero-inner { grid-template-columns: 1fr; gap: 40px; }
     .hero-left { padding: 0; text-align: center; }
@@ -808,8 +828,7 @@
   }
 
   @media (max-width: 375px) {
-    .nav-name { font-size: 14px; }
-    nav { padding: 14px 15px; }
+    nav { padding: 12px 12px; }
   }
 
   </style>
