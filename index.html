@@ -74,14 +74,13 @@
 
   body {
     font-family: 'DM Sans', sans-serif;
-    background: radial-gradient(circle at top left, #ffd452 0%, #0f9b09 17% 31%, #1a3851 77% 88%, var(--sea-blue-d) 100%) fixed;
+    background: radial-gradient(circle at top left, #ffd452 8%, #0a7905fc 17% 21%, #033b04 48% 64%, #1a3851 78% 100%) fixed;
     color: var(--ink);
     line-height: 1.7;
     font-size: 18px;
     overflow-x: hidden;
   }
 
-  /* ─── NAV ─── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
@@ -89,12 +88,6 @@
     background: rgba(252,250,247,0.94);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--cream-d);
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    transform: translateY(0);
-  }
-
-  nav.nav-hidden {
-    transform: translateY(-100%);
   }
 
   .nav-mark { display: flex; align-items: center; gap: 12px; text-decoration: none; }
@@ -232,7 +225,7 @@
   .hero-eyebrow {
     font-size: 11px; font-weight: 600;
     letter-spacing: 0.14em; text-transform: uppercase;
-    color: #D5B880; margin-bottom: 24px;
+    color: #ffffff; margin-bottom: 24px;
   }
 
   .hero-h {
@@ -1413,26 +1406,7 @@ function initScrollFloat() {
 
 initScrollFloat();
 
-// Smart Auto-Hide/Show Navigation Bar on scroll
-function initSmartNavbar() {
-  let lastScrollY = window.scrollY;
-  const nav = document.querySelector('nav');
-  if (!nav) return;
-  
-  window.addEventListener('scroll', () => {
-    const currentScrollY = window.scrollY;
-    if (currentScrollY > lastScrollY && currentScrollY > 100) {
-      // Scrolling down -> slide up to hide
-      nav.classList.add('nav-hidden');
-    } else if (currentScrollY < lastScrollY) {
-      // Scrolling up -> slide down to show immediately
-      nav.classList.remove('nav-hidden');
-    }
-    lastScrollY = currentScrollY;
-  }, { passive: true });
-}
 
-initSmartNavbar();
 </script>
 
 </body>
