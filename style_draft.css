@@ -496,27 +496,6 @@ canvas#hero-canvas {
   color: var(--ink); font-style: italic; margin: 0;
 }
 
-.statement-box {
-  margin: 28px 0;
-  padding: 22px 26px;
-  background: var(--ivory);
-  border: 1px solid var(--cream-d);
-  border-left: 3px solid var(--accent-orange);
-  border-radius: 0 8px 8px 0;
-}
-.statement-text {
-  font-family: 'Lora', serif;
-  font-size: 18px;
-  line-height: 1.6;
-  color: var(--ink);
-  margin: 0;
-}
-.statement-text em {
-  font-style: italic;
-  font-weight: 500;
-  color: var(--accent-orange);
-}
-
 /* ─── HOW WE HELP (OUR APPROACH) ─── */
 .work-content {
   max-width: 680px;
