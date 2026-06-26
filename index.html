@@ -99,52 +99,51 @@
 <!-- ─── HOW WE HELP ─── -->
 <section class="work bg-ivory" id="work">
   <div class="container">
-    <div class="work-inner">
-      <div class="sr">
-        <p class="eyebrow ey-sage">How We Help</p>
-        <h2 class="section-h">We take the time to<br>actually know them.</h2>
-        <div class="text-container">
-          <p class="lede"><strong>Every person arrives</strong> with their own way of taking in the world. Understanding that is the starting point for everything we do.</p>
-          <p class="prose"><strong>We help young</strong> people develop their own lens for understanding themselves. The goal is genuine self-knowledge, and the confidence that grows from it.</p>
-          <p class="prose"><strong>We are developmental</strong> counselors. That means the mentoring, skill building, and identity work at the core of what we do is held by trained professionals who can also recognize and address what sits beneath the surface when it needs attention.</p>
-          <a href="#contact" class="soft-link">Ask us how this might fit your family &rarr;</a>
-        </div>
-      </div>
+    <div class="work-content sr">
+      <p class="eyebrow ey-sage">How We Help</p>
+      <h2 class="section-h">We take the time to<br>actually know them.</h2>
+      <p class="lede" style="margin-bottom: 36px;">Every person arrives with their own way of taking in the world. Here is what that looks like in practice.</p>
 
-      <div class="steps sr">
+      <div class="steps-wrap">
+        <p class="steps-header">How we work</p>
+
         <div class="step">
-          <div class="step-num">01</div>
-          <div>
-            <div class="step-title">Get to know them</div>
-            <p class="step-body">Before knowing how to help, we need to know the person. How they think. What matters to them. Where they feel most like themselves and where they feel furthest from it.</p>
+          <div class="step-left"><div class="step-num">1</div><div class="step-line"></div></div>
+          <div class="step-body">
+            <p class="step-title">Get to know them</p>
+            <p class="step-desc">How they think. What matters to them. Where they feel most like themselves and where they feel furthest from it.</p>
           </div>
         </div>
+
         <div class="step">
-          <div class="step-num">02</div>
-          <div>
-            <div class="step-title">Build a real relationship</div>
-            <p class="step-body">We give the relationship time to root. We sit outside family, school, and peer life. A space where the parts of themselves they are still figuring out how to hold can come forward safely.</p>
+          <div class="step-left"><div class="step-num">2</div><div class="step-line"></div></div>
+          <div class="step-body">
+            <p class="step-title">Build a real relationship</p>
+            <p class="step-desc">We give the relationship time to root. A space outside family, school, and peer life where the parts of themselves they are still figuring out can come forward safely.</p>
           </div>
         </div>
+
         <div class="step">
-          <div class="step-num">03</div>
-          <div>
-            <div class="step-title">Shape the support to fit</div>
-            <p class="step-body">Once we understand how someone works, we build from there. Mentoring, skill building, self-exploration, all of it tuned to this specific young person.</p>
+          <div class="step-left"><div class="step-num">3</div><div class="step-line"></div></div>
+          <div class="step-body">
+            <p class="step-title">Shape the support to fit</p>
+            <p class="step-desc">Once we understand how someone works, we build from there. Mentoring, skill building, self-exploration, all tuned to this specific young person.</p>
           </div>
         </div>
+
         <div class="step">
-          <div class="step-num">04</div>
-          <div>
-            <div class="step-title">Develop identity and purpose</div>
-            <p class="step-body">The heart of the work. Helping a young person settle into who they are, find their own motivation, and build a sense of self that holds over time.</p>
+          <div class="step-left"><div class="step-num">4</div><div class="step-line"></div></div>
+          <div class="step-body">
+            <p class="step-title">Develop identity and purpose</p>
+            <p class="step-desc">The heart of the work. Helping a young person settle into who they are, find their own motivation, and build a sense of self that holds over time.</p>
           </div>
         </div>
+
         <div class="step">
-          <div class="step-num">05</div>
-          <div>
-            <div class="step-title">Address what gets in the way</div>
-            <p class="step-body">When anxiety, depression, or other struggles are blocking growth, we address them as part of the larger picture, in service of the foundation we are building together.</p>
+          <div class="step-left"><div class="step-num">5</div><div class="step-line"></div></div>
+          <div class="step-body">
+            <p class="step-title">Address what gets in the way</p>
+            <p class="step-desc">When anxiety, depression, or other struggles are blocking growth, we address them as part of the larger picture, in service of the foundation we are building together.</p>
           </div>
         </div>
       </div>
@@ -412,8 +411,29 @@
 </footer>
 
 <script>
-// Ambient subtle lens flare simulation in the Hero background
-window.flareConfig = { xShift: 0.92, yShift: 0.25 };
+{
+  const baseConfig = {
+    xShift: 0.99,
+    yShift: 0.1,
+    brightness: 2.5,
+    showHalo: false,
+    rayOpacity: 0.2,
+    circleOpacity: 0.4
+  };
+
+  window.flareConfig = new Proxy(baseConfig, {
+    set(target, prop, val) {
+      target[prop] = val;
+      if (window.triggerFlareRedraw) {
+        window.triggerFlareRedraw();
+      }
+      return true;
+    },
+    get(target, prop) {
+      return target[prop];
+    }
+  });
+}
 
 function makeFlare(canvas) {
   const ctx = canvas.getContext('2d');
@@ -425,6 +445,8 @@ function makeFlare(canvas) {
     canvas.height = canvas.offsetHeight;
     draw();
   }
+  
+  window.triggerFlareRedraw = draw;
   
   window.addEventListener('resize', resize);
   window.addEventListener('scroll', () => {
@@ -439,11 +461,16 @@ function makeFlare(canvas) {
     
     ctx.clearRect(0, 0, w, h);
     
+    const b = (window.flareConfig && typeof window.flareConfig.brightness === 'number') ? window.flareConfig.brightness : 1.0;
+    const showHalo = !window.flareConfig || window.flareConfig.showHalo !== false;
+    const r = (window.flareConfig && typeof window.flareConfig.rayOpacity === 'number') ? window.flareConfig.rayOpacity : 0.35;
+    const c = (window.flareConfig && typeof window.flareConfig.circleOpacity === 'number') ? window.flareConfig.circleOpacity : 0.35;
+    
     // Flare origin (main sun glow on the right)
     // Starts at 25% height, moves down as we scroll
-    const startY = h * (window.flareConfig?.yShift ?? 0.25);
+    const startY = h * ((window.flareConfig && typeof window.flareConfig.yShift === 'number') ? window.flareConfig.yShift : 0.25);
     const flareY = startY + scrollY * 0.35;
-    const flareX = w * (window.flareConfig?.xShift ?? 0.92); // position controllable in console
+    const flareX = w * ((window.flareConfig && typeof window.flareConfig.xShift === 'number') ? window.flareConfig.xShift : 0.96); // position controllable in console
     
     // Axis vector (from flare origin to bottom left corner)
     const targetX = w * 0.05;
@@ -455,9 +482,9 @@ function makeFlare(canvas) {
     // 1. Draw Main Light Source (Sun Glow)
     const glowRadius = Math.min(w, h) * 0.5;
     const glow = ctx.createRadialGradient(flareX, flareY, 0, flareX, flareY, glowRadius);
-    glow.addColorStop(0, 'rgba(255, 253, 245, 0.30)');
-    glow.addColorStop(0.2, 'rgba(255, 240, 210, 0.15)');
-    glow.addColorStop(0.5, 'rgba(255, 225, 180, 0.04)');
+    glow.addColorStop(0, `rgba(255, 253, 245, ${Math.min(1, 0.33 * b)})`);
+    glow.addColorStop(0.2, `rgba(255, 240, 210, ${Math.min(1, 0.165 * b)})`);
+    glow.addColorStop(0.5, `rgba(255, 225, 180, ${Math.min(1, 0.044 * b)})`);
     glow.addColorStop(1, 'rgba(255, 225, 180, 0)');
     
     ctx.fillStyle = glow;
@@ -466,26 +493,25 @@ function makeFlare(canvas) {
     ctx.fill();
     
     // 2. Draw Lens Halo (Subtle wide ring around main light)
-    ctx.beginPath();
-    ctx.arc(flareX, flareY, glowRadius * 0.8, 0, Math.PI * 2);
-    ctx.strokeStyle = 'rgba(255, 235, 200, 0.02)';
-    ctx.lineWidth = 15;
-    ctx.stroke();
+    if (showHalo) {
+      ctx.beginPath();
+      ctx.arc(flareX, flareY, glowRadius * 0.8, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(255, 235, 200, ${Math.min(1, 0.022 * b)})`;
+      ctx.lineWidth = 15;
+      ctx.stroke();
+    }
     
     // 3. Draw Parallax Flare Rings/Circles along the axis
     // Each element shifts at a slightly different rate based on scroll
     const flares = [
-      { dist: 0.15, size: 25, color: '255,200,100', op: 0.03, speed: 0.85 },
-      { dist: 0.30, size: 55, color: '245,176,65',  op: 0.02, speed: 0.70 },
-      { dist: 0.45, size: 90, color: '100,200,255', op: 0.015, speed: 0.55 }, // blue ring
-      { dist: 0.60, size: 40, color: '255,255,255', op: 0.025, speed: 0.40 },
-      { dist: 0.75, size: 120,color: '255,150,100', op: 0.01,  speed: 0.25 },
-      { dist: 0.90, size: 30, color: '255,220,150', op: 0.04,  speed: 0.10 }
+      { dist: 0.15, size: 25, color: '255,200,100', op: 0.033, speed: 0.85 },
+      { dist: 0.30, size: 55, color: '245,176,65',  op: 0.022, speed: 0.70 },
+      { dist: 0.45, size: 90, color: '100,200,255', op: 0.0165, speed: 0.55 } // blue ring
     ];
     
     flares.forEach(f => {
       // Position shifts along the axis. The scroll shifts them dynamically
-      const shift = (scrollY * 0.04) * (f.speed - 0.5);
+      const shift = (scrollY * 0.008) * (f.speed - 0.5);
       const currentDist = f.dist + shift;
       
       const fx = flareX + dx * currentDist;
@@ -494,13 +520,13 @@ function makeFlare(canvas) {
       // Draw Flare Circle Fill
       ctx.beginPath();
       ctx.arc(fx, fy, f.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${f.color}, ${f.op})`;
+      ctx.fillStyle = `rgba(${f.color}, ${Math.min(1, f.op * b * c)})`;
       ctx.fill();
       
       // Draw Flare Circle Border (soft ring)
       ctx.beginPath();
       ctx.arc(fx, fy, f.size, 0, Math.PI * 2);
-      ctx.strokeStyle = `rgba(${f.color}, ${f.op * 1.5})`;
+      ctx.strokeStyle = `rgba(${f.color}, ${Math.min(1, f.op * 1.5 * b * c)})`;
       ctx.lineWidth = 1.5;
       ctx.stroke();
     });
@@ -514,8 +540,8 @@ function makeFlare(canvas) {
     for (let i = 0; i < rayCount; i++) {
       const angle = Math.PI + (i * Math.PI / 4) - Math.PI / 4;
       const rayGlow = ctx.createLinearGradient(0, 0, Math.cos(angle) * w * 0.6, Math.sin(angle) * w * 0.6);
-      rayGlow.addColorStop(0, 'rgba(255, 245, 220, 0.06)');
-      rayGlow.addColorStop(0.3, 'rgba(255, 245, 220, 0.02)');
+      rayGlow.addColorStop(0, `rgba(255, 245, 220, ${Math.min(1, 0.066 * b * r)})`);
+      rayGlow.addColorStop(0.3, `rgba(255, 245, 220, ${Math.min(1, 0.022 * b * r)})`);
       rayGlow.addColorStop(1, 'rgba(255, 245, 220, 0)');
       
       ctx.beginPath();
@@ -691,7 +717,7 @@ if (contactForm) {
 
 // Smooth scroll parallax floating for paragraph and card elements
 function initScrollFloat() {
-  const floaters = document.querySelectorAll('.prose, .lede, .recog-card, .ref-card-styled, .step, .team-card');
+  const floaters = document.querySelectorAll('.prose, .lede, .recog-card, .ref-card-styled, .team-card');
   if (!floaters.length) return;
 
   function updateFloat() {
@@ -712,10 +738,32 @@ function initScrollFloat() {
   requestAnimationFrame(updateFloat);
 }
 
+// Step scroll active reveal animation
+function initStepsReveal() {
+  const steps = document.querySelectorAll('.step');
+  if (!steps.length) return;
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -12% 0px'
+  });
+
+  steps.forEach(step => {
+    observer.observe(step);
+  });
+}
+
 // Initialize scroll scripts
 initSmartNavbar();
 initScrollCardFades();
 initScrollFloat();
+initStepsReveal();
 </script>
 
 </body>
