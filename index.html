@@ -341,19 +341,13 @@
           </div>
         </div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="you@email.com" required>
-          </div>
-          <div class="form-group">
-            <label for="phone">Phone</label>
-            <input type="tel" id="phone" name="phone" placeholder="(206) 000-0000" required>
-          </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@email.com" required>
         </div>
 
         <div class="form-group">
-          <label for="role">I am reaching out as a:</label>
+          <label for="role">I am a...</label>
           <select id="role" name="role" required>
             <option value="" disabled selected>Select one</option>
             <option value="parent">Parent or Guardian</option>
@@ -364,7 +358,7 @@
         </div>
 
         <div class="form-group">
-          <label for="who">Reaching out about:</label>
+          <label for="who">This is about...</label>
           <select id="who" name="who">
             <option value="" disabled selected>Select option</option>
             <option>My Teenager (13-17)</option>
@@ -377,10 +371,11 @@
         <div class="form-group">
           <label for="message">What is going on?</label>
           <textarea id="message" name="message" placeholder="A short context about what you're noticing or seeking help with. No need to detail everything." required></textarea>
+          <span class="form-help">A few sentences is plenty. We will ask more on the call.</span>
         </div>
 
-        <button class="btn-form" type="submit">Send Inquiry</button>
         <p class="form-note">We respond within two business days. Intake consults are held by phone or video call.</p>
+        <button class="btn-form" type="submit">Reach Out</button>
       </form>
     </div>
   </div>
@@ -696,7 +691,7 @@ if (contactForm) {
     const btn = form.querySelector('.btn-form');
     
     btn.disabled = true;
-    btn.textContent = 'Sending Inquiry...';
+    btn.textContent = 'Reaching Out...';
     btn.style.opacity = '0.7';
 
     setTimeout(function() {

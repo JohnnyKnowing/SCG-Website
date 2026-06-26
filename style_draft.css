@@ -870,7 +870,14 @@ textarea { resize: vertical; min-height: 100px; }
 .btn-form:hover { background: #BF5737; }
 .form-note {
   font-size: 13px; color: rgba(255,255,255,0.35);
-  text-align: center; margin-top: 12px; line-height: 1.5;
+  margin-top: 12px; line-height: 1.5;
+}
+.form-help {
+  font-size: 13px;
+  color: var(--chalk-d);
+  opacity: 0.75;
+  margin-top: 2px;
+  line-height: 1.45;
 }
 
 /* ─── FOOTER ─── */
