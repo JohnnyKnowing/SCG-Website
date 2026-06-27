@@ -486,9 +486,24 @@ canvas#hero-canvas {
   flex-direction: column;
   gap: 40px;
 }
-.recog-cards { display: flex; flex-direction: column; gap: 16px; }
+.recog-cards {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  gap: 16px;
+  padding: 16px 20px;
+  margin: 0 -20px;
+}
+.recog-cards::-webkit-scrollbar {
+  display: none;
+}
 
 .recog-card {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+  box-sizing: border-box;
   background: var(--ivory);
   border: 1px solid var(--cream-d);
   border-left: 3px solid var(--blue-p);
@@ -498,6 +513,26 @@ canvas#hero-canvas {
 .recog-card p {
   font-size: 17px; line-height: 1.6;
   color: var(--ink); font-style: italic; margin: 0;
+}
+
+/* Carousel Dot Indicators */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+.carousel-dots .dot {
+  width: 8px;
+  height: 8px;
+  background: var(--cream-d);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.carousel-dots .dot.active {
+  background: var(--sage);
+  transform: scale(1.3);
 }
 
 /* ─── HOW WE HELP (OUR APPROACH) ─── */
@@ -513,6 +548,7 @@ canvas#hero-canvas {
   overflow: hidden;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(26,53,74,0.06);
+  will-change: transform, opacity;
 }
 .work-image {
   width: 100%;
@@ -730,6 +766,7 @@ canvas#hero-canvas {
   overflow: hidden;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(26,53,74,0.06);
+  will-change: transform, opacity;
 }
 .who-image {
   width: 100%;
@@ -839,6 +876,7 @@ canvas#hero-canvas {
     overflow: hidden;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(26, 53, 74, 0.06);
+    will-change: transform, opacity;
 }
 .faq-image {
   width: 100%;
@@ -892,6 +930,13 @@ canvas#hero-canvas {
   padding-bottom: 20px;
   border-top: 1px solid rgba(43,90,127,0.06);
   padding-top: 16px;
+}
+
+.bottom-nav {
+  display: none;
+}
+.mobile-only {
+  display: none !important;
 }
 
 /* ─── BOTTOM CTA SECTION ─── */
@@ -1281,4 +1326,171 @@ footer {
   .nav-links { gap: 32px; }
   .nav-links a { padding: 8px 12px; }
   .nav-cta { padding: 12px 30px !important; }
+}
+
+/* ========================================================================
+   PHONE VIEWPORT SWAP & SWITCHERS (max-width: 767px)
+   ======================================================================== */
+@media (max-width: 767px) {
+  html, body {
+    scroll-snap-type: y proximity;
+    scroll-behavior: smooth;
+  }
+  section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+  .bio-expand-wrap {
+    position: relative;
+    max-height: 125px;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .bio-expand-wrap::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: linear-gradient(to bottom, rgba(249, 246, 240, 0) 0%, var(--cream) 100%);
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .team-card.expanded .bio-expand-wrap {
+    max-height: 800px;
+  }
+  .team-card.expanded .bio-expand-wrap::after {
+    opacity: 0;
+  }
+  .btn-bio-toggle {
+    display: inline-block;
+    background: none;
+    border: none;
+    color: var(--sage);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 8px 0 0 0;
+    text-decoration: underline;
+    transition: color 0.2s;
+    outline: none;
+  }
+  .btn-bio-toggle:hover {
+    color: var(--sage-m);
+  }
+
+  .bottom-nav {
+    display: flex;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 40px);
+    max-width: 480px;
+    height: 60px;
+    background: rgba(253, 251, 247, 0.9);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(224, 219, 209, 0.8);
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(26, 53, 74, 0.08);
+    z-index: 1000;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+  .bottom-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--sage);
+    text-decoration: none !important;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    transition: color 0.25s, transform 0.2s;
+    flex: 1;
+    height: 100%;
+    user-select: none;
+  }
+  .bottom-nav-icon {
+    font-size: 19px;
+    line-height: 1.2;
+    margin-bottom: 2px;
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .bottom-nav-item:active {
+    transform: scale(0.92);
+  }
+  .bottom-nav-item.active {
+    color: var(--blue-d);
+  }
+  .bottom-nav-item.active .bottom-nav-icon {
+    transform: scale(1.15) translateY(-2px);
+  }
+  .scroll-progress-bar {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: var(--sage);
+    width: 0%;
+    z-index: 2000;
+    transition: width 0.08s ease-out;
+  }
+
+  /* Step Reveal Staggers */
+  .step:nth-child(1) { transition-delay: 0.05s; }
+  .step:nth-child(2) { transition-delay: 0.12s; }
+  .step:nth-child(3) { transition-delay: 0.19s; }
+  .step:nth-child(4) { transition-delay: 0.26s; }
+  .step:nth-child(5) { transition-delay: 0.33s; }
+
+  /* Touch Haptic Micro-Interactions */
+  .btn-primary:active, 
+  .btn-hero-primary:active, 
+  .btn-hero-ghost:active, 
+  .nav-cta:active, 
+  .quiz-opt-btn:active, 
+  .btn-sticky-cta:active,
+  .btn-bio-toggle:active {
+    transform: scale(0.97) !important;
+    transition: transform 0.08s ease-out;
+  }
+
+  .recog-card:active, 
+  .area-item:active, 
+  .team-card:active,
+  .faq-item:active {
+    transform: scale(0.99) !important;
+    box-shadow: 0 4px 15px rgba(26, 53, 74, 0.04) !important;
+    transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
+  }
+
+  /* Mobile-only element display overrides */
+  .mobile-only {
+    display: block !important;
+  }
+  .bottom-nav.mobile-only {
+    display: flex !important;
+  }
+  .carousel-dots.mobile-only {
+    display: flex !important;
+  }
+  .btn-bio-toggle.mobile-only {
+    display: inline-block !important;
+  }
+  .sticky-cta-bar.mobile-only {
+    display: flex !important;
+  }
+
+  /* Hide header navigation toggle since bottom nav is active */
+  .nav-toggle {
+    display: none !important;
+  }
 }

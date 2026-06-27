@@ -10,6 +10,9 @@
 </head>
 <body>
 
+<!-- Scroll Progress Bar -->
+<div id="scroll-progress" class="scroll-progress-bar mobile-only"></div>
+
 <!-- ─── NAV ─── -->
 <nav class="nav-visible">
   <a href="#top" class="nav-mark">
@@ -86,6 +89,15 @@
         <div class="recog-card"><p>"Something changed and I cannot tell if it is a phase or something more."</p></div>
         <div class="recog-card"><p>"I keep wondering if I should have seen this sooner."</p></div>
         <div class="recog-card"><p>"Every option in front of us feels like the wrong one."</p></div>
+      </div>
+
+      <!-- Quotes Carousel Dots (Mobile-only) -->
+      <div class="carousel-dots mobile-only" id="quote-carousel-dots">
+        <span class="dot active" data-index="0"></span>
+        <span class="dot" data-index="1"></span>
+        <span class="dot" data-index="2"></span>
+        <span class="dot" data-index="3"></span>
+        <span class="dot" data-index="4"></span>
       </div>
     </div>
   </div>
@@ -169,30 +181,36 @@
       <!-- Lead Clinician: Johnny -->
       <div class="team-card sr">
         <div class="team-photo">
-          <img src="profile_johnny_spangler.JPG" alt="Johnny Spangler, MA, LMHC - Founder and Clinical Lead" style="object-position: center 15%;">
+          <img src="profile_johnny_spangler.JPG" alt="Johnny Spangler, MA, LMHC - Founder and Clinical Lead" style="object-position: center 15%;" loading="lazy">
           <div class="team-photo-gradient"></div>
         </div>
         <div class="team-info">
           <div class="team-role">Founder and Clinical Lead</div>
           <h3 class="team-name">Johnny Spangler</h3>
           <div class="team-cred">Affiliate Faculty, Antioch University Seattle &nbsp;|&nbsp; Neurodiversity Concentration and Certificate Program</div>
-          <p class="team-bio">Johnny Spangler sees counseling as a supportive space built on genuine warmth, authenticity, and a deep respect for how an individual experiences the world. For him, training the next generation of counselors is the engine that drives his daily practice. His role as a counselor educator, supervisor, and workshop leader allows him to look at developmental health through a much wider lens. While working directly with clients remains a central part of his practice, these broader educational initiatives provide the precise groundwork for our clinical team.</p>
-          <p class="team-bio">This ongoing educational work directly shapes how we approach care at Spangler Counseling Group. Our framework incorporates foundational neuro-affirming practices, but we build upon that standard to recognize the absolute uniqueness of every person's internal reality. We couple this individual focus with a strong understanding of shared human experience. Ultimately, leading these broader projects ensures that our practice remains purposeful, modern, and entirely dedicated to helping individuals trust, navigate, and own their life journeys.</p>
+          <div class="bio-expand-wrap">
+            <p class="team-bio">Johnny Spangler sees counseling as a supportive space built on genuine warmth, authenticity, and a deep respect for how an individual experiences the world. For him, training the next generation of counselors is the engine that drives his daily practice. His role as a counselor educator, supervisor, and workshop leader allows him to look at developmental health through a much wider lens. While working directly with clients remains a central part of his practice, these broader educational initiatives provide the precise groundwork for our clinical team.</p>
+            <p class="team-bio">This ongoing educational work directly shapes how we approach care at Spangler Counseling Group. Our framework incorporates foundational neuro-affirming practices, but we build upon that standard to recognize the absolute uniqueness of every person's internal reality. We couple this individual focus with a strong understanding of shared human experience. Ultimately, leading these broader projects ensures that our practice remains purposeful, modern, and entirely dedicated to helping individuals trust, navigate, and own their life journeys.</p>
+          </div>
+          <button class="btn-bio-toggle mobile-only">Read Bio &darr;</button>
         </div>
       </div>
 
       <!-- Associate Clinician: Sean -->
       <div class="team-card sr">
         <div class="team-photo">
-          <img src="profile_sean_flikke_wide.jpg" alt="Sean Flikke, MS, LMHC-A - Associate Counselor" style="object-position: center 20%;">
+          <img src="profile_sean_flikke_wide.jpg" alt="Sean Flikke, MS, LMHC-A - Associate Counselor" style="object-position: center 20%;" loading="lazy">
           <div class="team-photo-gradient"></div>
         </div>
         <div class="team-info">
           <div class="team-role">Associate Counselor</div>
           <h3 class="team-name">Sean Flikke</h3>
           <div class="team-cred">MS LMHCA</div>
-          <p class="team-bio">For nearly three decades, Sean Flikke has worked alongside marginalized and neurodivergent young people in schools, community programs, athletics, counseling settings, and mentorship spaces. His work is grounded in the belief that healing, growth, and meaningful change happen through authentic human connection, emotional safety, and relationships built on trust rather than judgment. Sean recently completed his Master of Science in Clinical Rehabilitation and Mental Health Counseling through a CACREP-accredited program at Montana State University Billings and is working toward full licensure as an LMHC-A in Washington State. His clinical experience includes urgent care behavioral health, psycho-social assessment, case management, and counseling support for youth navigating ADHD, autism spectrum disorder, anxiety, emotional regulation challenges, and trauma-related concerns.</p>
-          <p class="team-bio">Sean’s counseling philosophy blends person-centered, narrative, and short-term solution-focused approaches with a warm, energetic, and deeply relational style. He believes young people are far more than diagnoses, behaviors, or academic performance, and works collaboratively to help clients identify strengths, reshape personal narratives, and build practical strategies for success in everyday life. Drawing from a lifelong background in education, coaching, creativity, and community leadership, Sean brings a gregarious and artistic presence into his work, using humor, storytelling, curiosity, movement, and genuine engagement to create spaces where young people feel seen, valued, and empowered to grow into fuller versions of themselves.</p>
+          <div class="bio-expand-wrap">
+            <p class="team-bio">For nearly three decades, Sean Flikke has worked alongside marginalized and neurodivergent young people in schools, community programs, athletics, counseling settings, and mentorship spaces. His work is grounded in the belief that healing, growth, and meaningful change happen through authentic human connection, emotional safety, and relationships built on trust rather than judgment. Sean recently completed his Master of Science in Clinical Rehabilitation and Mental Health Counseling through a CACREP-accredited program at Montana State University Billings and is working toward full licensure as an LMHC-A in Washington State. His clinical experience includes urgent care behavioral health, psycho-social assessment, case management, and counseling support for youth navigating ADHD, autism spectrum disorder, anxiety, emotional regulation challenges, and trauma-related concerns.</p>
+            <p class="team-bio">Sean’s counseling philosophy blends person-centered, narrative, and short-term solution-focused approaches with a warm, energetic, and deeply relational style. He believes young people are far more than diagnoses, behaviors, or academic performance, and works collaboratively to help clients identify strengths, reshape personal narratives, and build practical strategies for success in everyday life. Drawing from a lifelong background in education, coaching, creativity, and community leadership, Sean brings a gregarious and artistic presence into his work, using humor, storytelling, curiosity, movement, and genuine engagement to create spaces where young people feel seen, valued, and empowered to grow into fuller versions of themselves.</p>
+          </div>
+          <button class="btn-bio-toggle mobile-only">Read Bio &darr;</button>
         </div>
       </div>
     </div>
@@ -414,17 +432,39 @@
       </div>
     </div>
   </div>
-</footer>
+<!-- Mobile Bottom Navigation Bar -->
+<div class="bottom-nav mobile-only">
+  <a href="#top" class="bottom-nav-item active" data-section="top">
+    <span class="bottom-nav-icon">⌂</span>
+    <span class="bottom-nav-label">Home</span>
+  </a>
+  <a href="#work" class="bottom-nav-item" data-section="work">
+    <span class="bottom-nav-icon">☼</span>
+    <span class="bottom-nav-label">Approach</span>
+  </a>
+  <a href="#team" class="bottom-nav-item" data-section="team">
+    <span class="bottom-nav-icon">☺</span>
+    <span class="bottom-nav-label">Team</span>
+  </a>
+  <a href="#who" class="bottom-nav-item" data-section="who">
+    <span class="bottom-nav-icon">✦</span>
+    <span class="bottom-nav-label">Specialties</span>
+  </a>
+  <a href="#contact" class="bottom-nav-item" data-section="contact">
+    <span class="bottom-nav-icon">✉</span>
+    <span class="bottom-nav-label">Contact</span>
+  </a>
+</div>
 
 <script>
 {
   const baseConfig = {
-    xShift: 0.99,
+    xShift: 1.0,
     yShift: 0.1,
-    brightness: 2.5,
+    brightness: 6.0,
     showHalo: false,
-    rayOpacity: 0.2,
-    circleOpacity: 0.4
+    rayOpacity: 0.4,
+    circleOpacity: 0.5
   };
 
   window.flareConfig = new Proxy(baseConfig, {
@@ -463,14 +503,14 @@ function makeFlare(canvas) {
         });
       }
     } else {
-      if (window.flareConfig.xShift !== 0.99 || window.flareConfig.circleOpacity !== 0.9) {
+      if (window.flareConfig.xShift !== 1.0 || window.flareConfig.circleOpacity !== 0.5) {
         Object.assign(window.flareConfig, {
-          brightness: 2.5,
-          rayOpacity: 0.2,
+          brightness: 6.0,
+          rayOpacity: 0.4,
           showHalo: false,
-          xShift: 0.99,
+          xShift: 1.0,
           yShift: 0.1,
-          circleOpacity: 0.9
+          circleOpacity: 0.5
         });
       }
     }
@@ -485,7 +525,81 @@ function makeFlare(canvas) {
     scrollY = window.scrollY;
     draw();
   }, { passive: true });
-  
+
+  const ripples = [];
+  let rippleAnimFrameId = null;
+
+  function addRipple(clientX, clientY) {
+    const rect = canvas.getBoundingClientRect();
+    const x = clientX - rect.left;
+    const y = clientY - rect.top;
+    
+    if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
+      ripples.push({
+        x: x * (canvas.width / rect.width),
+        y: y * (canvas.height / rect.height),
+        radius: 0,
+        maxRadius: Math.min(canvas.width, canvas.height) * 0.25,
+        opacity: 0.3,
+        speed: 2.5
+      });
+
+      if (!rippleAnimFrameId) {
+        tickRipples();
+      }
+    }
+  }
+
+  function tickRipples() {
+    if (ripples.length === 0) {
+      rippleAnimFrameId = null;
+      return;
+    }
+
+    for (let i = ripples.length - 1; i >= 0; i--) {
+      const r = ripples[i];
+      r.radius += r.speed;
+      r.opacity = 0.3 * (1 - r.radius / r.maxRadius);
+      if (r.radius >= r.maxRadius) {
+        ripples.splice(i, 1);
+      }
+    }
+
+    draw();
+
+    rippleAnimFrameId = requestAnimationFrame(tickRipples);
+  }
+
+  // Bind touch and mouse events to the parent hero section #top
+  const heroSection = document.getElementById('top');
+  if (heroSection) {
+    heroSection.addEventListener('touchstart', (e) => {
+      if (e.touches.length > 0) {
+        const touch = e.touches[0];
+        addRipple(touch.clientX, touch.clientY);
+      }
+    }, { passive: true });
+
+    heroSection.addEventListener('touchmove', (e) => {
+      if (e.touches.length > 0) {
+        const touch = e.touches[0];
+        if (Math.random() < 0.15) {
+          addRipple(touch.clientX, touch.clientY);
+        }
+      }
+    }, { passive: true });
+
+    heroSection.addEventListener('mousedown', (e) => {
+      addRipple(e.clientX, e.clientY);
+    });
+
+    heroSection.addEventListener('mousemove', (e) => {
+      if (Math.random() < 0.05) {
+        addRipple(e.clientX, e.clientY);
+      }
+    });
+  }
+
   function draw() {
     const w = canvas.width;
     const h = canvas.height;
@@ -584,6 +698,24 @@ function makeFlare(canvas) {
       ctx.fill();
     }
     ctx.restore();
+
+    // 5. Draw Active Ripples
+    ripples.forEach(ripple => {
+      ctx.beginPath();
+      ctx.arc(ripple.x, ripple.y, ripple.radius, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(255, 255, 255, ${ripple.opacity})`;
+      ctx.lineWidth = 2.0;
+      ctx.stroke();
+      
+      const rippleGlow = ctx.createRadialGradient(ripple.x, ripple.y, 0, ripple.x, ripple.y, ripple.radius);
+      rippleGlow.addColorStop(0, 'rgba(255, 255, 255, 0)');
+      rippleGlow.addColorStop(0.8, `rgba(255, 255, 255, ${ripple.opacity * 0.15})`);
+      rippleGlow.addColorStop(1, `rgba(255, 255, 255, ${ripple.opacity * 0.3})`);
+      ctx.fillStyle = rippleGlow;
+      ctx.beginPath();
+      ctx.arc(ripple.x, ripple.y, ripple.radius, 0, Math.PI * 2);
+      ctx.fill();
+    });
   }
   
   resize();
@@ -688,14 +820,7 @@ function initScrollCardFades() {
         bottomFadeFactor = (bottomFadeStart - rect.top) / (bottomFadeStart - bottomFadeEnd);
       }
 
-      let topFadeFactor = 1;
-      if (rect.top <= topFadeEnd) {
-        topFadeFactor = 0;
-      } else if (rect.top < topFadeStart) {
-        topFadeFactor = (rect.top - topFadeEnd) / (topFadeStart - topFadeEnd);
-      }
-
-      let opacity = Math.min(bottomFadeFactor, topFadeFactor);
+      let opacity = bottomFadeFactor;
       opacity = Math.max(0, Math.min(1, opacity));
 
       const scale = 0.95 + 0.05 * opacity;
@@ -791,11 +916,198 @@ function initStepsReveal() {
   });
 }
 
+// Responsive image scroll scale reveal
+function initImageScrollScale() {
+  const images = document.querySelectorAll('.work-image-container, .who-image-container, .faq-image-container');
+  if (!images.length) return;
+
+  function updateImageScales() {
+    const H = window.innerHeight;
+
+    images.forEach(container => {
+      const rect = container.getBoundingClientRect();
+
+      // If the image is completely below the viewport, keep it small, translated down, and translucent
+      if (rect.top >= H) {
+        container.style.transform = 'scale(0.85) translateY(15px)';
+        container.style.opacity = '0.7';
+        return;
+      }
+
+      // If the image is completely above the viewport, keep it full scale
+      if (rect.bottom <= 0) {
+        container.style.transform = 'scale(1) translateY(0px)';
+        container.style.opacity = '1';
+        return;
+      }
+
+      // Calculate entry progress from the bottom (grows as it moves up from H)
+      // Hits full size by the time it is 75% height up the screen (fully on screen)
+      const startPos = H;
+      const endPos = H * 0.75;
+
+      let progress = 0;
+      if (rect.top <= endPos) {
+        progress = 1;
+      } else if (rect.top < startPos) {
+        progress = (startPos - rect.top) / (startPos - endPos);
+      }
+
+      const scale = 0.85 + 0.15 * progress;
+      const opacity = 0.7 + 0.3 * progress;
+      const translateY = 15 * (1 - progress);
+
+      container.style.transform = `scale(${scale}) translateY(${translateY}px)`;
+      container.style.opacity = opacity;
+      container.style.transition = 'transform 0.2s cubic-bezier(0.1, 0.8, 0.3, 1), opacity 0.2s ease-out';
+    });
+  }
+
+  window.addEventListener('scroll', updateImageScales, { passive: true });
+  window.addEventListener('resize', updateImageScales);
+  updateImageScales();
+}
+
+// Mobile Clinician Expandable Bios
+function initExpandableBios() {
+  const cards = document.querySelectorAll('.team-card');
+  if (!cards.length) return;
+
+  cards.forEach(card => {
+    const toggleBtn = card.querySelector('.btn-bio-toggle');
+    if (!toggleBtn) return;
+
+    toggleBtn.addEventListener('click', () => {
+      const isExpanded = card.classList.toggle('expanded');
+      
+      if (isExpanded) {
+        toggleBtn.textContent = 'Hide Bio \u2191';
+      } else {
+        toggleBtn.textContent = 'Read Bio \u2193';
+        card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    });
+  });
+}
+
+// Mobile Bottom Navigation Bar Highlight & Scroll
+function initBottomNav() {
+  const bottomNav = document.querySelector('.bottom-nav');
+  if (!bottomNav) return;
+
+  const navItems = bottomNav.querySelectorAll('.bottom-nav-item');
+  const sections = document.querySelectorAll('section[id], div[id="top"]');
+
+  // Handle manual clicks
+  navItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = item.getAttribute('href');
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+      }
+
+      navItems.forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+    });
+  });
+
+  // Track active section on scroll using Intersection Observer
+  const observerOptions = {
+    root: null,
+    rootMargin: '-50% 0px -50% 0px',
+    threshold: 0
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        const activeNav = bottomNav.querySelector(`.bottom-nav-item[href="#${id}"]`);
+        if (activeNav) {
+          navItems.forEach(i => i.classList.remove('active'));
+          activeNav.classList.add('active');
+        }
+      }
+    });
+  }, observerOptions);
+
+  sections.forEach(sec => {
+    if (sec.id) observer.observe(sec);
+  });
+}
+
+// Viewport Scroll Progress Bar
+function initScrollProgress() {
+  const progress = document.getElementById('scroll-progress');
+  if (!progress) return;
+
+  function update() {
+    const docH = document.documentElement.scrollHeight - window.innerHeight;
+    if (docH <= 0) {
+      progress.style.width = '0%';
+      return;
+    }
+    const scrolled = (window.scrollY / docH) * 100;
+    progress.style.width = `${scrolled}%`;
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+}
+
+// Quote Carousel Dots
+function initQuoteCarouselDots() {
+  const carousel = document.querySelector('.recog-cards');
+  const dotsContainer = document.getElementById('quote-carousel-dots');
+  if (!carousel || !dotsContainer) return;
+
+  const dots = dotsContainer.querySelectorAll('.dot');
+  const cards = carousel.querySelectorAll('.recog-card');
+  if (!dots.length || !cards.length) return;
+
+  function updateActiveDot() {
+    const scrollLeft = carousel.scrollLeft;
+    const width = carousel.offsetWidth;
+    const activeIndex = Math.round(scrollLeft / width);
+    
+    dots.forEach((dot, index) => {
+      if (index === activeIndex) {
+        dot.classList.add('active');
+      } else {
+        dot.classList.remove('active');
+      }
+    });
+  }
+
+  // Handle dot clicks
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const targetIndex = parseInt(dot.getAttribute('data-index'), 10);
+      const targetCard = cards[targetIndex];
+      if (targetCard) {
+        carousel.scrollTo({
+          left: targetCard.offsetLeft - carousel.offsetLeft,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+
+  carousel.addEventListener('scroll', updateActiveDot, { passive: true });
+}
+
 // Initialize scroll scripts
 initSmartNavbar();
 initScrollCardFades();
 initScrollFloat();
 initStepsReveal();
+initImageScrollScale();
+initExpandableBios();
+initBottomNav();
+initScrollProgress();
+initQuoteCarouselDots();
 </script>
 
 </body>
