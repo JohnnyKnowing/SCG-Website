@@ -780,10 +780,21 @@ canvas#hero-canvas {
 }
 .area-list {
   display: flex;
-  flex-direction: column;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
   gap: 16px;
+  padding: 16px 20px;
+  margin: 0 -20px;
+}
+.area-list::-webkit-scrollbar {
+  display: none;
 }
 .area-item {
+  flex: 0 0 82%;
+  scroll-snap-align: center;
+  box-sizing: border-box;
   background: #ffffff;
   border: 1px solid rgba(90, 150, 194, 0.15);
   box-shadow: 0 4px 20px rgba(26, 53, 74, 0.03);
@@ -1057,6 +1068,14 @@ footer {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
+    overflow-x: visible;
+    scroll-snap-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  .area-item {
+    flex: none;
+    scroll-snap-align: none;
   }
   
 
