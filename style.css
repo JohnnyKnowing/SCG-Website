@@ -1493,4 +1493,11 @@ footer {
   .nav-toggle {
     display: none !important;
   }
+
+  /* Scale work images to fit screen better on mobile */
+  .work-image-container {
+    max-width: none !important;
+    width: 95% !important;
+    margin: 32px auto !important;
+  }
 }
