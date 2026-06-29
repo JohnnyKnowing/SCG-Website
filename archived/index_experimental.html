@@ -1,0 +1,1657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spangler Counseling Group | Developmental Support for Teens & Young Adults</title>
+<link rel="icon" type="image/png" href="js_logo_transparent.png">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:            #faf6f0;
+    --moss-green:       #2e4a3f;
+    --river-blue:       #3d5a6c;
+    --deep-forest:      #19241E;
+    --dark-charcoal:    #2b2b2b;
+    --sun-gold:         #FFD452;
+    --accent-gold:      #FFE494;
+    --accent-orange:    #D66847;
+    --river-light:      #D9E8EC;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; overflow-x: hidden; background: var(--cream); }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--dark-charcoal);
+    line-height: 1.7;
+    font-size: 18px; /* Enforce minimum 18px body font size */
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1;
+    /* Gentle, radiant fixed sun glow in the top left */
+    background-image: radial-gradient(circle at top left, #fff176 0%, rgba(255, 241, 118, 0) 45%);
+    pointer-events: none;
+  }
+
+  /* ─── AMBIENT WATER SHIMMER CANVAS ─── */
+  canvas#water-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.5;
+  }
+
+  /* ─── CAPSULE NAVBAR ─── */
+  nav {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: calc(100% - 32px);
+    max-width: 900px;
+    background: rgba(254, 250, 244, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 40px;
+    border: 1px solid rgba(234, 226, 212, 0.7);
+    padding: 10px 24px;
+    z-index: 1000;
+    box-shadow: 0 10px 30px rgba(26, 46, 34, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  }
+  
+  .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo { width: 30px; height: 30px; object-fit: contain; }
+  .nav-name {
+    font-family: 'Lora', serif;
+    font-size: 15px; font-weight: 500;
+    color: var(--dark-charcoal);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--dark-charcoal);
+    font-size: 13.5px;
+    font-weight: 500;
+    transition: color 0.2s, opacity 0.2s;
+    opacity: 0.85;
+  }
+  .nav-links a:hover, .nav-links a.active {
+    color: var(--river-blue);
+    opacity: 1;
+  }
+  .nav-links a.nav-cta {
+    background: var(--river-blue); color: #fff !important;
+    padding: 8px 18px; border-radius: 20px;
+    opacity: 1;
+    box-shadow: 0 4px 10px rgba(58, 92, 110, 0.15);
+    transition: background-color 0.2s, transform 0.2s;
+  }
+  .nav-links a.nav-cta:hover {
+    background: var(--moss-green);
+    transform: scale(1.02);
+  }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .hamburger {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--dark-charcoal);
+    position: relative;
+    transition: background 0.3s;
+  }
+  .hamburger::before, .hamburger::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    background: var(--dark-charcoal);
+    left: 0;
+    transition: transform 0.3s, top 0.3s;
+  }
+  .hamburger::before { top: -6px; }
+  .hamburger::after { top: 6px; }
+
+  .nav-toggle.active .hamburger { background: transparent; }
+  .nav-toggle.active .hamburger::before { transform: rotate(45deg); top: 0; }
+  .nav-toggle.active .hamburger::after { transform: rotate(-45deg); top: 0; }
+
+  /* ─── FULL-WIDTH ENVIRONMENTAL BANDS ─── */
+  .main-wrapper {
+    padding-top: 80px; /* offset for nav */
+    position: relative;
+    z-index: 5;
+    width: 100%;
+  }
+
+  .tab-pane {
+    display: none;
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  .tab-pane.active {
+    display: block;
+    animation: unfoldIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes unfoldIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .content-band {
+    width: 100%;
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .content-band.cream { background: transparent; color: var(--dark-charcoal); }
+  .content-band.green { background: var(--moss-green); color: var(--cream); }
+  .content-band.blue { background: var(--river-blue); color: var(--cream); }
+
+  /* Winding River Dividers */
+  .river-divider-wrapper {
+    position: relative;
+    width: 100%;
+    height: 140px; /* steep curves on desktop */
+    overflow: hidden;
+    margin-top: -2px;
+    margin-bottom: -2px;
+    z-index: 8;
+  }
+  .river-divider {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  /* Flatten wave steepness on mobile screens */
+  @media (max-width: 768px) {
+    .river-divider-wrapper {
+      height: 45px;
+    }
+  }
+
+  /* Asymmetric Text and Illustration Columns */
+  .landscape-row {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 10;
+  }
+  .landscape-row.reverse {
+    flex-direction: row-reverse;
+  }
+  .landscape-text {
+    flex: 1.25;
+    max-width: 65ch; /* cap readability */
+  }
+  .landscape-visual {
+    flex: 0.75;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  @media (max-width: 991px) {
+    .landscape-row, .landscape-row.reverse {
+      flex-direction: column;
+      gap: 40px;
+    }
+    .landscape-text {
+      max-width: 100%;
+    }
+    .landscape-visual {
+      width: 100%;
+      max-width: 380px;
+    }
+  }
+
+  /* Blending Organic Vector Layers */
+  .organic-bg-vector {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.15;
+    transition: transform 0.4s ease;
+  }
+  .content-band.cream .organic-bg-vector { mix-blend-mode: multiply; }
+  .content-band.green .organic-bg-vector { opacity: 0.08; }
+  .content-band.blue .organic-bg-vector { opacity: 0.08; }
+
+  /* Typographic integration */
+  .eyebrow {
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--river-blue);
+    margin-bottom: 12px;
+    display: block;
+  }
+  .content-band.green .eyebrow { color: var(--accent-gold); }
+  .content-band.blue .eyebrow { color: var(--accent-gold); }
+
+  .section-h {
+    font-family: 'Lora', serif;
+    font-size: 36px;
+    font-weight: 500; line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin-bottom: 24px;
+    color: var(--deep-forest);
+  }
+  .content-band.green .section-h { color: #fff; }
+  .content-band.blue .section-h { color: #fff; }
+  
+  .section-h em { font-style: italic; color: var(--river-blue); }
+  .content-band.green .section-h em { color: var(--sun-gold); }
+  .content-band.blue .section-h em { color: var(--accent-gold); }
+
+  .prose {
+    font-size: 18px; /* Minimum font size of 18px */
+    line-height: 1.7;
+    margin-bottom: 20px;
+    max-width: 65ch;
+  }
+  .prose:last-child { margin-bottom: 0; }
+
+  .prose strong { color: inherit; font-weight: 600; }
+
+  .btn-organic {
+    background: var(--accent-orange); color: #fff;
+    text-decoration: none; padding: 14px 32px;
+    border-radius: 35% 65% 55% 45% / 50% 50% 50% 50%;
+    font-size: 15px; font-weight: 500;
+    display: inline-block;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 6px 15px rgba(214, 104, 71, 0.25);
+    border: none;
+    cursor: pointer;
+  }
+  .btn-organic:hover {
+    transform: scale(1.03) rotate(-1deg);
+    background: #BF5737;
+    box-shadow: 0 10px 20px rgba(214, 104, 71, 0.35);
+  }
+
+  .btn-ghost-organic {
+    color: var(--river-blue); text-decoration: none;
+    font-size: 15px; font-weight: 500;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: color 0.2s, transform 0.2s;
+  }
+  .content-band.green .btn-ghost-organic { color: var(--accent-gold); }
+  .content-band.blue .btn-ghost-organic { color: var(--accent-gold); }
+  .btn-ghost-organic:hover {
+    transform: translateX(4px);
+  }
+
+  /* ─── HOME TABS: NO CARDS FLOW ─── */
+  .quotes-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 65ch;
+    margin: 40px auto;
+    position: relative;
+    z-index: 5;
+  }
+  .landscape-quote {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: rgba(254, 250, 244, 0.9);
+    border-left: 3px solid var(--accent-gold);
+    padding-left: 20px;
+    margin: 10px 0;
+  }
+
+  .specialties-landscape {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 900px;
+    margin: 40px auto 0 auto;
+    position: relative;
+    z-index: 5;
+  }
+  .spec-node {
+    color: rgba(254, 250, 244, 0.9);
+  }
+  .spec-node-title {
+    font-family: 'Lora', serif;
+    font-size: 20px;
+    color: #fff;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .spec-number {
+    color: var(--accent-gold);
+    font-size: 24px;
+    font-weight: 300;
+  }
+  @media (max-width: 768px) {
+    .specialties-landscape {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+  }
+
+  /* ─── APPROACH TABS: STEPS TIMELINE ─── */
+  .timeline-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 65ch;
+    margin: 48px auto;
+    position: relative;
+    z-index: 5;
+  }
+  .timeline-step {
+    border-top: 1px solid rgba(254, 250, 244, 0.2);
+    padding-top: 24px;
+  }
+  .timeline-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+  .timeline-step-num {
+    font-family: 'Lora', serif;
+    font-size: 24px; font-weight: 600;
+    color: var(--accent-gold);
+  }
+  .timeline-step-title {
+    font-family: 'Lora', serif;
+    font-size: 20px; font-weight: 500;
+    color: #fff;
+  }
+
+  .partners-landscape {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    max-width: 900px;
+    margin: 40px auto 0 auto;
+    position: relative;
+    z-index: 5;
+  }
+  .partner-col h3 {
+    font-family: 'Lora', serif;
+    font-size: 22px; font-weight: 500;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  @media (max-width: 768px) {
+    .partners-landscape {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+
+  /* ─── WHO WE ARE: BLENDING PORTRAITS ─── */
+  .team-landscape {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    max-width: 1000px;
+    margin: 40px auto;
+    position: relative;
+    z-index: 5;
+  }
+  .member-row {
+    display: flex;
+    gap: 60px;
+    align-items: center;
+  }
+  .member-row.reverse {
+    flex-direction: row-reverse;
+  }
+  .member-photo-side {
+    flex-shrink: 0;
+    width: 280px;
+    height: 280px;
+  }
+  .member-photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 65% 35% 55% 45% / 45% 55% 45% 55%;
+    box-shadow: 0 15px 35px rgba(26, 46, 34, 0.1);
+    border: 3px solid rgba(254, 250, 244, 0.2);
+    transition: transform 0.4s ease;
+  }
+  .member-row.reverse .member-photo-img {
+    border-radius: 45% 55% 35% 65% / 55% 45% 55% 45%;
+  }
+  .member-row:hover .member-photo-img {
+    transform: scale(1.02) rotate(-1deg);
+  }
+  .member-text-side {
+    flex: 1;
+  }
+  @media (max-width: 768px) {
+    .member-row, .member-row.reverse {
+      flex-direction: column;
+      gap: 30px;
+    }
+    .member-photo-side {
+      width: 240px;
+      height: 240px;
+    }
+  }
+
+  /* ─── GET STARTED: TRANSACTIONAL FLOW ─── */
+  .roadmap-landscape {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px;
+    max-width: 950px;
+    margin: 40px auto;
+    position: relative;
+    z-index: 5;
+  }
+  .roadmap-node {
+    border-top: 2px solid var(--river-blue);
+    padding-top: 20px;
+  }
+  .roadmap-node-step {
+    font-size: 12px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--river-blue);
+    margin-bottom: 6px;
+  }
+  .roadmap-node-title {
+    font-family: 'Lora', serif;
+    font-size: 19px; font-weight: 500;
+    color: var(--deep-forest);
+    margin-bottom: 8px;
+  }
+  @media (max-width: 768px) {
+    .roadmap-landscape {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+
+  .fees-landscape {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    max-width: 900px;
+    margin: 40px auto 0 auto;
+    position: relative;
+    z-index: 5;
+  }
+  .fee-option {
+    flex: 1;
+    border-top: 1px solid rgba(254, 250, 244, 0.3);
+    padding-top: 24px;
+  }
+  .fee-option-type {
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--accent-gold);
+    margin-bottom: 8px;
+  }
+  .fee-option-price {
+    font-family: 'Lora', serif;
+    font-size: 32px; font-weight: 500;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .fee-option-price span { font-size: 16px; font-weight: 400; color: rgba(255,255,255,0.7); }
+  .fee-option-desc { font-size: 14.5px; color: #DFE8E4; line-height: 1.6; }
+  @media (max-width: 768px) {
+    .fees-landscape {
+      flex-direction: column;
+      gap: 24px;
+    }
+  }
+
+  .faq-accordion {
+    max-width: 65ch;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: relative;
+    z-index: 5;
+  }
+  .faq-item {
+    border-bottom: 1px solid rgba(254, 250, 244, 0.2);
+  }
+  .faq-q {
+    padding: 16px 0;
+    font-family: 'Lora', serif;
+    font-size: 18px; font-weight: 500;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+  }
+  .faq-q::after {
+    content: '+';
+    font-size: 20px;
+    color: var(--accent-gold);
+    transition: transform 0.3s;
+  }
+  .faq-item.active .faq-q::after {
+    content: '−';
+    transform: rotate(180deg);
+  }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .faq-a-inner {
+    padding: 0 0 16px 0;
+    font-size: 16px;
+    color: #DFE8E4;
+    line-height: 1.6;
+  }
+  .faq-item.active .faq-a {
+    max-height: 250px;
+  }
+
+  .contact-landscape {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 65ch;
+    margin: 40px auto 0 auto;
+    position: relative;
+    z-index: 5;
+  }
+  
+  /* Blending Form directly on the riverbed blue background */
+  .contact-form-landscape {
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 24px;
+  }
+  .form-group label {
+    display: block;
+    font-size: 13px; font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--accent-gold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 768px) {
+    .form-row {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+  }
+
+  /* Soft inputs matching morning mist color palette */
+  input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+    width: 100%;
+    padding: 14px 18px;
+    background: rgba(254, 250, 244, 0.95);
+    border: 1px solid rgba(234, 226, 212, 0.8);
+    border-radius: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: var(--dark-charcoal);
+    transition: all 0.3s ease;
+  }
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent-gold);
+    background: #FFF;
+    box-shadow: 0 0 10px rgba(255, 228, 148, 0.3);
+  }
+  textarea {
+    min-height: 110px;
+  }
+
+  .btn-form {
+    background: var(--accent-orange);
+    color: #fff;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 25px;
+    font-size: 16px; font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    box-shadow: 0 6px 15px rgba(214, 104, 71, 0.3);
+  }
+  .btn-form:hover {
+    background: #BF5737;
+    transform: translateY(-2px);
+  }
+  .form-note {
+    font-size: 12px;
+    text-align: center;
+    color: #DFE8E4;
+    margin-top: 12px;
+  }
+
+  /* ─── SCROLL REVEAL & SPOUTS ─── */
+  .sprout {
+    opacity: 0;
+    transform: scale(0.97) translateY(20px);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+  }
+  .sprout.grown {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sprout {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+    .tab-pane.active {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--deep-forest);
+    color: rgba(255,255,255,0.7);
+    padding: 60px 0;
+    position: relative;
+    z-index: 5;
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+  }
+  .footer-left { display: flex; align-items: center; gap: 16px; }
+  .footer-logo { height: 48px; width: auto; opacity: 0.8; }
+  .footer-text { font-size: 13.5px; line-height: 1.6; color: var(--cream); }
+  .footer-links { display: flex; gap: 24px; list-style: none; }
+  .footer-links a { font-size: 13.5px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: #fff; }
+
+  @media (max-width: 768px) {
+    nav {
+      width: calc(100% - 24px);
+      padding: 10px 16px;
+      border-radius: 30px;
+    }
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 65px;
+      left: 0;
+      width: 100%;
+      background: rgba(254, 250, 244, 0.96);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 24px;
+      border: 1px solid rgba(234, 226, 212, 0.8);
+      padding: 24px;
+      box-shadow: 0 15px 30px rgba(26, 46, 34, 0.1);
+      gap: 16px;
+      text-align: center;
+    }
+    .nav-links.show {
+      display: flex;
+    }
+    .nav-links a.nav-cta {
+      width: 100%;
+      display: block;
+    }
+    .nav-toggle {
+      display: block;
+    }
+    .main-wrapper {
+      padding-top: 75px;
+    }
+    .content-band {
+      padding: 70px 0;
+    }
+    .footer-inner {
+      flex-direction: column;
+      text-align: center;
+    }
+    .footer-left { flex-direction: column; }
+    .footer-links { flex-direction: column; gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SHIMMERING WATER SUN-GLINTS -->
+<canvas id="water-canvas"></canvas>
+
+<!-- PERSISTENT FLOATING HEADER -->
+<nav id="header-nav">
+  <a href="#home" class="nav-brand">
+    <img class="nav-logo" src="js_logo_transparent_outlined.png" alt="Spangler Counseling Group Logo">
+    <div class="nav-name">Spangler Counseling Group</div>
+  </a>
+  <ul class="nav-links" id="nav-menu">
+    <li><a href="#home" class="active">Home</a></li>
+    <li><a href="#approach">Our Approach</a></li>
+    <li><a href="#who-we-are">Who We Are</a></li>
+    <li><a href="#get-started" class="nav-cta">Get Started</a></li>
+  </ul>
+  <button class="nav-toggle" id="menu-toggle" aria-label="Toggle Menu">
+    <span class="hamburger"></span>
+  </button>
+</nav>
+
+<!-- MAIN APP MULTI-PAGE WRAPPER -->
+<div class="main-wrapper">
+
+  <!-- ========================================== -->
+  <!-- PAGE 1: HOME                               -->
+  <!-- ========================================== -->
+  <section id="tab-home" class="tab-pane active" aria-labelledby="home">
+    
+    <!-- Welcome Band -->
+    <div class="content-band cream">
+      <div class="landscape-row">
+        <div class="landscape-text sprout grown">
+          <span class="eyebrow">Developmental Support</span>
+          <h1 class="section-h">Understanding is<br>where we <em>begin.</em></h1>
+          <p class="prose">Growing up means figuring out who you are. We take the time to understand that journey, and we build our support around it.</p>
+          <div style="margin-top: 32px; display: flex; gap: 20px; align-items: center;">
+            <a href="#get-started" class="btn-organic">Schedule a Consultation</a>
+            <a href="#approach" class="btn-ghost-organic">See our approach &rarr;</a>
+          </div>
+        </div>
+        <div class="landscape-visual sprout grown">
+          <!-- Sunshine growth integrated graphic -->
+          <img src="svg_assets/sunshine_growth.svg" class="organic-bg-vector" style="opacity: 0.1; width: 130%; height: auto;" alt="">
+          <img src="svg_assets/sunshine_growth.svg" style="width: 80%; max-width: 300px; opacity: 0.85;" alt="Growth representation">
+        </div>
+      </div>
+    </div>
+
+    <!-- Cream to Moss Green Winding River Junction -->
+    <div class="river-divider-wrapper">
+      <svg class="river-divider" viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,0 C360,80 1080,120 1440,0 L1440,100 L0,100 Z" fill="var(--moss-green)"/>
+      </svg>
+    </div>
+
+    <!-- Observing the Ripple Band -->
+    <div class="content-band green">
+      <img src="svg_assets/winding_branches.svg" class="organic-bg-vector" style="top: 10%; right: -50px; width: 450px;" alt="">
+      <div class="landscape-row reverse">
+        <div class="landscape-text sprout">
+          <span class="eyebrow">Observing the Ripple</span>
+          <h2 class="section-h">Most parents reach out because they see a deep, complicated struggle.</h2>
+          <p class="prose">As a parent, you want to give your teenagers and emerging adults the tools to stand on their own. Yet, when they encounter challenges that seem beyond their ability, there is a real fear of seeing them get stuck.</p>
+          <p class="prose">You want to step in and help, but you do not know how. That feeling of helplessness is not a sign of failure—it is a sign that your teen is transitioning into adulthood. We partner with you to help them bridge that gap, giving your young adult a secure space to step away from expectations.</p>
+        </div>
+        <div class="landscape-visual sprout">
+          <img src="svg_assets/water_flow.svg" style="width: 80%; max-width: 300px;" alt="Water flow waves">
+        </div>
+      </div>
+      
+      <!-- Parent Quotes sitting directly in the landscape band -->
+      <div class="quotes-flow sprout">
+        <blockquote class="landscape-quote">"I want them to know I support them, whatever they decide to do. I just want them to be okay."</blockquote>
+        <blockquote class="landscape-quote">"I am worried about this next transition and I do not know how to help them through it."</blockquote>
+        <blockquote class="landscape-quote">"Something changed and I cannot tell if it is a phase or something more."</blockquote>
+        <blockquote class="landscape-quote">"I keep wondering if I should have seen this sooner."</blockquote>
+        <blockquote class="landscape-quote">"Every option in front of us feels like the wrong one."</blockquote>
+      </div>
+    </div>
+
+    <!-- Moss Green to Riverbed Blue Winding River Junction -->
+    <div class="river-divider-wrapper">
+      <svg class="river-divider" viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,0 C360,120 1080,80 1440,0 L1440,100 L0,100 Z" fill="var(--river-blue)"/>
+      </svg>
+    </div>
+
+    <!-- Who We Work With / Specialties Band -->
+    <div class="content-band blue">
+      <img src="svg_assets/seed_to_sapling.svg" class="organic-bg-vector" style="bottom: -20px; left: -50px; width: 400px;" alt="">
+      <div class="landscape-row">
+        <div class="landscape-text sprout">
+          <span class="eyebrow">Affirming the Stream</span>
+          <h2 class="section-h">Beautifully <em>complicated</em> emerging adults.</h2>
+          <p class="prose">Teens and young adults of unique strength and complexity, carrying far more than the people around them realize. Some carry diagnoses; many do not.</p>
+          <p class="prose">Our neuro-affirming focus centers on identifying their specific processing profile and building tailored skills rather than attempting to enforce behavioral assimilation.</p>
+        </div>
+        <div class="landscape-visual sprout">
+          <img src="svg_assets/forest_currents.svg" style="width: 80%; max-width: 300px;" alt="Forest currents graphic">
+        </div>
+      </div>
+
+      <!-- Specialties landscape nodes -->
+      <div class="specialties-landscape sprout">
+        <div class="spec-node">
+          <h3 class="spec-node-title"><span class="spec-number">01</span> Identity Development</h3>
+          <p class="prose" style="font-size: 16px;">Figuring out who you are before you fully know who you want to be. Belonging, self-worth, and the weight of becoming.</p>
+        </div>
+
+        <div class="spec-node">
+          <h3 class="spec-node-title"><span class="spec-number">02</span> Young Adult Transitions</h3>
+          <p class="prose" style="font-size: 16px;">College, first jobs, leaving home. Early adulthood carries real weight. We navigate with clarity.</p>
+        </div>
+
+        <div class="spec-node">
+          <h3 class="spec-node-title"><span class="spec-number">03</span> Direction &amp; Motivation</h3>
+          <p class="prose" style="font-size: 16px;">For young people with unique, unrecognized strengths who find themselves stuck. Bringing pictures into focus.</p>
+        </div>
+
+        <div class="spec-node">
+          <h3 class="spec-node-title"><span class="spec-number">04</span> Neurodivergent Youth</h3>
+          <p class="prose" style="font-size: 16px;">Working through a neurodevelopmental lens. Individual processing style is where understanding starts.</p>
+        </div>
+
+        <div class="spec-node">
+          <h3 class="spec-node-title"><span class="spec-number">05</span> Safe Expression</h3>
+          <p class="prose" style="font-size: 16px;">A space outside every other context. Safe container for questions they are not ready to ask family or peers.</p>
+        </div>
+
+        <div class="spec-node">
+          <h3 class="spec-node-title"><span class="spec-number">06</span> Professional Support</h3>
+          <p class="prose" style="font-size: 16px;">Recognizing and treating anxiety, depression, OCD, executive skills, and suicidal ideation with clinical depth.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Riverbed Blue to Deep Forest Green Junction -->
+    <div class="river-divider-wrapper">
+      <svg class="river-divider" viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,0 C480,100 960,100 1440,0 L1440,100 L0,100 Z" fill="var(--deep-forest)"/>
+      </svg>
+    </div>
+
+  </section>
+
+  <!-- ========================================== -->
+  <!-- PAGE 2: OUR APPROACH                       -->
+  <!-- ========================================== -->
+  <section id="tab-approach" class="tab-pane" aria-labelledby="approach">
+    
+    <!-- Approach Intro Band -->
+    <div class="content-band cream">
+      <div class="landscape-row">
+        <div class="landscape-text sprout">
+          <span class="eyebrow">Our Methodology</span>
+          <h1 class="section-h">Developmental, relational, &amp; <em>neuro-affirming.</em></h1>
+          <p class="prose">We look at the big picture. We support young people in understanding how they work, building trust, and moving forward on their own terms.</p>
+        </div>
+        <div class="landscape-visual sprout">
+          <img src="svg_assets/flowing_willow.svg" style="width: 80%; max-width: 300px;" alt="Flowing willow">
+        </div>
+      </div>
+    </div>
+
+    <!-- Cream to Green Junction -->
+    <div class="river-divider-wrapper">
+      <svg class="river-divider" viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,0 C360,80 1080,120 1440,0 L1440,100 L0,100 Z" fill="var(--moss-green)"/>
+      </svg>
+    </div>
+
+    <!-- How We Help Band -->
+    <div class="content-band green">
+      <img src="svg_assets/winding_branches.svg" class="organic-bg-vector" style="top: -20px; left: -100px; width: 450px;" alt="">
+      <div class="landscape-row reverse" style="align-items: flex-start;">
+        <div class="landscape-text sprout" style="max-width: 100%;">
+          <span class="eyebrow">The Path Forward</span>
+          <h2 class="section-h">How We Help</h2>
+          <p class="prose">Every person arrives with their own way of taking in the world. Understanding that is the starting point for everything we do. We help young people develop their own lens for understanding themselves. The goal is genuine self-knowledge, and the confidence that grows from it.</p>
+          
+          <div class="timeline-steps">
+            <div class="timeline-step">
+              <div class="timeline-header">
+                <div class="timeline-step-num">01</div>
+                <h3 class="timeline-step-title">Get to know them</h3>
+              </div>
+              <p class="prose" style="font-size: 16.5px;">Before knowing how to help, we need to know the person. How they think. What matters to them. Where they feel most like themselves and where they feel furthest from it.</p>
+            </div>
+            <div class="timeline-step">
+              <div class="timeline-header">
+                <div class="timeline-step-num">02</div>
+                <h3 class="timeline-step-title">Build a real relationship</h3>
+              </div>
+              <p class="prose" style="font-size: 16.5px;">We give the relationship time to root. We sit outside family, school, and peer life. A space where the parts of themselves they are still figuring out how to hold can come forward safely.</p>
+            </div>
+            <div class="timeline-step">
+              <div class="timeline-header">
+                <div class="timeline-step-num">03</div>
+                <h3 class="timeline-step-title">Shape the support to fit</h3>
+              </div>
+              <p class="prose" style="font-size: 16.5px;">Once we understand how someone works, we build from there. Mentoring, skill building, self-exploration, all of it tuned to this specific young person.</p>
+            </div>
+            <div class="timeline-step">
+              <div class="timeline-header">
+                <div class="timeline-step-num">04</div>
+                <h3 class="timeline-step-title">Develop identity and purpose</h3>
+              </div>
+              <p class="prose" style="font-size: 16.5px;">The heart of the work. Helping a young person settle into who they are, find their own motivation, and build a sense of self that holds over time.</p>
+            </div>
+            <div class="timeline-step">
+              <div class="timeline-header">
+                <div class="timeline-step-num">05</div>
+                <h3 class="timeline-step-title">Address what gets in the way</h3>
+              </div>
+              <p class="prose" style="font-size: 16.5px;">When anxiety, depression, or other struggles are blocking growth, we address them as part of the larger picture, in service of the foundation we are building together.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Moss Green to Riverbed Blue Junction -->
+    <div class="river-divider-wrapper">
+      <svg class="river-divider" viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,0 C360,120 1080,80 1440,0 L1440,100 L0,100 Z" fill="var(--river-blue)"/>
+      </svg>
+    </div>
+
+    <!-- Voice Stone / Partnerships Band -->
+    <div class="content-band blue">
+      <img src="svg_assets/seed_to_sapling.svg" class="organic-bg-vector" style="bottom: 0; right: -50px; width: 400px;" alt="">
+      
+      <div class="landscape-row" style="margin-bottom: 60px;">
+        <div class="landscape-text sprout" style="max-width: 100%; text-align: center; margin: 0 auto;">
+          <blockquote style="font-family: 'Lora', serif; font-size: 24px; font-style: italic; color: var(--accent-gold); max-width: 65ch; margin: 0 auto;">
+            "Every person makes sense. The work is learning how."
+          </blockquote>
+        </div>
+      </div>
+
+      <div class="landscape-row" style="flex-direction: column; align-items: flex-start;">
+        <span class="eyebrow">Ecosystem Collaboration</span>
+        <h2 class="section-h" style="color:#fff;">Professional Partnerships</h2>
+        <p class="prose">We believe that supporting a young person works best when we respect the ecosystem already around them. We coordinate care smoothly to ensure continuity.</p>
+        
+        <div class="partners-landscape sprout">
+          <div class="partner-col">
+            <h3>For Clinical Providers</h3>
+            <p class="prose" style="font-size: 16.5px; color:#DFE8E4;">We offer collaborative, relational care for therapists, psychiatrists, and pediatricians. We provide a steady, neurodiversity-affirming space for individuals navigating key life transitions, making it easy to team up and support your clients together.</p>
+          </div>
+          <div class="partner-col">
+            <h3>For Educators &amp; Schools</h3>
+            <p class="prose" style="font-size: 16.5px; color:#DFE8E4;">We partner with school counselors, psychologists, and consultants to coordinate daily school support. We help students build practical skills, organize their routines, and manage complex transitions so they can find their footing in the classroom.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Riverbed Blue to Deep Forest Green Junction -->
+    <div class="river-divider-wrapper">
+      <svg class="river-divider" viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,0 C480,100 960,100 1440,0 L1440,100 L0,100 Z" fill="var(--deep-forest)"/>
+      </svg>
+    </div>
+
+  </section>
+
+  <!-- ========================================== -->
+  <!-- PAGE 3: WHO WE ARE                         -->
+  <!-- ========================================== -->
+  <section id="tab-who-we-are" class="tab-pane" aria-labelledby="who-we-are">
+    
+    <!-- Intro Band -->
+    <div class="content-band cream">
+      <div class="landscape-row">
+        <div class="landscape-text sprout">
+          <span class="eyebrow">Our Clinical Team</span>
+          <h1 class="section-h">Collaborative care, <br>shared <em>grounding.</em></h1>
+          <p class="prose">We pair dedicated, highly active relational counseling with senior clinical oversight, ensuring every family receives the best of both worlds.</p>
+        </div>
+        <div class="landscape-visual sprout">
+          <img src="svg_assets/rising_pine_waves.svg" style="width: 80%; max-width: 300px;" alt="Rising pines">
+        </div>
+      </div>
+    </div>
+
+    <!-- Cream to Green Junction -->
+    <div class="river-divider-wrapper">
+      <svg class="river-divider" viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,0 C360,80 1080,120 1440,0 L1440,100 L0,100 Z" fill="var(--moss-green)"/>
+      </svg>
+    </div>
+
+    <!-- Bios Band -->
+    <div class="content-band green">
+      <div class="team-landscape">
+        
+        <!-- Johnny Bio -->
+        <div class="member-row sprout">
+          <div class="member-photo-side">
+            <img src="profile_johnny_spangler.JPG" class="member-photo-img" alt="Johnny Spangler, MA, LMHC">
+          </div>
+          <div class="member-text-side">
+            <span class="team-role">Founder and Clinical Lead</span>
+            <h3 class="team-name">Johnny Spangler</h3>
+            <div class="team-cred">Affiliate Faculty, Antioch University Seattle &nbsp;|&nbsp; Neurodiversity Program</div>
+            <p class="prose" style="font-size: 16.5px; color:#DFE8E4;">Johnny Spangler sees counseling as a supportive space built on warmth, authenticity, and respect for how individuals experience the world. His role as an educator, supervisor, and workshop leader shapes how we approach care at Spangler Counseling Group. Our framework incorporates foundational neuro-affirming practices, recognizing the absolute uniqueness of every person's internal reality.</p>
+            <div class="team-tags">
+              <span class="tag highlight">Clinical Supervision</span>
+              <span class="tag">Neuro-Affirming Care</span>
+              <span class="tag">Developmental Transitions</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sean Bio -->
+        <div class="member-row reverse sprout">
+          <div class="member-photo-side">
+            <img src="profile_sean_flikke_wide.jpg" class="member-photo-img" alt="Sean Flikke, MS, LMHC-A">
+          </div>
+          <div class="member-text-side">
+            <span class="team-role">Associate Counselor</span>
+            <h3 class="team-name">Sean Flikke</h3>
+            <div class="team-cred">MS in Counseling &nbsp;|&nbsp; Supervised Directly within the Spangler Method</div>
+            <p class="prose" style="font-size: 16.5px; color:#DFE8E4;">For nearly three decades, Sean Flikke has worked alongside neurodivergent and marginalized young people in schools, athletic spaces, and counseling. His clinical experience includes behavioral health, psychosocial assessment, and tailored counseling for ADHD, autism, anxiety, and executive skill development.</p>
+            <div class="team-tags">
+              <span class="tag highlight">Active Openings</span>
+              <span class="tag">Young Adult Transitions</span>
+              <span class="tag">Executive Skills</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Moss Green to Riverbed Blue Junction -->
+    <div class="river-divider-wrapper">
+      <svg class="river-divider" viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,0 C360,120 1080,80 1440,0 L1440,100 L0,100 Z" fill="var(--river-blue)"/>
+      </svg>
+    </div>
+
+    <!-- Practice Model Highlight Band -->
+    <div class="content-band blue">
+      <div class="landscape-row" style="flex-direction: column; align-items: flex-start;">
+        <span class="eyebrow">Our Collaborative Model</span>
+        <h2 class="section-h" style="color:#fff;">Why this structure works:</h2>
+        <p class="prose">By pairing Sean's direct caseload availability with Johnny's senior clinical backing and weekly supervision, families receive a powerful combination: a counselor with the dedicated energy to show up for your teen, completely supported by the expertise of a regional leader in neurodevelopmental graduate training.</p>
+      </div>
+    </div>
+
+    <!-- Riverbed Blue to Deep Forest Green Junction -->
+    <div class="river-divider-wrapper">
+      <svg class="river-divider" viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,0 C480,100 960,100 1440,0 L1440,100 L0,100 Z" fill="var(--deep-forest)"/>
+      </svg>
+    </div>
+
+  </section>
+
+  <!-- ========================================== -->
+  <!-- PAGE 4: GET STARTED                        -->
+  <!-- ========================================== -->
+  <section id="tab-get-started" class="tab-pane" aria-labelledby="get-started">
+    
+    <!-- Intro Band -->
+    <div class="content-band cream">
+      <div class="landscape-row" style="flex-direction: column; text-align: center;">
+        <span class="eyebrow">Connect With Us</span>
+        <h1 class="section-h" style="margin-bottom: 16px;">Ready to find their <em>footing?</em></h1>
+        <p class="prose" style="margin: 0 auto;">We make the starting process clear and straightforward. Read through FAQs, fee structures, and reach out when you're ready.</p>
+        
+        <div class="roadmap-landscape sprout">
+          <div class="roadmap-node">
+            <div class="roadmap-node-step">Step 01</div>
+            <h3 class="roadmap-node-title">Initial Consult</h3>
+            <p class="prose" style="font-size: 15px; color:#554D47;">A free 20-minute consult call to discuss what you're noticing and assess compatibility.</p>
+          </div>
+          <div class="roadmap-node">
+            <div class="roadmap-node-step">Step 02</div>
+            <h3 class="roadmap-node-title">Developmental Intake</h3>
+            <p class="prose" style="font-size: 15px; color:#554D47;">An in-depth session where we establish processing styles, history, and tailored goals.</p>
+          </div>
+          <div class="roadmap-node">
+            <div class="roadmap-node-step">Step 03</div>
+            <h3 class="roadmap-node-title">Relational Sessions</h3>
+            <p class="prose" style="font-size: 15px; color:#554D47;">Ongoing individual sessions with Sean, fully backed by Johnny's oversight.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cream to Green Junction -->
+    <div class="river-divider-wrapper">
+      <svg class="river-divider" viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,0 C360,80 1080,120 1440,0 L1440,100 L0,100 Z" fill="var(--moss-green)"/>
+      </svg>
+    </div>
+
+    <!-- Rates Band -->
+    <div class="content-band green">
+      <div class="landscape-row" style="flex-direction: column; align-items: flex-start;">
+        <span class="eyebrow">Transparency</span>
+        <h2 class="section-h">Rate Structure</h2>
+        <p class="prose">We support families with transparent, professional rates for our clinical services.</p>
+        
+        <div class="fees-landscape sprout">
+          <div class="fee-option">
+            <div class="fee-option-type">Initial inquiry</div>
+            <div class="fee-option-price">Free</div>
+            <p class="fee-option-desc">20-minute phone consult call to discuss compatibility and goals.</p>
+          </div>
+          <div class="fee-option">
+            <div class="fee-option-type">Intake Assessment</div>
+            <div class="fee-option-price">$180 <span>/ session</span></div>
+            <p class="fee-option-desc">60-minute developmental intake and profile assessment mapping.</p>
+          </div>
+          <div class="fee-option">
+            <div class="fee-option-type">Individual Session</div>
+            <div class="fee-option-price">$150 <span>/ session</span></div>
+            <p class="fee-option-desc">50-minute individual relational and skill session with Sean (supervised).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Moss Green to Riverbed Blue Junction -->
+    <div class="river-divider-wrapper">
+      <svg class="river-divider" viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,0 C360,120 1080,80 1440,0 L1440,100 L0,100 Z" fill="var(--river-blue)"/>
+      </svg>
+    </div>
+
+    <!-- FAQs & Contact Form Band -->
+    <div class="content-band blue">
+      <img src="svg_assets/forest_currents.svg" class="organic-bg-vector" style="bottom: 10px; right: -80px; width: 420px;" alt="">
+      
+      <!-- Accordion FAQs -->
+      <div class="landscape-row" style="flex-direction: column; align-items: flex-start; margin-bottom: 60px;">
+        <span class="eyebrow">Common Queries</span>
+        <h2 class="section-h" style="color:#fff;">Questions Parents Ask</h2>
+        
+        <div class="faq-accordion sprout">
+          
+          <div class="faq-item">
+            <div class="faq-q">How does your collaborative care model work?</div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                Johnny Spangler, our Founder, acts as the Clinical Director and supervisor. He actively coordinates on case planning and hosts weekly clinical supervision. This means your teen receives dedicated relational focus while being backed by extensive clinical expertise.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q">My teen does not want therapy. Can this still work?</div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                Often, yes. Most teens resist being evaluated or "fixed." We specialize in setting a warm, non-judgmental atmosphere outside the pressure of family or school dynamics, helping them feel met on their own terms. This usually melts therapeutic resistance quickly.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q">Did I cause this?</div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                Almost never in the way you fear. Young people usually struggle because of a friction mismatch between their specific developmental path and the complex environments around them. Asking the question simply highlights how deeply you care.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q">What if there are things they cannot say to us at home?</div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                That is a natural, healthy milestone of adolescent development. Developing an independent inner life is healthy. We offer a secure, objective container outside the home where they can explore hard questions safely, bringing clarity back to their relationship with you.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q">How do you approach neurodiversity?</div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                We work through a strictly neurodiversity-affirming lens. Whether carrying a diagnosis (ADHD, Autism, Executive Dysfunction) or navigating general learning/processing differences, we focus on identifying their specific processing profile and building tailored skills rather than attempting to enforce behavioral assimilation.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q">How do we get started?</div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                A simple consultation call. It is a warm, low-pressure conversation to discuss your child's background, explain our fit, and connect you with a clinician if appropriate.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Secure contact form integrating directly on the riverbed blue background -->
+      <div class="landscape-row" style="flex-direction: column; align-items: flex-start;">
+        <span class="eyebrow">Start Here</span>
+        <h2 class="section-h" style="color:#fff; margin-bottom: 8px;">You do not have to figure this out alone.</h2>
+        <p class="prose" style="margin-bottom: 30px;">Tell us a little about what is going on. We will follow up honestly about how we can support your teen or young adult. If our collaborative practice is not the right fit, we will gladly point you to trusted resources that are.</p>
+        
+        <div class="contact-landscape sprout">
+          <div class="contact-form-landscape">
+            <form id="scg-contact-form" method="POST" action="https://script.google.com/macros/s/AKfycbzWDhfYhBp_wqY8pS34EWLqQmq2_DiiFU0PKb_RvD40ob7PkkZTkLEq3wqzoT3qkLE/exec" target="hidden_iframe">
+              <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="fname">First Name</label>
+                  <input type="text" id="fname" name="fname" placeholder="Your first name" required>
+                </div>
+                <div class="form-group">
+                  <label for="lname">Last Name</label>
+                  <input type="text" id="lname" name="lname" placeholder="Your last name" required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" placeholder="you@email.com" required>
+                </div>
+                <div class="form-group">
+                  <label for="phone">Phone</label>
+                  <input type="tel" id="phone" name="phone" placeholder="(206) 000-0000" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="role">I am reaching out as a:</label>
+                <select id="role" name="role" required>
+                  <option value="" disabled selected>Select one</option>
+                  <option value="parent">Parent or Guardian</option>
+                  <option value="provider">Referring Therapist / Psychiatrist</option>
+                  <option value="school">School Psychologist / Educator</option>
+                  <option value="client">Young Adult (18+)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="who">Reaching out about:</label>
+                <select id="who" name="who" required>
+                  <option value="" disabled selected>Select option</option>
+                  <option>My Teenager (13-17)</option>
+                  <option>My Young Adult (18-25)</option>
+                  <option>Myself (18+)</option>
+                  <option>Professional referral collaboration</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="message">What is going on?</label>
+                <textarea id="message" name="message" placeholder="A short context about what you're noticing or seeking help with. No need to detail everything." required></textarea>
+              </div>
+
+              <button class="btn-form" type="submit">Send Inquiry</button>
+              <p class="form-note">We respond within two business days. Intake consults are held by phone or video call.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Riverbed Blue to Deep Forest Green Junction -->
+    <div class="river-divider-wrapper">
+      <svg class="river-divider" viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,0 C480,100 960,100 1440,0 L1440,100 L0,100 Z" fill="var(--deep-forest)"/>
+      </svg>
+    </div>
+
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-left">
+      <img src="js_logo_transparent_small.png" alt="Spangler Logo" class="footer-logo">
+      <div class="footer-text">
+        <div style="font-family:'Lora',serif;font-size:15px;color:rgba(255,255,255,0.7);margin-bottom:6px;">Spangler Counseling Group</div>
+        Telehealth &nbsp;|&nbsp; spanglercounselinggroup.com<br>
+        &copy; 2026 Spangler Counseling Group. All rights reserved.
+      </div>
+    </div>
+    <ul class="footer-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#approach">Our Approach</a></li>
+      <li><a href="#who-we-are">Who We Are</a></li>
+      <li><a href="https://johnnyspangler.com" target="_blank" rel="noopener">johnnyspangler.com</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+// Ambient water caustics / sun-glint particles animation
+function initWaterShimmer() {
+  const canvas = document.getElementById('water-canvas');
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
+
+  const particles = [];
+  const particleCount = Math.min(25, Math.floor(window.innerWidth / 25)); // Twinkle nodes count
+
+  for (let i = 0; i < particleCount; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: 1 + Math.random() * 2,
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.005 + Math.random() * 0.008,
+      driftX: (Math.random() - 0.5) * 0.05,
+      driftY: -0.08 - Math.random() * 0.12
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const w = canvas.width;
+    const h = canvas.height;
+
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      p.phase += p.speed;
+      p.y += p.driftY;
+      p.x += p.driftX;
+
+      // Wrap around edges
+      if (p.y < -10) { p.y = h + 10; p.x = Math.random() * w; }
+      if (p.x < -10) p.x = w + 10;
+      if (p.x > w + 10) p.x = -10;
+
+      // Soft sun glint twinkle
+      const alpha = 0.2 + Math.sin(p.phase) * 0.12;
+
+      ctx.beginPath();
+      const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 3);
+      grad.addColorStop(0, `rgba(255, 255, 255, ${alpha})`);
+      grad.addColorStop(0.3, `rgba(255, 241, 118, ${alpha * 0.7})`);
+      grad.addColorStop(1, 'rgba(255, 241, 118, 0)');
+      
+      ctx.fillStyle = grad;
+      ctx.arc(p.x, p.y, p.r * 3, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    
+    // Check if motion reduction is enabled before requesting animation frame
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      requestAnimationFrame(draw);
+    } else {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  }
+  
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    draw();
+  }
+  
+  // Listen for reduced motion changes
+  window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', e => {
+    if (!e.matches) draw();
+  });
+}
+
+// Sprout scroll growth intersection observer
+function initSprouts() {
+  const sprouts = document.querySelectorAll('.sprout');
+  
+  // Skip scroll observer entirely if motion reduction is enabled
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    sprouts.forEach(s => s.classList.add('grown'));
+    return;
+  }
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('grown');
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+
+  sprouts.forEach(s => obs.observe(s));
+}
+
+// Smart disappearing/reappearing capsule header (Headroom behavior)
+function initSmartHeader() {
+  const nav = document.querySelector('nav');
+  if (!nav) return;
+
+  let lastScrollY = window.scrollY;
+  const threshold = 15;
+
+  window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+
+    if (Math.abs(currentScrollY - lastScrollY) < threshold) return;
+
+    const navMenu = document.getElementById('nav-menu');
+    if (navMenu && navMenu.classList.contains('show')) return;
+
+    if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      // Scrolling down -> hide navbar
+      nav.style.transform = 'translate(-50%, -100px)';
+      nav.style.opacity = '0';
+    } else {
+      // Scrolling up -> show navbar
+      nav.style.transform = 'translate(-50%, 0)';
+      nav.style.opacity = '1';
+    }
+
+    lastScrollY = currentScrollY;
+  }, { passive: true });
+}
+
+// Programmatic bolding of the first two to three words of paragraphs
+function initProgrammaticBolding() {
+  document.querySelectorAll('.prose').forEach(p => {
+    if (p.closest('nav') || p.closest('form') || p.closest('footer')) return;
+    if (p.firstElementChild && (p.firstElementChild.tagName === 'STRONG' || p.firstElementChild.tagName === 'B')) {
+      return;
+    }
+    const html = p.innerHTML.trim();
+    if (!html) return;
+    
+    // Split keeping words and spaces
+    const words = html.split(/(\s+)/);
+    let count = 0;
+    let boldText = '';
+    let restText = '';
+    
+    for (let i = 0; i < words.length; i++) {
+      const part = words[i];
+      if (count < 3 && part.trim().length > 0 && !part.startsWith('<')) {
+        boldText += part;
+        count++;
+      } else {
+        restText += part;
+      }
+    }
+    
+    p.innerHTML = `<strong>${boldText}</strong>${restText}`;
+  });
+}
+
+// SPA Hash Router
+function initRouter() {
+  const tabPanes = document.querySelectorAll('.tab-pane');
+  const navLinks = document.querySelectorAll('.nav-links a, .nav-brand');
+
+  function handleRoute() {
+    let hash = window.location.hash || '#home';
+    const validHashes = ['#home', '#approach', '#who-we-are', '#get-started'];
+    if (!validHashes.includes(hash)) {
+      hash = '#home';
+    }
+
+    // Update active tab pane
+    tabPanes.forEach(pane => {
+      pane.classList.remove('active');
+      if (pane.id === `tab-${hash.substring(1)}`) {
+        pane.classList.add('active');
+      }
+    });
+
+    // Update active navigation link
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      const href = link.getAttribute('href');
+      if (href === hash) {
+        link.classList.add('active');
+      }
+    });
+
+    // Smooth scroll to top
+    window.scrollTo({
+      top: 0,
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+    });
+
+    // Reset sprouts inside active pane
+    const activePane = document.querySelector(`.tab-pane.active`);
+    if (activePane) {
+      const activeSprouts = activePane.querySelectorAll('.sprout');
+      activeSprouts.forEach(s => {
+        s.classList.remove('grown');
+        void s.offsetWidth;
+        s.classList.add('grown');
+      });
+    }
+  }
+
+  window.addEventListener('hashchange', handleRoute);
+  handleRoute();
+}
+
+// FAQ Accordion functionality
+function initFaqAccordion() {
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const question = item.querySelector('.faq-q');
+    question.addEventListener('click', () => {
+      const activeItem = document.querySelector('.faq-item.active');
+      if (activeItem && activeItem !== item) {
+        activeItem.classList.remove('active');
+      }
+      item.classList.toggle('active');
+    });
+  });
+}
+
+// Mobile navigation menu toggle
+function initMobileMenu() {
+  const menuToggle = document.getElementById('menu-toggle');
+  const navMenu = document.getElementById('nav-menu');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  if (menuToggle && navMenu) {
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      navMenu.classList.toggle('show');
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        navMenu.classList.remove('show');
+      });
+    });
+  }
+}
+
+// Contact form submit handling with custom feedback transition
+function initContactForm() {
+  const form = document.getElementById('scg-contact-form');
+  if (!form) return;
+
+  form.addEventListener('submit', function() {
+    const btn = form.querySelector('.btn-form');
+    btn.disabled = true;
+    btn.textContent = 'Sending Inquiry...';
+    btn.style.opacity = '0.7';
+
+    setTimeout(function() {
+      form.innerHTML = `
+        <div style="text-align: center; padding: 40px 10px; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 300px; animation: unfoldIn 0.5s ease-out forwards;">
+          <svg style="width: 64px; height: 64px; margin-bottom: 24px; color: var(--accent-gold);" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <h3 style="font-family: 'Lora', serif; font-size: 26px; font-weight: 500; margin-bottom: 16px;">Thank You</h3>
+          <p style="font-size: 16px; line-height: 1.7; color: #DFE8E4; max-width: 320px; margin-bottom: 8px;">We have received your inquiry. We will reach out to you within two business days.</p>
+        </div>
+      `;
+    }, 1500);
+  });
+}
+
+// Run initializations
+window.addEventListener('DOMContentLoaded', () => {
+  initWaterShimmer();
+  initSprouts();
+  initSmartHeader();
+  initProgrammaticBolding();
+  initRouter();
+  initFaqAccordion();
+  initMobileMenu();
+  initContactForm();
+});
+</script>
+</body>
+</html>

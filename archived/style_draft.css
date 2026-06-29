@@ -244,7 +244,7 @@ nav.nav-visible {
 
 .section-h {
     font-family: 'Lora', serif;
-    font-size: clamp(35px, 3.5vw, 45px);
+    font-size: clamp(41px, 3.5vw, 45px);
     font-weight: 500;
     line-height: 1.25;
     letter-spacing: -0.02em;
@@ -292,13 +292,13 @@ nav.nav-visible {
   display: block;
   margin-top: 24px;
   font-size: 16px; font-weight: 500;
-  color: var(--earth-blue-d); text-decoration: none;
+  color: var(--blue); text-decoration: none;
   border-bottom: 1.5px solid var(--blue-p);
   padding-bottom: 2px;
   width: fit-content;
   transition: border-color 0.2s;
 }
-.soft-link:hover { border-color: var(--earth-blue-d); }
+.soft-link:hover { border-color: var(--blue); }
 .soft-link.light { color: var(--blue-s); border-color: rgba(92,146,186,0.35); }
 .soft-link.light:hover { border-color: var(--blue-s); }
 
@@ -499,7 +499,6 @@ canvas#hero-canvas {
 .recog-cards::-webkit-scrollbar {
   display: none;
 }
-
 .recog-card {
   flex: 0 0 100%;
   scroll-snap-align: center;
@@ -670,20 +669,17 @@ canvas#hero-canvas {
   max-width: 100%;
   margin-bottom: 40px;
 }
+.team-tabs-container {
+  display: none;
+}
 .team-grid {
   display: flex;
   flex-direction: column;
   gap: 32px;
 }
 .team-card {
-  background: var(--cream);
-  border: 1px solid var(--cream-d);
-  border-radius: 12px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 12px 28px rgba(30, 37, 28, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: var(--cream); border: 1px solid var(--cream-d);
+  border-radius: 8px; overflow: hidden; display: flex; flex-direction: column;
 }
 
 .team-photo {
@@ -705,7 +701,7 @@ canvas#hero-canvas {
 .team-role {
   font-size: 12px; font-weight: 600;
   letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--forest-green-d); margin-bottom: 8px;
+  color: var(--sage); margin-bottom: 8px;
 }
 .team-name {
   font-family: 'Lora', serif;
@@ -801,8 +797,9 @@ canvas#hero-canvas {
   flex: 0 0 82%;
   scroll-snap-align: center;
   box-sizing: border-box;
-  background: #ffffff;
-  border: 1px solid rgba(90, 150, 194, 0.15);
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   box-shadow: 0 4px 20px rgba(26, 53, 74, 0.03);
   border-radius: 6px; padding: 18px 20px;
   display: flex; gap: 12px; align-items: flex-start;
@@ -914,10 +911,6 @@ canvas#hero-canvas {
   transition: all 0.25s ease;
 }
 .faq-q {
-  width: 100%;
-  background: none;
-  border: none;
-  text-align: left;
   font-family: 'Lora', serif;
   font-size: 18px; font-weight: 500;
   color: var(--blue-d);
@@ -927,11 +920,6 @@ canvas#hero-canvas {
   justify-content: space-between;
   align-items: center;
   user-select: none;
-  outline: none;
-}
-.faq-q:focus-visible {
-  outline: 2px solid var(--blue);
-  outline-offset: -2px;
 }
 .faq-q::after {
   content: '+';
@@ -958,6 +946,12 @@ canvas#hero-canvas {
   padding-top: 16px;
 }
 
+.sticky-cta-bar {
+  display: none;
+}
+.scroll-progress-bar {
+  display: none;
+}
 .bottom-nav {
   display: none;
 }
@@ -1022,12 +1016,8 @@ input, textarea, select {
   font-size: 16px; color: #fff; outline: none;
   transition: border-color 0.2s; width: 100%;
 }
-input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.55); }
+input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.35); }
 input:focus, textarea:focus, select:focus { border-color: var(--blue-s); }
-input:focus-visible, textarea:focus-visible, select:focus-visible {
-  outline: 2px solid var(--accent-yellow) !important;
-  outline-offset: 2px !important;
-}
 select option { background: #152533; color: #fff; }
 textarea { resize: vertical; min-height: 100px; }
 
@@ -1070,69 +1060,119 @@ footer {
   z-index: 5;
 }
 
-/* ─── ORGANIC WAVE TRANSITION ─── */
-/* ─── BOTTOM TRANSITION WAVE ─── */
-.bottom-transition-wave {
-  width: 100%;
-  height: 60px;
-  background: rgba(53, 129, 184, 0.22); /* Matches questions bottom linear-gradient */
-  margin-top: -1px;
-  margin-bottom: -1px;
+/* ─── FIT FINDER QUIZ ─── */
+.fit-quiz {
+  padding: 60px 0;
 }
-
-/* ─── CONTINUOUS GRADIENT FLOW (WORK, TEAM, WHO & QUESTIONS) ─── */
-#work {
-  background: linear-gradient(to bottom, var(--ivory) 0%, rgba(53, 129, 184, 0.04) 100%) !important;
+.quiz-container {
+  max-width: 680px;
+  margin: 0 auto;
 }
-#team {
-  background: linear-gradient(to bottom, rgba(53, 129, 184, 0.04) 0%, rgba(53, 129, 184, 0.09) 100%) !important;
-}
-#who {
-  background: linear-gradient(to bottom, rgba(53, 129, 184, 0.09) 0%, rgba(53, 129, 184, 0.15) 100%) !important;
-}
-#questions {
-  background: linear-gradient(to bottom, rgba(53, 129, 184, 0.15) 0%, rgba(53, 129, 184, 0.22) 100%) !important;
-}
-
-/* ─── PARALLAX DIVIDER ─── */
-.parallax-divider {
+.quiz-card {
+  background: var(--ivory);
+  border: 1px solid var(--cream-d);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(26,53,74,0.05);
+  padding: 32px;
+  min-height: 280px;
   position: relative;
-  width: 100%;
-  height: clamp(180px, 28vh, 300px);
-  margin-top: -12px; /* Extend image under the rounded bottom of recognizing section */
   overflow: hidden;
-  z-index: 4;
 }
-.parallax-bg {
-  position: absolute;
-  top: -80px;
-  left: 0;
+.quiz-step {
+  display: none;
+  opacity: 0;
+  transform: translateX(15px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.quiz-step.active {
+  display: block;
+  opacity: 1;
+  transform: translateX(0);
+}
+.quiz-progress {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 12px;
+}
+.quiz-question {
+  font-family: 'Lora', serif;
+  font-size: clamp(20px, 4vw, 24px);
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--blue-d);
+  margin-bottom: 24px;
+}
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.quiz-opt-btn {
+  text-align: left;
+  background: #ffffff;
+  border: 1px solid var(--cream-d);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.4;
+  padding: 16px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s ease;
   width: 100%;
-  height: calc(100% + 160px);
-  background-size: cover;
-  background-position: center;
-  will-change: transform;
 }
-
-/* ─── FLOATING CARD SECTIONS OVER PARALLAX ─── */
-#recognizing {
-  position: relative;
-  z-index: 6;
-  border-bottom-left-radius: 12px !important;
-  border-bottom-right-radius: 12px !important;
-  border-top-left-radius: 0 !important;
-  border-top-right-radius: 0 !important;
-  box-shadow: 0 12px 28px rgba(30, 37, 28, 0.06) !important;
+.quiz-opt-btn:hover {
+  border-color: var(--blue-s);
+  background: rgba(90, 150, 194, 0.03);
+  transform: translateY(-1px);
 }
-#work {
-  position: relative;
-  z-index: 6;
-  border-top-left-radius: 12px !important;
-  border-top-right-radius: 12px !important;
-  border-bottom-left-radius: 0 !important;
-  border-bottom-right-radius: 0 !important;
-  box-shadow: 0 -16px 32px rgba(30, 37, 28, 0.15) !important;
-  margin-top: -12px; /* Pulls section up to overlap parallax bottom */
+.quiz-back-btn-wrap {
+  margin-top: 24px;
+  border-top: 1px solid rgba(43,90,127,0.06);
+  padding-top: 16px;
+}
+.btn-quiz-back {
+  background: none;
+  border: none;
+  color: var(--sage);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: color 0.2s;
+}
+.btn-quiz-back:hover {
+  color: var(--blue);
+}
+.quiz-result-icon {
+  color: var(--sage);
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: center;
+}
+.quiz-result-title {
+  font-family: 'Lora', serif;
+  font-size: 26px;
+  font-weight: 500;
+  color: var(--blue-d);
+  text-align: center;
+  margin-bottom: 12px;
+}
+.quiz-result-text {
+  font-size: 16.5px;
+  line-height: 1.65;
+  color: #554D47;
+  text-align: center;
+  margin-bottom: 24px;
+}
+.quiz-actions {
+  text-align: center;
 }
 
 /* ========================================================================
@@ -1152,14 +1192,6 @@ footer {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
-    overflow-x: visible;
-    scroll-snap-type: none;
-    margin: 0;
-    padding: 0;
-  }
-  .area-item {
-    flex: none;
-    scroll-snap-align: none;
   }
   
 
@@ -1320,6 +1352,19 @@ footer {
     gap: 80px;
     align-items: start;
   }
+  .recog-cards {
+    display: flex;
+    flex-direction: column;
+    overflow-x: visible;
+    scroll-snap-type: none;
+    gap: 16px;
+    padding: 0;
+    margin: 0;
+  }
+  .recog-card {
+    flex: none;
+    scroll-snap-align: none;
+  }
   
   /* ─── HOW WE HELP DESKTOP ─── */
   .work-grid {
@@ -1374,10 +1419,22 @@ footer {
     grid-column: auto;
   }
   .who .area-list {
+    display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
+    overflow-x: visible;
+    scroll-snap-type: none;
+    padding: 0;
+    margin: 0;
   }
-  .area-item { padding: 24px; gap: 16px; }
+  .area-item {
+    flex: none;
+    scroll-snap-align: none;
+    background: #ffffff;
+    border: 1px solid rgba(90, 150, 194, 0.15);
+    padding: 24px;
+    gap: 16px;
+  }
   .who-image-container {
     max-width: 100%;
     margin: 32px 0 0 0;
@@ -1470,7 +1527,7 @@ footer {
     display: inline-block;
     background: none;
     border: none;
-    color: var(--forest-green-d);
+    color: var(--sage);
     font-family: 'DM Sans', sans-serif;
     font-size: 13.5px;
     font-weight: 600;
@@ -1481,14 +1538,50 @@ footer {
     outline: none;
   }
   .btn-bio-toggle:hover {
-    color: var(--forest-green);
+    color: var(--sage-m);
   }
-  .btn-bio-toggle:focus-visible {
-    outline: 2px solid var(--forest-green-d) !important;
-    outline-offset: 2px !important;
-    border-radius: 4px;
+  .sticky-cta-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background: rgba(253, 251, 247, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(224, 219, 209, 0.5);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+    box-shadow: 0 4px 15px rgba(26, 53, 74, 0.04);
   }
-
+  .sticky-cta-bar.visible {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  .btn-sticky-cta {
+    width: 100%;
+    max-width: 320px;
+    text-align: center;
+    background: var(--sage);
+    color: var(--ivory);
+    border: none;
+    border-radius: 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 20px;
+    text-decoration: none !important;
+    box-shadow: 0 4px 12px rgba(110, 138, 114, 0.2);
+    transition: all 0.25s ease;
+  }
+  .btn-sticky-cta:hover {
+    background: var(--sage-m);
+    transform: translateY(-1px);
+  }
   .bottom-nav {
     display: flex;
     position: fixed;
@@ -1601,23 +1694,5 @@ footer {
   .nav-toggle {
     display: none !important;
   }
-
-  /* Hide the approach section image on mobile */
-  .work-image-container {
-    display: none !important;
-  }
-
-  /* Hide call to action buttons/links on mobile (since bottom sticky nav contact button is active) */
-  .consultation-box,
-  .soft-link {
-    display: none !important;
-  }
-
-  /* Blended transition between Team and Specialties on mobile */
-  #team {
-    padding-bottom: 40px !important;
-  }
-  #who {
-    padding-top: 40px !important;
-  }
 }
+

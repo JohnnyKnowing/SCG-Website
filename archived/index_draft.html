@@ -6,7 +6,7 @@
 <title>Spangler Counseling Group | Developmental Support for Teens & Young Adults</title>
 <link rel="icon" type="image/png" href="js_logo_transparent.png">
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style_draft.css">
 </head>
 <body>
 
@@ -75,11 +75,10 @@
     </div>
     <div class="recog-inner">
       <div class="sr">
-        <h2 class="section-h">Many teens and young adults are facing a deep, complicated struggle.</h2>
+        <h2 class="section-h">Most parents reach out because they see their teen or young adult facing a deep, complicated struggle.</h2>
         <div class="text-container">
           <p class="lede">You want your teen to find their own footing. When something is in the way of that, you try to help but it all goes wrong. You know your teen does not fit the traditional models, but you still worry that you are failing them.</p>
-          <p class="prose"><em>That is not failure. That is adolescence.</em></p>
-          <p class="prose"><em><span style="color: var(--accent-orange); font-weight: 500;">We work in that space.</span></em></p>
+          <p class="prose"><em>That is not failure. That is adolescence. We work in that space.</em></p>
           <a href="#contact" class="soft-link" style="margin-top: 8px;">Talk to us about what you are seeing &rarr;</a>
         </div>
       </div>
@@ -104,9 +103,7 @@
   </div>
 </section>
 
-<div class="parallax-divider" id="work-parallax-divider">
-  <div class="parallax-bg" style="background-image: url('water_drop.jpg');" role="img" aria-label="A water drop sitting perfectly in the center of a green lupine leaf"></div>
-</div>
+<div class="section-divider"></div>
 
 <!-- ─── HOW WE HELP ─── -->
 <section class="work bg-ivory" id="work">
@@ -115,6 +112,10 @@
       <div class="work-left">
         <h2 class="section-h">We take the time to<br>actually know them.</h2>
         <p class="lede" style="margin-bottom: 24px;">Every person arrives with their own way of taking in the world. Here is what that looks like in practice.</p>
+        
+        <div class="work-image-container">
+          <img src="water_drop.jpg" alt="A water drop sitting perfectly in the center of a green lupine leaf" class="work-image" loading="lazy">
+        </div>
       </div>
 
       <div class="work-right">
@@ -166,6 +167,7 @@
   </div>
 </section>
 
+<div class="section-divider"></div>
 
 <!-- ─── MEET THE CLINICAL TEAM ─── -->
 <section class="team bg-ivory" id="team">
@@ -177,7 +179,7 @@
 
     <div class="team-grid">
       <!-- Lead Clinician: Johnny -->
-      <div class="team-card sr">
+      <div class="team-card sr" data-team-id="johnny">
         <div class="team-photo">
           <img src="profile_johnny_spangler.JPG" alt="Johnny Spangler, MA, LMHC - Founder and Clinical Lead" style="object-position: center 15%;" loading="lazy">
           <div class="team-photo-gradient"></div>
@@ -195,7 +197,7 @@
       </div>
 
       <!-- Associate Clinician: Sean -->
-      <div class="team-card sr">
+      <div class="team-card sr" data-team-id="sean">
         <div class="team-photo">
           <img src="profile_sean_flikke_wide.jpg" alt="Sean Flikke, MS, LMHC-A - Associate Counselor" style="object-position: center 20%;" loading="lazy">
           <div class="team-photo-gradient"></div>
@@ -229,7 +231,7 @@
         </div>
         
         <div class="who-image-container">
-          <img src="sunset_connection.jpg" alt="Two young people silhouetted against a beautiful sunset over the water" class="who-image">
+          <img src="sunset_connection.jpg" alt="Two young people silhouetted against a beautiful sunset over the water" class="who-image" loading="lazy">
         </div>
       </div>
 
@@ -281,8 +283,59 @@
       </div>
     </div>
   </div>
-</section>
+<!-- ─── FIT FINDER MICRO-QUIZ ─── -->
+<section class="fit-quiz bg-cream" id="fit-quiz">
+  <div class="container">
+    <div class="quiz-container sr">
+      <h2 class="section-h text-center" style="margin-bottom: 8px;">Is our approach a fit?</h2>
+      <p class="lede text-center" style="margin-bottom: 32px;">A brief, self-guided check to see if our developmental, neuro-affirming counseling is the right match for your teen or young adult.</p>
+      
+      <div class="quiz-card">
+        <!-- Step 1 -->
+        <div class="quiz-step active" data-step="1">
+          <div class="quiz-progress">Step 1 of 2</div>
+          <h3 class="quiz-question">How does your teen or young adult currently navigate their struggle?</h3>
+          <div class="quiz-options">
+            <button class="quiz-opt-btn" data-value="bottled">They keep things inside, hiding how much they are carrying.</button>
+            <button class="quiz-opt-btn" data-value="overwhelmed">They get easily overwhelmed, anxious, or highly stressed.</button>
+            <button class="quiz-opt-btn" data-value="stuck">They seem completely stuck, disconnected, or unmotivated.</button>
+          </div>
+        </div>
 
+        <!-- Step 2 -->
+        <div class="quiz-step" data-step="2">
+          <div class="quiz-progress">Step 2 of 2</div>
+          <h3 class="quiz-question">What kind of support do you feel they need most right now?</h3>
+          <div class="quiz-options">
+            <button class="quiz-opt-btn" data-value="safety">Genuine relational safety and trust, without pressure or judgment.</button>
+            <button class="quiz-opt-btn" data-value="practice">Practical, real-world scaffolding to build their confidence.</button>
+            <button class="quiz-opt-btn" data-value="identity">A dedicated, neutral space to figure out who they are and who they want to become.</button>
+          </div>
+          <div class="quiz-back-btn-wrap">
+            <button class="btn-quiz-back">&larr; Back</button>
+          </div>
+        </div>
+
+        <!-- Step 3 (Results) -->
+        <div class="quiz-step" data-step="result">
+          <div class="quiz-result-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+            </svg>
+          </div>
+          <h3 class="quiz-result-title">A Relational Fit</h3>
+          <p id="quiz-result-text" class="quiz-result-text">Based on what you've shared, they would likely thrive in our practice. We specialize in working with teens who stand at these exact crossroads. Johnny Spangler and our team provide the relational warmth and clinical structure needed to help them find their footing.</p>
+          <div class="quiz-actions" style="margin-top: 24px;">
+            <a href="#contact" class="btn-primary" style="display:inline-block;">Schedule a Consultation</a>
+            <div>
+              <button class="btn-quiz-reset" style="margin-top: 16px; background:none; border:none; color:var(--sage); cursor:pointer; font-size:14px; font-family:'DM Sans',sans-serif; text-decoration: underline;">Reset Finder</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ─── FAQ ─── -->
 <section class="faq bg-cream" id="questions">
@@ -293,7 +346,7 @@
           <h2 class="section-h">Things worth<br>talking through.</h2>
         </div>
         <div class="faq-image-container faq-mobile-image">
-          <img src="bird_branch.jpg" alt="A beautiful bird perched on a budding branch with a soft green forest background" class="faq-image">
+          <img src="bird_branch.jpg" alt="A beautiful bird perched on a budding branch with a soft green forest background" class="faq-image" loading="lazy">
         </div>
       </div>
       <p class="lede" style="margin-bottom: 24px;">We want you to feel fully comfortable before making any clinical commitments. Here are common areas we discuss.</p>
@@ -303,48 +356,48 @@
     <div class="faq-grid">
       <div class="faq-left sr faq-desktop-image">
         <div class="faq-image-container">
-          <img src="bird_branch.jpg" alt="A beautiful bird perched on a budding branch with a soft green forest background" class="faq-image">
+          <img src="bird_branch.jpg" alt="A beautiful bird perched on a budding branch with a soft green forest background" class="faq-image" loading="lazy">
         </div>
       </div>
 
       <div class="faq-list sr">
         <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">How does your collaborative care model work?</button>
+          <div class="faq-q">How does your collaborative care model work?</div>
           <div class="faq-a">
             Johnny Spangler, our Founder, acts as the Clinical Director and supervisor. He actively coordinates on case planning and hosts weekly clinical supervision. This means your teen receives dedicated relational focus while being backed by extensive clinical expertise.
           </div>
         </div>
 
         <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">My teen does not want therapy. Can this still work?</button>
+          <div class="faq-q">My teen does not want therapy. Can this still work?</div>
           <div class="faq-a">
             Often, yes. Most teens resist being evaluated or "fixed." We specialize in setting a warm, non-judgmental atmosphere outside the pressure of family or school dynamics, helping them feel met on their own terms. This usually melts therapeutic resistance quickly.
           </div>
         </div>
 
         <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">Did I cause this?</button>
+          <div class="faq-q">Did I cause this?</div>
           <div class="faq-a">
             Almost never in the way you fear. Young people usually struggle because of a friction mismatch between their specific developmental path and the complex environments around them. Asking the question simply highlights how deeply you care.
           </div>
         </div>
 
         <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">What if there are things they cannot say to us at home?</button>
+          <div class="faq-q">What if there are things they cannot say to us at home?</div>
           <div class="faq-a">
             That is a natural, healthy milestone of adolescent development. Developing an independent inner life is healthy. We offer a secure, objective container outside the home where they can explore hard questions safely, bringing clarity back to their relationship with you.
           </div>
         </div>
 
         <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">How do you approach neurodiversity?</button>
+          <div class="faq-q">How do you approach neurodiversity?</div>
           <div class="faq-a">
             We work through a strictly neurodiversity-affirming lens. Whether carrying a diagnosis (ADHD, Autism, Executive Dysfunction) or navigating general learning/processing differences, we focus on identifying their specific processing profile and building tailored skills rather than attempting to enforce behavioral assimilation.
           </div>
         </div>
 
         <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">How do we get started?</button>
+          <div class="faq-q">How do we get started?</div>
           <div class="faq-a">
             A simple consultation call. It is a warm, low-pressure conversation to discuss your teenager's or emerging adult's background, explain our fit, and connect you with a clinician if appropriate.
           </div>
@@ -353,12 +406,6 @@
     </div>
   </div>
 </section>
-
-<div class="bottom-transition-wave">
-  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style="width: 100%; height: 60px; display: block;">
-    <path d="M0,0 Q720,60 1440,0 L1440,60 L0,60 Z" fill="#1C3245" />
-  </svg>
-</div>
 
 <!-- ─── CONTACT FORM ─── -->
 <section class="contact" id="contact">
@@ -372,7 +419,7 @@
 
       <form class="contact-form sr" id="scg-contact-form" method="POST" action="https://script.google.com/macros/s/AKfycbzWDhfYhBp_wqY8pS34EWLqQmq2_DiiFU0PKb_RvD40ob7PkkZTkLEq3wqzoT3qkLE/exec" target="hidden_iframe">
         <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
-        <h3 class="form-title">Reach Out</h3>
+        <div class="form-title">Reach Out</div>
         
         <div class="form-row">
           <div class="form-group">
@@ -437,29 +484,34 @@
       </div>
     </div>
   </div>
+<!-- Sticky Top Mobile CTA -->
+<div id="sticky-top-cta" class="sticky-cta-bar">
+  <a href="#contact" class="btn-sticky-cta">Schedule a Consultation</a>
+</div>
+
 <!-- Mobile Bottom Navigation Bar -->
-<nav class="bottom-nav mobile-only" aria-label="Mobile Navigation">
+<div class="bottom-nav mobile-only">
   <a href="#top" class="bottom-nav-item active" data-section="top">
-    <span class="bottom-nav-icon" aria-hidden="true">⌂</span>
+    <span class="bottom-nav-icon">⌂</span>
     <span class="bottom-nav-label">Home</span>
   </a>
   <a href="#work" class="bottom-nav-item" data-section="work">
-    <span class="bottom-nav-icon" aria-hidden="true">☼</span>
+    <span class="bottom-nav-icon">☼</span>
     <span class="bottom-nav-label">Approach</span>
   </a>
   <a href="#team" class="bottom-nav-item" data-section="team">
-    <span class="bottom-nav-icon" aria-hidden="true">☺</span>
+    <span class="bottom-nav-icon">☺</span>
     <span class="bottom-nav-label">Team</span>
   </a>
   <a href="#who" class="bottom-nav-item" data-section="who">
-    <span class="bottom-nav-icon" aria-hidden="true">✦</span>
+    <span class="bottom-nav-icon">✦</span>
     <span class="bottom-nav-label">Specialties</span>
   </a>
   <a href="#contact" class="bottom-nav-item" data-section="contact">
-    <span class="bottom-nav-icon" aria-hidden="true">✉</span>
+    <span class="bottom-nav-icon">✉</span>
     <span class="bottom-nav-label">Contact</span>
   </a>
-</nav>
+</div>
 
 <script>
 {
@@ -497,14 +549,14 @@ function makeFlare(canvas) {
     
     // Responsive sun flare settings based on screen width
     if (window.innerWidth < 960) {
-      if (window.flareConfig.xShift !== 1 || window.flareConfig.circleOpacity !== 0.6) {
+      if (window.flareConfig.xShift !== 0.98 || window.flareConfig.circleOpacity !== 0.4) {
         Object.assign(window.flareConfig, {
-          brightness: 6,
-          rayOpacity: 0.4,
+          brightness: 2.5,
+          rayOpacity: 0.2,
           showHalo: false,
-          xShift: 1,
-          yShift: 0.15,
-          circleOpacity: 0.6
+          xShift: 0.98,
+          yShift: 0.12,
+          circleOpacity: 0.4
         });
       }
     } else {
@@ -604,7 +656,7 @@ function makeFlare(canvas) {
       }
     });
   }
-
+  
   function draw() {
     const w = canvas.width;
     const h = canvas.height;
@@ -847,10 +899,8 @@ document.querySelectorAll('.faq-item').forEach(item => {
     const activeItem = document.querySelector('.faq-item.active');
     if (activeItem && activeItem !== item) {
       activeItem.classList.remove('active');
-      activeItem.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
     }
-    const isActive = item.classList.toggle('active');
-    question.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+    item.classList.toggle('active');
   });
 });
 
@@ -867,7 +917,7 @@ if (contactForm) {
 
     setTimeout(function() {
       form.innerHTML = `
-        <div role="alert" style="text-align: center; padding: 40px 10px; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 380px; animation: fadeIn 0.4s ease-out;">
+        <div style="text-align: center; padding: 40px 10px; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 380px; animation: fadeIn 0.4s ease-out;">
           <svg style="width: 64px; height: 64px; margin-bottom: 24px; color: var(--sage-m);" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
           </svg>
@@ -881,7 +931,7 @@ if (contactForm) {
 
 // Smooth scroll parallax floating for paragraph and card elements
 function initScrollFloat() {
-  const floaters = document.querySelectorAll('.prose, .lede, .recog-card, .team-card');
+  const floaters = document.querySelectorAll('.prose, .lede, .recog-card, .ref-card-styled, .team-card');
   if (!floaters.length) return;
 
   function updateFloat() {
@@ -997,6 +1047,24 @@ function initExpandableBios() {
   });
 }
 
+// Sticky Top CTA Scroll Trigger
+function initStickyTopCTA() {
+  const ctaBar = document.getElementById('sticky-top-cta');
+  if (!ctaBar) return;
+
+  function handleScroll() {
+    // Show bar when scrolled down past 400px on mobile
+    if (window.innerWidth < 768 && window.scrollY > 400) {
+      ctaBar.classList.add('visible');
+    } else {
+      ctaBar.classList.remove('visible');
+    }
+  }
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  window.addEventListener('resize', handleScroll);
+}
+
 // Mobile Bottom Navigation Bar Highlight & Scroll
 function initBottomNav() {
   const bottomNav = document.querySelector('.bottom-nav');
@@ -1043,6 +1111,78 @@ function initBottomNav() {
   sections.forEach(sec => {
     if (sec.id) observer.observe(sec);
   });
+}
+
+// Fit Finder Micro-Quiz Logic
+function initFitQuiz() {
+  const quiz = document.getElementById('fit-quiz');
+  if (!quiz) return;
+
+  const steps = quiz.querySelectorAll('.quiz-step');
+  const optBtns = quiz.querySelectorAll('.quiz-opt-btn');
+  const backBtn = quiz.querySelector('.btn-quiz-back');
+  const resetBtn = quiz.querySelector('.btn-quiz-reset');
+  const resultText = document.getElementById('quiz-result-text');
+
+  let selections = {};
+
+  function showStep(stepId) {
+    steps.forEach(step => {
+      if (step.getAttribute('data-step') === stepId.toString()) {
+        step.classList.add('active');
+      } else {
+        step.classList.remove('active');
+      }
+    });
+  }
+
+  optBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const currentStep = btn.closest('.quiz-step');
+      const stepNum = currentStep.getAttribute('data-step');
+      const value = btn.getAttribute('data-value');
+
+      selections[stepNum] = value;
+
+      if (stepNum === '1') {
+        showStep(2);
+      } else if (stepNum === '2') {
+        showStep('result');
+        generateResults();
+      }
+    });
+  });
+
+  backBtn.addEventListener('click', () => {
+    showStep(1);
+  });
+
+  resetBtn.addEventListener('click', () => {
+    selections = {};
+    showStep(1);
+  });
+
+  function generateResults() {
+    let text = "Based on what you've shared, they would likely thrive in our practice. ";
+    
+    if (selections['1'] === 'bottled') {
+      text += "For teens who keep things bottled up, we focus on building a safe, pressure-free relational space where they can naturally share what they carry. ";
+    } else if (selections['1'] === 'overwhelmed') {
+      text += "For young people who experience intense overwhelm, our approach integrates supportive developmental scaffolding to help regulate stress and build emotional resilience. ";
+    } else if (selections['1'] === 'stuck') {
+      text += "For teens who feel stuck or unmotivated, we look past behaviors to understand their unique processing style, helping them find purposeful direction. ";
+    }
+
+    if (selections['2'] === 'safety') {
+      text += "Our counseling is entirely relational; we prioritize trust over clinical judgment. Johnny Spangler and our supervisors coordinate case planning to ensure they receive modern, affirming care.";
+    } else if (selections['2'] === 'practice') {
+      text += "We couple warmth with practical, real-world support, helping them translate insight into actual confidence in their daily life.";
+    } else if (selections['2'] === 'identity') {
+      text += "We stand as a neutral, supportive sounding board, allowing them to explore their identity and own their life path independently.";
+    }
+
+    resultText.textContent = text;
+  }
 }
 
 // Viewport Scroll Progress Bar
@@ -1105,30 +1245,6 @@ function initQuoteCarouselDots() {
   carousel.addEventListener('scroll', updateActiveDot, { passive: true });
 }
 
-// Parallax Divider Scroll Effect
-function initParallaxDivider() {
-  const divider = document.getElementById('work-parallax-divider');
-  if (!divider) return;
-  const bg = divider.querySelector('.parallax-bg');
-  if (!bg) return;
-
-  function update() {
-    const rect = divider.getBoundingClientRect();
-    const H = window.innerHeight;
-    if (rect.top < H && rect.bottom > 0) {
-      // Relative progress (from 0 when entering from bottom, to 1 when exiting from top)
-      const progress = (H - rect.top) / (H + rect.height);
-      // Map progress to translate Y with a faster multiplier (140) for a sped-up parallax transition
-      const yOffset = (progress - 0.5) * 140;
-      bg.style.transform = `translate3d(0, ${yOffset}px, 0)`;
-    }
-  }
-
-  window.addEventListener('scroll', update, { passive: true });
-  window.addEventListener('resize', update);
-  update();
-}
-
 // Initialize scroll scripts
 initSmartNavbar();
 initScrollCardFades();
@@ -1136,10 +1252,11 @@ initScrollFloat();
 initStepsReveal();
 initImageScrollScale();
 initExpandableBios();
+initStickyTopCTA();
 initBottomNav();
+initFitQuiz();
 initScrollProgress();
 initQuoteCarouselDots();
-initParallaxDivider();
 </script>
 
 </body>

@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spangler Counseling Group | Experimental Water Concept</title>
+<link rel="icon" type="image/png" href="js_logo_transparent.png">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:            #FAF6EE;
+    --cream-card:       rgba(254, 250, 244, 0.98);
+    --green-card:       rgba(223, 238, 226, 0.98);
+    --cream-d:          #EAE2D4;
+    --ink:              #1A2421;
+    
+    /* Aquatic Palette (Middle Blue) */
+    --deep-blue:        #0D1B2A;
+    --slate-blue:       #1B263B;
+    --river-teal:       #3A5C6E;
+    --water-light:      #EBF3FA;
+    --accent-gold:      #FFE494;
+    --sun-gold:         #FFD452;
+    --accent-orange:    #D66847;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+    line-height: 1.7;
+    font-size: 16px;
+    overflow-x: hidden;
+    position: relative;
+    /* Middle Blue dynamic gradient background */
+    background: linear-gradient(180deg, #2D4F6E 0%, #1E3447 50%, #111E29 100%) fixed;
+  }
+
+  /* ─── DYNAMIC SHIMMERING WATER SUN-GLINTS ─── */
+  canvas#water-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.85;
+  }
+
+  /* ─── FLOATING SUNLIGHT ORB (TOP LEFT) ─── */
+  .sun-reflection {
+    position: fixed;
+    top: -90px;
+    left: -90px;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(255, 228, 148, 0.6) 0%, rgba(255, 212, 82, 0.25) 45%, rgba(255, 212, 82, 0) 70%);
+    filter: blur(20px);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* ─── SMART FLOATING NAVBAR (HEADROOM STYLE) ─── */
+  nav {
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: calc(100% - 24px);
+    max-width: 430px; /* Locked to iPhone Pro Max frame */
+    background: rgba(254, 250, 244, 0.9);
+    backdrop-filter: blur(12px);
+    border-radius: 30px;
+    border: 1px solid rgba(234, 226, 212, 0.6);
+    padding: 10px 20px;
+    z-index: 100;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  }
+  .nav-mark { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+  .nav-logo { width: 26px; height: 26px; object-fit: contain; }
+  .nav-name {
+    font-family: 'Lora', serif;
+    font-size: 13px; font-weight: 500;
+    color: var(--slate-blue);
+  }
+  .nav-cta {
+    background: var(--river-teal); color: #fff !important;
+    padding: 7px 16px; border-radius: 20px;
+    font-size: 11px !important;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--slate-blue) !important; }
+
+  /* ─── CONTENT CONTAINER (430PX MOBILE PRESET) ─── */
+  .mobile-frame {
+    max-width: 430px;
+    margin: 0 auto;
+    padding: 0 16px;
+    position: relative;
+    z-index: 5;
+  }
+
+  .text-block { text-align: center; }
+
+  .eyebrow {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--river-teal);
+    margin-bottom: 12px;
+  }
+  
+  .section-h {
+    font-family: 'Lora', serif;
+    font-size: 24px; /* Reduced for organic text fit */
+    font-weight: 500; line-height: 1.25;
+    letter-spacing: -0.02em; color: var(--ink);
+    margin-bottom: 20px;
+  }
+  .section-h em { font-style: italic; color: var(--river-teal); }
+
+  .prose { font-size: 14.5px; line-height: 1.65; color: #3A4440; margin-bottom: 16px; }
+  .prose strong { color: var(--ink); font-weight: 600; }
+
+  .btn-organic {
+    background: var(--accent-orange); color: #fff;
+    text-decoration: none; padding: 11px 26px;
+    border-radius: 35% 65% 55% 45% / 50% 50% 50% 50%;
+    font-size: 13.5px; font-weight: 500;
+    display: inline-block;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 15px rgba(214, 104, 71, 0.2);
+  }
+  .btn-organic:hover {
+    transform: scale(1.02) rotate(-1deg);
+    background: #BF5737;
+  }
+
+  .btn-ghost-organic {
+    color: var(--river-teal); text-decoration: none;
+    font-size: 13px; font-weight: 500;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+
+  /* ─── PEBBLES (CREAMS & SAGE GREENS) ─── */
+  .pebble-card {
+    /* Generous padding combined with smaller text ensures comfortable fit */
+    padding: 44px 34px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+    margin-bottom: 36px;
+    border: 1px solid rgba(255,255,255,0.25);
+  }
+  
+  /* Restored organic ovals from V1 with minor boundary adjustments */
+  .pebble-card.cream {
+    background: var(--cream-card);
+    border-radius: 52% 48% 58% 42% / 48% 58% 42% 52%;
+  }
+  .pebble-card.green {
+    background: var(--green-card);
+    border-radius: 42% 58% 48% 52% / 52% 42% 58% 48%;
+  }
+
+  /* ─── HERO (THE SHORE) ─── */
+  .hero-shore {
+    padding-top: 110px;
+    padding-bottom: 40px;
+    min-height: auto;
+  }
+  .hero-pebble {
+    padding: 48px 36px;
+    text-align: center;
+    border-radius: 50% 50% 45% 55% / 45% 45% 55% 55%;
+  }
+  .hero-h {
+    font-family: 'Lora', serif;
+    font-size: 30px; /* Reduced for organic text fit */
+    font-weight: 500; line-height: 1.18;
+    color: var(--ink); margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+  .hero-h em { font-style: italic; color: var(--river-teal); }
+  .hero-sub {
+    font-size: 15px; font-weight: 300;
+    line-height: 1.6; color: #4A433F;
+    margin-bottom: 28px;
+  }
+  .hero-actions { display: flex; gap: 16px; align-items: center; justify-content: center; }
+
+  /* ─── THE RIPPLE (WHAT YOU MIGHT BE SEEING) ─── */
+  .water-ripple-section {
+    padding: 20px 0;
+  }
+
+  /* Parent quote bubbles */
+  .quote-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 28px;
+  }
+  .quote-bubble {
+    background: rgba(254, 250, 244, 0.98);
+    border: 1px solid rgba(255,255,255,0.4);
+    padding: 20px 24px;
+    font-style: italic;
+    color: #4A433F;
+    font-size: 13.5px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  }
+  .quote-bubble:nth-child(1) { border-radius: 60% 40% 50% 50% / 40% 50% 50% 60%; transform: rotate(-1.5deg); align-self: flex-start; }
+  .quote-bubble:nth-child(2) { border-radius: 50% 60% 40% 50% / 50% 40% 60% 50%; transform: rotate(1deg); align-self: flex-end; }
+  .quote-bubble:nth-child(3) { border-radius: 40% 50% 60% 50% / 60% 50% 40% 50%; transform: rotate(-1deg); align-self: flex-start; }
+  .quote-bubble:nth-child(4) { border-radius: 55% 45% 50% 50% / 50% 60% 40% 50%; transform: rotate(1.5deg); align-self: flex-end; }
+  .quote-bubble:nth-child(5) { border-radius: 45% 55% 55% 45% / 50% 45% 55% 50%; transform: rotate(-0.5deg); align-self: flex-start; }
+
+  /* ─── THE CURRENT (WHO WE WORK WITH) ─── */
+  .water-current-section {
+    padding: 40px 0;
+  }
+  .canopy-pebble {
+    color: #fff;
+    background: rgba(19, 36, 26, 0.98);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 55% 45% 50% 50% / 45% 55% 45% 55%;
+    padding: 48px 36px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+  }
+  .canopy-pebble .eyebrow { color: var(--accent-gold); }
+  .canopy-pebble .section-h { color: #fff; }
+  .canopy-pebble .section-h em { color: var(--accent-gold); }
+  .canopy-pebble .prose { color: var(--cream); }
+  .canopy-pebble .prose strong { color: #fff; }
+
+  /* Interactive specialties list */
+  .spec-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 36px;
+  }
+  .spec-pebble {
+    background: rgba(254, 250, 244, 0.98);
+    padding: 22px 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    border: 1px solid rgba(255,255,255,0.6);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+  }
+  .spec-pebble:nth-child(even) { border-radius: 45% 55% 40% 60% / 60% 45% 55% 40%; }
+  .spec-pebble:nth-child(odd) { border-radius: 55% 45% 60% 40% / 50% 60% 40% 50%; }
+
+  .spec-pebble-title {
+    font-family: 'Lora', serif;
+    font-size: 15px; font-weight: 500; color: var(--slate-blue);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .spec-pebble-desc { font-size: 12.5px; line-height: 1.5; color: #554D47; }
+  
+  .spec-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-orange); }
+  .spec-dot.blue { background: var(--river-teal); }
+
+  /* ─── BOTTOM RIVERSIDE CTA ─── */
+  .riverside-cta {
+    padding: 40px 0;
+  }
+  .cta-pebble {
+    background: rgba(19, 36, 26, 0.98);
+    color: #fff;
+    border-radius: 50% 50% 40% 60% / 60% 40% 60% 40%;
+    padding: 48px 36px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+  }
+  .cta-pebble .section-h { color: #fff; }
+  .cta-pebble .section-h em { color: var(--accent-gold); }
+  .cta-pebble .prose { color: var(--cream); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: rgba(19, 36, 26, 0.98);
+    color: rgba(255,255,255,0.7);
+    padding: 48px 0;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    position: relative;
+    z-index: 5;
+  }
+  .footer-pool {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    text-align: center;
+  }
+  .footer-logo { height: 44px; width: auto; opacity: 0.8; }
+  .footer-text { font-size: 12px; line-height: 1.7; color: var(--cream); }
+  .footer-links { display: flex; gap: 16px; list-style: none; flex-wrap: wrap; justify-content: center; }
+  .footer-links a { font-size: 12px; color: rgba(255,255,255,0.4); text-decoration: none; }
+
+  /* ─── SCROLL GROW SPROUT TRIGGER ─── */
+  .sprout {
+    opacity: 0;
+    transform: scale(0.95) translateY(12px);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+  }
+  .sprout.grown {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- SUNSHINE GLINT FILTER -->
+<div class="sun-reflection"></div>
+
+<!-- SHIMMERING WATER SUN-GLINTS -->
+<canvas id="water-canvas"></canvas>
+
+<!-- FLOATING NAVBAR -->
+<nav id="header-nav">
+  <a href="#" class="nav-mark">
+    <img class="nav-logo" src="js_logo_transparent_outlined.png" alt="Spangler Counseling Group Logo">
+    <div class="nav-name">Spangler Counseling Group</div>
+  </a>
+  <a href="#" class="nav-cta">Connect</a>
+</nav>
+
+<!-- CONTENT LAYOUT PRESET FOR IPHONE MAX SIZES -->
+<div class="mobile-frame">
+
+  <!-- HERO (THE SHORE) -->
+  <section class="hero-shore">
+    <div class="pebble-card cream hero-pebble sprout grown">
+      <p class="eyebrow">Sandbox Trial V2</p>
+      <h1 class="hero-h">Understanding is<br>where we <em>begin.</em></h1>
+      <p class="hero-sub">Growing up means figuring out who you are. We take the time to understand that journey, and we build our support around it.</p>
+      <div class="hero-actions">
+        <a href="#path" class="btn-organic">Walk the Path</a>
+        <a href="#current" class="btn-ghost-organic">Our Current &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PATH (WHAT PARENTS SEE) -->
+  <section class="water-ripple-section" id="path">
+    <div class="pebble-card green sprout">
+      <p class="eyebrow">Observing the Ripple</p>
+      <h2 class="section-h">Most parents reach out because they see a deep, complicated struggle.</h2>
+      <p class="prose"><strong>As a parent,</strong> you want to give your teenagers and emerging adults the tools to stand on their own. Yet, when they encounter challenges that seem beyond their ability, there is a real fear of seeing them get stuck.</p>
+      <p class="prose"><strong>You want to</strong> step in and help, but you do not know how. That feeling of helplessness is not a sign of failure—it is a sign that your teen is transitioning into adulthood.</p>
+    </div>
+
+    <div class="pebble-card cream sprout">
+      <p class="eyebrow">Finding Your Footing</p>
+      <h2 class="section-h">A safe container to discover who they are.</h2>
+      <p class="prose"><strong>We partner with</strong> you to help them bridge that gap, giving your young adult a secure space to step away from expectations.</p>
+      <p class="prose"><strong>Ultimately, we build</strong> a grounded sense of identity that they carry into everything that comes next. Understanding is where we begin.</p>
+    </div>
+
+    <!-- Parent Quotes (Floating Water Bubbles) -->
+    <div class="quote-stack sprout">
+      <div class="quote-bubble">"I want them to know I support them, whatever they decide to do. I just want them to be okay."</div>
+      <div class="quote-bubble">"I am worried about this next transition and I do not know how to help them through it."</div>
+      <div class="quote-bubble">"Something changed and I cannot tell if it is a phase or something more."</div>
+      <div class="quote-bubble">"I keep wondering if I should have seen this sooner."</div>
+      <div class="quote-bubble">"Every option in front of us feels like the wrong one."</div>
+    </div>
+  </section>
+
+  <!-- THE CURRENT (WHO WE WORK WITH) -->
+  <section class="water-current-section" id="current">
+    <div class="pebble-card canopy-pebble sprout">
+      <p class="eyebrow">Affirming the Stream</p>
+      <h2 class="section-h">Beautifully <em>complicated</em> emerging adults.</h2>
+      <p class="prose"><strong>Teens and young</strong> adults of unique strength and complexity, carrying far more than the people around them realize. Some carry diagnoses; many do not.</p>
+      <p class="prose"><strong>Our neuro-affirming focus</strong> centers on identifying their specific processing profile and building tailored skills rather than attempting to enforce behavioral assimilation.</p>
+    </div>
+
+    <!-- Abstract Specialties Stack -->
+    <div class="spec-stack sprout">
+      <div class="spec-pebble">
+        <div class="spec-pebble-title"><div class="spec-dot"></div>Identity Development</div>
+        <p class="spec-pebble-desc">Figuring out who you are before you fully know who you want to be. Belonging, self-worth, and weight of becoming.</p>
+      </div>
+
+      <div class="spec-pebble">
+        <div class="spec-pebble-title"><div class="spec-dot blue"></div>Young Adult Transitions</div>
+        <p class="spec-pebble-desc">College, first jobs, leaving home. Early adulthood carries real weight. We navigate with clarity.</p>
+      </div>
+
+      <div class="spec-pebble">
+        <div class="spec-pebble-title"><div class="spec-dot"></div>Direction &amp; Motivation</div>
+        <p class="spec-pebble-desc">For young people with unique, unrecognized strengths who find themselves stuck. Bringing pictures into focus.</p>
+      </div>
+
+      <div class="spec-pebble">
+        <div class="spec-pebble-title"><div class="spec-dot blue"></div>Neurodivergent Youth</div>
+        <p class="spec-pebble-desc">Working through a neurodevelopmental lens. Individual processing style is where understanding starts.</p>
+      </div>
+
+      <div class="spec-pebble">
+        <div class="spec-pebble-title"><div class="spec-dot"></div>Safe Expression</div>
+        <p class="spec-pebble-desc">A space outside every other context. Safe container for questions they are not ready to ask family or peers.</p>
+      </div>
+
+      <div class="spec-pebble">
+        <div class="spec-pebble-title"><div class="spec-dot blue"></div>Professional Support</div>
+        <p class="spec-pebble-desc">Recognizing and treating anxiety, depression, OCD, executive skills, and suicidal ideation with clinical depth.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTTOM CTA -->
+  <section class="riverside-cta">
+    <div class="pebble-card cta-pebble sprout">
+      <h2 class="section-h">Ready to find their <em>footing?</em></h2>
+      <p class="prose">We make the starting process straightforward. Connect with us for a complimentary 20-minute consult to talk about how we can support your teen or emerging adult.</p>
+      <a href="#" class="btn-organic" style="margin-top: 16px;">Reach Out</a>
+    </div>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="mobile-frame footer-pool">
+    <img src="js_logo_transparent_small.png" alt="Spangler Logo" class="footer-logo">
+    <div class="footer-text">
+      <div style="font-family:'Lora',serif;font-size:15px;color:rgba(255,255,255,0.7);margin-bottom:6px;">Spangler Counseling Group</div>
+      Telehealth &nbsp;|&nbsp; spanglercounselinggroup.com<br>
+      &copy; 2026 Spangler Counseling Group. All rights reserved.
+    </div>
+    <ul class="footer-links">
+      <li><a href="#">Glade</a></li>
+      <li><a href="#path">The Path</a></li>
+      <li><a href="#current">Our Current</a></li>
+      <li><a href="https://johnnyspangler.com">johnnyspangler.com</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+// Ambient water caustics / sun-glint particles animation
+function initWaterShimmer() {
+  const canvas = document.getElementById('water-canvas');
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
+
+  const particles = [];
+  const particleCount = Math.min(35, Math.floor(window.innerWidth / 15)); // Keep it light for mobile battery
+
+  for (let i = 0; i < particleCount; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: 1 + Math.random() * 2,
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.008 + Math.random() * 0.012,
+      driftX: (Math.random() - 0.5) * 0.1,
+      driftY: -0.15 - Math.random() * 0.2
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const w = canvas.width;
+    const h = canvas.height;
+
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      p.phase += p.speed;
+      p.y += p.driftY;
+      p.x += p.driftX;
+
+      // Wrap around screen edges
+      if (p.y < -10) { p.y = h + 10; p.x = Math.random() * w; }
+      if (p.x < -10) p.x = w + 10;
+      if (p.x > w + 10) p.x = -10;
+
+      // Soft sun glint twinkle
+      const alpha = 0.35 + Math.sin(p.phase) * 0.25;
+
+      ctx.beginPath();
+      // Draw soft glowing orb with a warm sunlight tone
+      const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 3);
+      grad.addColorStop(0, `rgba(255, 255, 255, ${alpha})`);
+      grad.addColorStop(0.3, `rgba(255, 228, 148, ${alpha * 0.8})`);
+      grad.addColorStop(1, 'rgba(255, 228, 148, 0)');
+      
+      ctx.fillStyle = grad;
+      ctx.arc(p.x, p.y, p.r * 3, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+
+// Sprout scroll growth animations
+function initSprouts() {
+  const sprouts = document.querySelectorAll('.sprout');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('grown');
+      }
+    });
+  }, { threshold: 0.04, rootMargin: '0px 0px -20px 0px' });
+
+  sprouts.forEach(s => obs.observe(s));
+}
+
+// Smart disappearing/reappearing capsule header (Headroom behavior)
+function initSmartHeader() {
+  const nav = document.getElementById('header-nav');
+  if (!nav) return;
+
+  let lastScrollY = window.scrollY;
+  const threshold = 10;
+
+  window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+
+    // Detect if we scrolled up or down past a threshold
+    if (Math.abs(currentScrollY - lastScrollY) < threshold) return;
+
+    if (currentScrollY > lastScrollY && currentScrollY > 80) {
+      // Scrolling down -> hide navbar (disappear)
+      nav.style.transform = 'translate(-50%, -100px)';
+      nav.style.opacity = '0';
+    } else {
+      // Scrolling up -> show navbar (reappear)
+      nav.style.transform = 'translate(-50%, 0)';
+      nav.style.opacity = '1';
+    }
+
+    lastScrollY = currentScrollY;
+  }, { passive: true });
+}
+
+// Run initializations
+window.addEventListener('DOMContentLoaded', () => {
+  initWaterShimmer();
+  initSprouts();
+  initSmartHeader();
+});
+</script>
+</body>
+</html>
