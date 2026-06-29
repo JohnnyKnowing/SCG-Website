@@ -715,6 +715,54 @@ canvas#hero-canvas {
 .team-cred { font-size: 15px; color: #6A7080; margin-bottom: 16px; line-height: 1.4; }
 .team-bio { font-size: 17px; line-height: 1.7; color: #4A433F; margin-bottom: 20px; }
 
+/* ─── CLINICIAN EXPANDABLE BIO STYLES ─── */
+.bio-expand-wrap {
+  position: relative;
+  max-height: 130px; /* Constrains bio content before expansion */
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.bio-expand-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: linear-gradient(to bottom, rgba(250, 246, 238, 0) 0%, var(--cream) 100%);
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.team-card.expanded .bio-expand-wrap {
+  max-height: 800px;
+}
+.team-card.expanded .bio-expand-wrap::after {
+  opacity: 0;
+}
+.btn-bio-toggle {
+  display: inline-block;
+  background: none;
+  border: none;
+  color: var(--forest-green-d);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 8px 0 0 0;
+  text-decoration: underline;
+  transition: color 0.2s;
+  outline: none;
+  margin-bottom: 20px;
+}
+.btn-bio-toggle:hover {
+  color: var(--forest-green);
+}
+.btn-bio-toggle:focus-visible {
+  outline: 2px solid var(--forest-green-d) !important;
+  outline-offset: 2px !important;
+  border-radius: 4px;
+}
+
 .team-focus { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 16px; }
 .focus-tag {
   background: var(--sage-w); color: var(--sage);
@@ -1070,14 +1118,16 @@ footer {
   z-index: 5;
 }
 
-/* ─── ORGANIC WAVE TRANSITION ─── */
 /* ─── BOTTOM TRANSITION WAVE ─── */
 .bottom-transition-wave {
+  position: absolute;
+  bottom: -2px; /* Pull down slightly to cover sub-pixel gaps with contact section */
+  left: 0;
   width: 100%;
   height: 60px;
-  background: rgba(53, 129, 184, 0.22); /* Matches questions bottom linear-gradient */
-  margin-top: -1px;
-  margin-bottom: -1px;
+  background: transparent !important; /* Keep background transparent to show the section gradient */
+  z-index: 5;
+  pointer-events: none;
 }
 
 /* ─── CONTINUOUS GRADIENT FLOW (WORK, TEAM, WHO & QUESTIONS) ─── */
@@ -1091,49 +1141,37 @@ footer {
   background: linear-gradient(to bottom, rgba(53, 129, 184, 0.09) 0%, rgba(53, 129, 184, 0.15) 100%) !important;
 }
 #questions {
+  position: relative;
+  overflow: visible;
   background: linear-gradient(to bottom, rgba(53, 129, 184, 0.15) 0%, rgba(53, 129, 184, 0.22) 100%) !important;
 }
 
-/* ─── PARALLAX DIVIDER ─── */
-.parallax-divider {
+/* ─── IN-SECTION PARALLAX IMAGE ─── */
+.work-image-parallax-container {
   position: relative;
   width: 100%;
-  height: clamp(180px, 28vh, 300px);
-  margin-top: -12px; /* Extend image under the rounded bottom of recognizing section */
+  height: 320px;
+  border-radius: 12px;
   overflow: hidden;
-  z-index: 4;
+  margin-top: 28px;
+  box-shadow: 0 12px 28px rgba(30, 37, 28, 0.05);
 }
-.parallax-bg {
+.work-image-parallax-bg {
   position: absolute;
-  top: -80px;
+  top: -40px;
   left: 0;
   width: 100%;
-  height: calc(100% + 160px);
+  height: calc(100% + 80px);
   background-size: cover;
   background-position: center;
   will-change: transform;
 }
+@media (max-width: 767px) {
+  .work-image-parallax-container {
+    display: none !important;
+  }
+}
 
-/* ─── FLOATING CARD SECTIONS OVER PARALLAX ─── */
-#recognizing {
-  position: relative;
-  z-index: 6;
-  border-bottom-left-radius: 12px !important;
-  border-bottom-right-radius: 12px !important;
-  border-top-left-radius: 0 !important;
-  border-top-right-radius: 0 !important;
-  box-shadow: 0 12px 28px rgba(30, 37, 28, 0.06) !important;
-}
-#work {
-  position: relative;
-  z-index: 6;
-  border-top-left-radius: 12px !important;
-  border-top-right-radius: 12px !important;
-  border-bottom-left-radius: 0 !important;
-  border-bottom-right-radius: 0 !important;
-  box-shadow: 0 -16px 32px rgba(30, 37, 28, 0.15) !important;
-  margin-top: -12px; /* Pulls section up to overlap parallax bottom */
-}
 
 /* ========================================================================
    TABLET SCALE-UP (min-width: 768px)
@@ -1320,6 +1358,19 @@ footer {
     gap: 80px;
     align-items: start;
   }
+  .recog-cards {
+    display: flex;
+    flex-direction: column;
+    overflow-x: visible;
+    scroll-snap-type: none;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+  }
+  .recog-card {
+    flex: none;
+    scroll-snap-align: none;
+  }
   
   /* ─── HOW WE HELP DESKTOP ─── */
   .work-grid {
@@ -1331,12 +1382,12 @@ footer {
   .work-left {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
+    justify-content: flex-start;
+    height: auto;
   }
-  .work-image-container {
+  .work-image-parallax-container {
     max-width: 380px;
-    margin: 32px 0 0 0;
+    margin: 24px 0 0 0;
   }
   .steps-wrap {
     padding: 1rem 0;
@@ -1443,51 +1494,7 @@ footer {
     scroll-snap-align: start;
     scroll-snap-stop: always;
   }
-  .bio-expand-wrap {
-    position: relative;
-    max-height: 125px;
-    overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .bio-expand-wrap::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 50px;
-    background: linear-gradient(to bottom, rgba(249, 246, 240, 0) 0%, var(--cream) 100%);
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-  }
-  .team-card.expanded .bio-expand-wrap {
-    max-height: 800px;
-  }
-  .team-card.expanded .bio-expand-wrap::after {
-    opacity: 0;
-  }
-  .btn-bio-toggle {
-    display: inline-block;
-    background: none;
-    border: none;
-    color: var(--forest-green-d);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13.5px;
-    font-weight: 600;
-    cursor: pointer;
-    padding: 8px 0 0 0;
-    text-decoration: underline;
-    transition: color 0.2s;
-    outline: none;
-  }
-  .btn-bio-toggle:hover {
-    color: var(--forest-green);
-  }
-  .btn-bio-toggle:focus-visible {
-    outline: 2px solid var(--forest-green-d) !important;
-    outline-offset: 2px !important;
-    border-radius: 4px;
-  }
+
 
   .bottom-nav {
     display: flex;

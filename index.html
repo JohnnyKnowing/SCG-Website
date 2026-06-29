@@ -104,10 +104,6 @@
   </div>
 </section>
 
-<div class="parallax-divider" id="work-parallax-divider">
-  <div class="parallax-bg" style="background-image: url('water_drop.jpg');" role="img" aria-label="A water drop sitting perfectly in the center of a green lupine leaf"></div>
-</div>
-
 <!-- ─── HOW WE HELP ─── -->
 <section class="work bg-ivory" id="work">
   <div class="container">
@@ -115,6 +111,9 @@
       <div class="work-left">
         <h2 class="section-h">We take the time to<br>actually know them.</h2>
         <p class="lede" style="margin-bottom: 24px;">Every person arrives with their own way of taking in the world. Here is what that looks like in practice.</p>
+        <div class="work-image-parallax-container">
+          <div class="work-image-parallax-bg" style="background-image: url('water_drop.jpg');" role="img" aria-label="A water drop sitting perfectly in the center of a green lupine leaf"></div>
+        </div>
       </div>
 
       <div class="work-right">
@@ -190,7 +189,7 @@
             <p class="team-bio">Johnny Spangler sees counseling as a supportive space built on genuine warmth, authenticity, and a deep respect for how an individual experiences the world. For him, training the next generation of counselors is the engine that drives his daily practice. His role as a counselor educator, supervisor, and workshop leader allows him to look at developmental health through a much wider lens. While working directly with clients remains a central part of his practice, these broader educational initiatives provide the precise groundwork for our clinical team.</p>
             <p class="team-bio">This ongoing educational work directly shapes how we approach care at Spangler Counseling Group. Our framework incorporates foundational neuro-affirming practices, but we build upon that standard to recognize the absolute uniqueness of every person's internal reality. We couple this individual focus with a strong understanding of shared human experience. Ultimately, leading these broader projects ensures that our practice remains purposeful, modern, and entirely dedicated to helping individuals trust, navigate, and own their life journeys.</p>
           </div>
-          <button class="btn-bio-toggle mobile-only">Read Bio &darr;</button>
+          <button class="btn-bio-toggle">Read Bio &darr;</button>
         </div>
       </div>
 
@@ -208,7 +207,7 @@
             <p class="team-bio">For nearly three decades, Sean Flikke has worked alongside marginalized and neurodivergent young people in schools, community programs, athletics, counseling settings, and mentorship spaces. His work is grounded in the belief that healing, growth, and meaningful change happen through authentic human connection, emotional safety, and relationships built on trust rather than judgment. Sean recently completed his Master of Science in Clinical Rehabilitation and Mental Health Counseling through a CACREP-accredited program at Montana State University Billings and is working toward full licensure as an LMHC-A in Washington State. His clinical experience includes urgent care behavioral health, psycho-social assessment, case management, and counseling support for youth navigating ADHD, autism spectrum disorder, anxiety, emotional regulation challenges, and trauma-related concerns.</p>
             <p class="team-bio">Sean’s counseling philosophy blends person-centered, narrative, and short-term solution-focused approaches with a warm, energetic, and deeply relational style. He believes young people are far more than diagnoses, behaviors, or academic performance, and works collaboratively to help clients identify strengths, reshape personal narratives, and build practical strategies for success in everyday life. Drawing from a lifelong background in education, coaching, creativity, and community leadership, Sean brings a gregarious and artistic presence into his work, using humor, storytelling, curiosity, movement, and genuine engagement to create spaces where young people feel seen, valued, and empowered to grow into fuller versions of themselves.</p>
           </div>
-          <button class="btn-bio-toggle mobile-only">Read Bio &darr;</button>
+          <button class="btn-bio-toggle">Read Bio &darr;</button>
         </div>
       </div>
     </div>
@@ -352,13 +351,12 @@
       </div>
     </div>
   </div>
+  <div class="bottom-transition-wave">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style="width: 100%; height: 60px; display: block;">
+      <path d="M0,0 Q720,60 1440,0 L1440,60 L0,60 Z" fill="#1C3245" />
+    </svg>
+  </div>
 </section>
-
-<div class="bottom-transition-wave">
-  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style="width: 100%; height: 60px; display: block;">
-    <path d="M0,0 Q720,60 1440,0 L1440,60 L0,60 Z" fill="#1C3245" />
-  </svg>
-</div>
 
 <!-- ─── CONTACT FORM ─── -->
 <section class="contact" id="contact">
@@ -596,12 +594,6 @@ function makeFlare(canvas) {
 
     heroSection.addEventListener('mousedown', (e) => {
       addRipple(e.clientX, e.clientY);
-    });
-
-    heroSection.addEventListener('mousemove', (e) => {
-      if (Math.random() < 0.05) {
-        addRipple(e.clientX, e.clientY);
-      }
     });
   }
 
@@ -1105,21 +1097,21 @@ function initQuoteCarouselDots() {
   carousel.addEventListener('scroll', updateActiveDot, { passive: true });
 }
 
-// Parallax Divider Scroll Effect
-function initParallaxDivider() {
-  const divider = document.getElementById('work-parallax-divider');
-  if (!divider) return;
-  const bg = divider.querySelector('.parallax-bg');
+// In-Section Parallax Scroll Effect
+function initParallaxImage() {
+  const container = document.querySelector('.work-image-parallax-container');
+  if (!container) return;
+  const bg = container.querySelector('.work-image-parallax-bg');
   if (!bg) return;
 
   function update() {
-    const rect = divider.getBoundingClientRect();
+    const rect = container.getBoundingClientRect();
     const H = window.innerHeight;
     if (rect.top < H && rect.bottom > 0) {
       // Relative progress (from 0 when entering from bottom, to 1 when exiting from top)
       const progress = (H - rect.top) / (H + rect.height);
-      // Map progress to translate Y with a faster multiplier (140) for a sped-up parallax transition
-      const yOffset = (progress - 0.5) * 140;
+      // Map progress to translate Y (-30px to 30px) for a smooth column parallax
+      const yOffset = (progress - 0.5) * 60;
       bg.style.transform = `translate3d(0, ${yOffset}px, 0)`;
     }
   }
@@ -1139,7 +1131,7 @@ initExpandableBios();
 initBottomNav();
 initScrollProgress();
 initQuoteCarouselDots();
-initParallaxDivider();
+initParallaxImage();
 </script>
 
 </body>
